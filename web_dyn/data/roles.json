@@ -1,0 +1,17 @@
+{
+    "administrator": {
+        "name": "admin",
+        "description": "People in charge",
+        "access": "ALL"
+    },
+    "user": {
+        "name": "user",
+        "description": "People owning an account",
+        "access": "NORMAL"
+    },
+    "visitor": {
+        "name": "visitor",
+        "description": "Random people passing-by",
+        "access": "NONE"
+    }
+}
