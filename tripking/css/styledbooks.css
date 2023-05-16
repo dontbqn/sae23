@@ -1,0 +1,15 @@
+td a{
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+td a:hover{
+    color: rgba(0,0,0,0.5);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+tbody:hover > td:hover a{
+    color:rgba(0,0,0,0.5);
+    text-decoration: underline;
+}
