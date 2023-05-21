@@ -31,7 +31,6 @@ pagenavbar("page01.php");
         ?>
         </div>
     </div>
-    <?php pagefooter(); ?>
 </body>
 
 </html>

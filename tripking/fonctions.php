@@ -211,36 +211,47 @@ function pagenavbar($pageactive){
         <div class="offcanvas-body">
         <ul>
             <li class="nav-item">
-            <a class="nav-link '.($pageactive == "page01.php" ? "fw-semibold active border border-2 rounded-3 border-light bg-gradient" :"").'" href="page01.php">Accueil</a>
+            <a class="nav-link '.($pageactive == "page01.php" ? navbarItemActive() : navbarItem()).'" href="page01.php">Accueil</a>
         </li>';
         echo '<li class="nav-item">
-            <a class="nav-link '.($pageactive == "page02.php" ? "fw-semibold active border border-2 rounded-3 border-light bg-gradient" :"").'" href="page02.php">Formulaires</a>
+            <a class="nav-link '.($pageactive == "page02.php" ? navbarItemActive()  : navbarItem()).'" href="page02.php">Formulaires</a>
         </li>';
 
         echo '<li class="nav-item">
-        <a class="nav-link '.($pageactive == "page08.php" ? "fw-semibold active border border-2 rounded-3 border-light bg-gradient" :"").'" href="page08.php">Informations</a>
+        <a class="nav-link '.($pageactive == "page08.php" ? navbarItemActive() : navbarItem()).'" href="page08.php">Informations</a>
         </li>';
         echo '
         <li class="nav-item">
-        <a class="nav-link '.($pageactive == "page05.php" ? "active border border-2 rounded-3 border-light bg-gradient" :"").'" href="page05.php">Profil</a>
+        <a class="nav-link '.($pageactive == "page05.php" ? navbarItemActive() : navbarItem()).'" href="page05.php">Profil</a>
         </li>';
         if(isset($_SESSION)){
             if(isset($_SESSION['user']) && ($_SESSION['role']=="admin" || $_SESSION["role"] == "superadmin")){
                 echo '
                 <li class="nav-item">
-                <a class="nav-link '.($pageactive == "page06.php" ? "active bg-danger fw-bolder border border-2 border-danger bg-gradient rounded-3" :"").'" href="page06.php">Admin</a>
+                <a class="nav-link '.($pageactive == "page06.php" ? "active bg-danger fw-bolder border bg-opacity-50 border-2 border-danger bg-gradient rounded-3 p-3" :"").'" href="page06.php">Admin</a>
                 </li>';
             }
         }
         echo '
-        <li class="nav-item">
-        <a class="nav-link '.($pageactive == "deposer-une-annonce.php" ? "fw-semibold active border border-2 rounded-3 border-light bg-gradient" :"").'" href="deposer-une-annonce.php">Annonce</a>
-        </li>
-        </ul>
+                <li class="nav-item">
+                    <a class="nav-link '.($pageactive == "deposer-une-annonce.php" ? navbarItemActive() : navbarItem()).'" href="deposer-une-annonce.php">Déposer votre annonce</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link '.($pageactive == "explorer.php" ? navbarItemActive() : navbarItem()).'" href="explorer.php">Explorer</a>
+                </li>
+            </ul>
         </div>
     </div>
     ';
 
+}
+
+
+function navbarItemActive(){
+    return 'fw-semibold active border border-2 rounded-3 border-light bg-secondary bg-opacity-50 ps-2 py-3';
+}
+function navbarItem(){
+    return 'border border-2 rounded-3 border-light bg-secondary bg-opacity-25 ps-2 py-1';
 }
 
 function showBooks($livres, $found){
@@ -696,4 +707,58 @@ function modifyUser($user, $new_usr, $mdp, $role, $favcolor){
     }
     
 }
+
+function cookiesOrNot(){
+    //Cookie popup devrait apparaitre qu'une seule fois dans une session utilisateur
+    //
+    echo '
+    <div class="d-flex justify-content-end position-fixed bottom-0 end-0 mb-4 m-2 d-none d-sm-none d-md-block" id="toaster">
+            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-animation="true">
+                <div class="toast-header bg-success bg-gradient">
+                    <img src="img/cookie.ico" class="rounded me-2" width="27px" height="27px" title="cookie ico">
+                    <h5><strong class="me-auto badge text-dark text-wrap">Cookies & Privacy</strong></h5>
+                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body text-white bg-dark lh-sm">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="necessary" checked />
+                        <label class="form-check-label" for="necessary">
+                            <p>
+                                <strong>Necessary cookies</strong>
+                                <muted>help with the basic functionality of our website, e.g remember if you gave consent to cookies.</muted>
+                            </p>
+                        </label>
+                    </div>
+                    <!-- Analytical -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="analytical" />
+                        <label class="form-check-label" for="analytical">
+                            <p>
+                                <strong>Analytical cookies</strong>
+                                <muted>make it possible to gather statistics about the use and trafic on our website, so we can make it better.</muted>
+                            </p>
+                        </label>
+                    </div>
+                    <!-- Marketing -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="marketing" />
+                        <label class="form-check-label" for="marketing">
+                            <p>
+                                <strong>Marketing cookies</strong>
+                                <muted>make it possible to show you more relevant social media content and advertisements on our website and other platforms.</muted>
+                            </p>
+                        </label>
+                    </div>
+                    <div class="learn-more">
+                        <a class="d-inline rounded-pill link-danger badge bg-warning text-wrap" href="#" target="">Learn More</a>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        ';
+    
+}
+
+
 ?>

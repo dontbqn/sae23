@@ -1,9 +1,10 @@
 <?php
 session_start();
 include("./fonctions.php");
+include("./annonces.php");
 setup();
 pageheader();
-pagenavbar("");
+pagenavbar("deposer-une-annonce.php");
 ?>
     <body>
         <h1 class="my-4 text-center">
@@ -63,18 +64,11 @@ pagenavbar("");
 ';
             }
             else{
-                var_dump($_POST);
-                /*
-                "01": {
-                        "id": 01,
-                        "titre": "Barcelone T4 vue sur Mer Thalasso",
-                        "lieu": "Barcelone",
-                        "prix_nuit": 27,
-                        "nb_fav":2, 
-                        "bon_plan":True, //booléen
-                        "commentaires":[c01,]
-                    },
-                */
+                //Création de la nouvelle annonce
+                addAnnonce();
+                //Récupération du nouvel id
+                //Redirection vers la page d'annonce nouvellement créée grâce à son id
+                header('Location : ./annonce.php');
             } ?>
             </div>
         </div>

@@ -1,0 +1,38 @@
+{
+    "01": {
+        "id": 1,
+        "titre": "Barcelone T4 vue sur Mer Thalasso",
+        "lieu": "Barcelone",
+        "pays": "Espagne",
+        "prix_nuit": 27,
+        "nb_fav": 2,
+        "bon_plan": false,
+        "commentaires": [
+            "c01",
+            "c02",
+            "c56"
+        ],
+        "images": [
+            ".\/annonces\/01\/img1.jpg",
+            ".\/annonces\/01\/img2.jpg"
+        ]
+    },
+    "02": {
+        "id": 2,
+        "titre": "Saint-Malo Studio Saisonnier",
+        "lieu": "Saint-Malo",
+        "pays": "France",
+        "prix_nuit": 15,
+        "nb_fav": 0,
+        "bon_plan": true,
+        "commentaires": [
+            "c05",
+            "c07",
+            "c17"
+        ],
+        "images": [
+            ".\/annonces\/02\/img1.jpg",
+            ".\/annonces\/02\/img2.jpg"
+        ]
+    }
+}
