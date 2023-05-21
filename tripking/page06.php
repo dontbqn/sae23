@@ -1,5 +1,6 @@
 <?php
 session_start();
+include('./annonces.php');
 if(!isset($_SESSION)){
     echo '<script>alert("You don\'t have the rights");</script>';
     sleep(2);
@@ -104,19 +105,19 @@ else{
                     </div>';
                     echo '
                     <div role="alert" aria-live="assertive" aria-atomic="true" class="toast position-static show top-0 end-0" data-bs-autohide="false">
-                    <div class="toast-header">
-                        <img src="images/louis.png" class="rounded ms-1 me-2" alt="bugslogo" width="20" height="20">
-                        <strong class="me-auto">Need a reboot ?</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        <div class="toast-header">
+                            <img src="images/louis.png" class="rounded ms-1 me-2" alt="bugslogo" width="20" height="20">
+                            <strong class="me-auto">Need a reboot ?</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body text-center">
+                            <form method="post">
+                                <a type="button" href="crea_user.php" class="btn btn-outline-danger" name="resetall">Reset all database (crea_user)</a>
+                            </form>
+                        </div>
                     </div>
-                    <div class="toast-body text-center">
-                    <form method="post">
-                        <a type="button" href="crea_user.php" class="btn btn-outline-danger" name="resetall">Reset all database (crea_user)</a>
-                    </form>
-                    </div>
-                </div>
-                <script src="js/toaster.js"></script>
-                ';
+                    <script src="js/toaster.js"></script>
+                    ';
             }
             else{
                 if (!isset($_POST["user"]) || !($_POST["mdp"]==$_POST["mdpverif"])) {
@@ -189,7 +190,7 @@ else{
                 </div>
                 <div class="toast-body text-center">
                 <form method="post">
-                    <a type="button" href="crea_user" class="btn btn-outline-danger" name="resetall">Reset all database to default</a>
+                    <a type="button" href="crea_user" class="btn btn-outline-danger" name="resetall">Reset all the user\'s database to default</a>
                 </form>
                 </div>
             </div>
@@ -215,7 +216,24 @@ else{
         }
     }
 }
+    //ANNONCES
+    $annonces = json_decode(file_get_contents("annonces/annonces.json"), true);
+    getAnnonces($annonces);
+    echo '
+    <div role="alert" aria-live="assertive" aria-atomic="true" class="toast position-static show top-0 end-0" data-bs-autohide="false">
+        <div class="toast-header">
+            <img src="images/louis.png" class="rounded ms-1 me-2" alt="bugslogo" width="20" height="20">
+            <strong class="me-auto">Need a reboot ?</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body text-center">
+            <form method="post">
+                <a type="button" href="crea_user.php" class="btn btn-outline-danger" name="resetall">Reinitialiser les annonces (newAnnonces)</a>
+            </form>
+        </div>
+    </div>
+    <script src="js/toaster.js"></script>
+    ';
 ?>
-    <?php pagefooter(); ?>
     </body>
 </html>

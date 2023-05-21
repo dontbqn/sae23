@@ -9,17 +9,16 @@ pagenavbar("explorer.php");
     <body>
         <h1 class="my-1 text-center">
         Explorer
-        <hr>
     </h1>
         
-    <div class="container col-10 border border-2 bg-secondary rounded-4 shadow my-2 p-3">
+    <div class="container col-11 border border-2 rounded-4 shadow my-2 p-3">
     <?php 
     if(!isset($_POST["recherche"])){ //Javascript mettre à jour le placeholder à partir de 2 ou 3 phrases
         echo '
-        <div class="d-flex justify-content-center rounded-3 text-white p-2 mx-4 px-4 m-2">
-            <form method="post" class="shadow-md border-white text-white">
+        <div class="d-flex justify-content-center rounded-3 p-2 mx-4 px-4 m-2 bg-secondary border border-black border-3">
+            <form method="post" class="shadow-md border-white">
                 <div class="row">
-                    <div class="col-md-5 my-2">
+                    <div class="col-md-8 my-2">
                         <label class="fs-6 d-none d-md-none d-lg-block" for="keywords">Rechercher l\'expression</label>
                         <input type="search" class="form-control shadow-none" placeholder="Barcelone T4 piscine" name="keywords" minlength="4" maxlength="32" autofocus>
                     </div>
@@ -53,10 +52,10 @@ pagenavbar("explorer.php");
     //Variables vides pour l'instant
     newAnnonce();
     $annonces = json_decode(file_get_contents("annonces/annonces.json"), true);
-    showAnnonces($annonces, $found=False);
+    showAnnonces($annonces, $found=False);   
     }
     else{
-        //Take inputs annonces and call findBooks() function from them
+        //Take inputs annonces and call findAnnonces() function from them
         $keywords = htmlspecialchars($_POST["keywords"]);
         $fields=[];
         if(isset($_POST["radioBtn"])){
@@ -80,7 +79,7 @@ pagenavbar("explorer.php");
             $annee = $_POST["annee"];
             $fields["annee"] = $annee;
         }
-        $annonces = json_decode(file_get_contents("annonces/annnonces.json"), true);
+        $annonces = json_decode(file_get_contents("./annonces.json"), true);
         findAnnonces($annonces, $keywords, $fields);
     }
     ?>

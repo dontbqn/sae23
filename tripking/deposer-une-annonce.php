@@ -40,20 +40,20 @@ pagenavbar("deposer-une-annonce.php");
                                 <label class="me-2">Selectectionnez des photos</label>
                                 <input type="file" id="file_txt" name="file_txt" accept=".jpg,.png">
                             </form>';
-                                if (isset($_FILES['annonce_btn'])) {
-                                    $file = $_FILES['annonce_btn']["name"]!="" ? $_FILES['annonce_btn'] : False;
-                                    if($file == False){
-                                        echo '<div class="text-danger fw-bold">Entrez une photo valide !</div>';
-                                    }
-                                    else{
-                                        $path = $file['tmp_name'];
-                                        //stock file temporary in file
-                                        $newfilePath = "usr_file/".$file["name"];
-                                        move_uploaded_file($path, $newfilePath);
-                                        echo "<br> <div class='mt-4 p-3 bg-secondary bg-opacity-50 rounded-1 border-white'>";
-                                        print(file_get_contents($newfilePath));
-                                    }
+                            if (isset($_FILES['annonce_btn'])) {
+                                $file = $_FILES['annonce_btn']["name"]!="" ? $_FILES['annonce_btn'] : False;
+                                if($file == False){
+                                    echo '<div class="text-danger fw-bold">Entrez une photo valide !</div>';
                                 }
+                                else{
+                                    $path = $file['tmp_name'];
+                                    //stock file temporary in file
+                                    $newfilePath = "annonces/".$new_annonce['id']."/".$file["name"];
+                                    move_uploaded_file($path, $newfilePath);
+                                    echo "<br> <div class='mt-4 p-3 bg-secondary bg-opacity-50 rounded-1 border-white'>";
+                                    print(file_get_contents($newfilePath));
+                                }
+                            }
                         echo '
                         </div>
                     </div>

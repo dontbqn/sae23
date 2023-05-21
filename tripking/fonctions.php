@@ -43,8 +43,8 @@ function setup(){
         <link href="css/styledbooks.css" rel="stylesheet">
     </head>
     ';
-    if(!isset($_SESSION['favcolor'])){ // Thème du fond par défaut pour tous les utilisateurs
-        $_SESSION['favcolor'] = "#ffffff";
+    if(!isset($_SESSION['cookie'])){ // Thème du fond par défaut pour tous les utilisateurs
+        cookiesOrNot();
     }
 }
 function pagefooter(){
@@ -228,7 +228,7 @@ function pagenavbar($pageactive){
             if(isset($_SESSION['user']) && ($_SESSION['role']=="admin" || $_SESSION["role"] == "superadmin")){
                 echo '
                 <li class="nav-item">
-                <a class="nav-link '.($pageactive == "page06.php" ? "active bg-danger fw-bolder border bg-opacity-50 border-2 border-danger bg-gradient rounded-3 p-3" :"").'" href="page06.php">Admin</a>
+                <a class="nav-link '.($pageactive == "page06.php" ? "active bg-danger fw-bolder border bg-opacity-50 border-2 border-danger bg-gradient rounded-3 p-3" : navbarItem()).'" href="page06.php">Admin</a>
                 </li>';
             }
         }
@@ -348,7 +348,7 @@ function findBooks($livres, $keyword, $fields=[]){
     ';
 
     $founded_books = []; //Liste de tous les champs (titres, auteurs etc) trouvés qui sera utilisé pour créer le tableau des resultats
-    $filename = 'log.txt';
+    $filename = './data/booklogs.txt';
  
     if(file_exists($filename))
     {
@@ -363,29 +363,29 @@ function findBooks($livres, $keyword, $fields=[]){
                 //Recherche par Auteurs
                 if(in_array("auteur", $fields)){
                     if(str_contains(strtolower($book["author"]), strtolower($key))){
-                        file_put_contents('log.txt','Author found : '.$book["author"]. PHP_EOL, FILE_APPEND);
+                        file_put_contents($filename,'Author found : '.$book["author"]. PHP_EOL, FILE_APPEND);
                         array_push($founded_books, $book);
                     }
                 }
                 //Recherche par Titres
                 elseif(in_array("titre", $fields)){
                     if(str_contains(strtolower($book["title"]), strtolower($key))){  
-                        file_put_contents('log.txt','Book title found : '.$book["title"]. PHP_EOL, FILE_APPEND);
+                        file_put_contents($filename,'Book title found : '.$book["title"]. PHP_EOL, FILE_APPEND);
                         array_push($founded_books, $book);
                     }
                 }
                 //Recherche par Contenus
                 elseif(in_array("contenu", $fields)){
                     if(str_contains(strtolower($book["content"]), strtolower($key))){
-                        file_put_contents('log.txt',"Content found, extracted from : ".$book["title"]. PHP_EOL, FILE_APPEND);
-                        file_put_contents('log.txt',"Content : ".$book["content"]. PHP_EOL, FILE_APPEND);
+                        file_put_contents($filename,"Content found, extracted from : ".$book["title"]. PHP_EOL, FILE_APPEND);
+                        file_put_contents($filename,"Content : ".$book["content"]. PHP_EOL, FILE_APPEND);
                         array_push($founded_books, $book);   
                     }
                 }
                 else{ // Si aucun choix n'a été fait, recherche partout
                     foreach(array_values($book) as $content){
                         if(str_contains(strtolower($content), strtolower($key))){
-                            file_put_contents('log.txt',"Content found : ".$content. PHP_EOL, FILE_APPEND);
+                            file_put_contents($filename,"Content found : ".$content. PHP_EOL, FILE_APPEND);
                             array_push($founded_books, $book); 
                         }
                     }
@@ -405,20 +405,20 @@ function findBooks($livres, $keyword, $fields=[]){
                     echo "<br>";
 
                     if($date->format('m/Y') == $book_date->format('m/Y')) {
-                        file_put_contents('log.txt',"The date : ".$date->format('m/Y').", matches with : ".$book["title"]. PHP_EOL, FILE_APPEND);
+                        file_put_contents($filename,"The date : ".$date->format('m/Y').", matches with : ".$book["title"]. PHP_EOL, FILE_APPEND);
                         array_push($founded_books, $book);
                     }
                     elseif($date->format('Y') == $book_date->format('Y')) {
                         if($date->format('m') < $book_date->format('m')){
-                            file_put_contents('log.txt',"".$book["title"]." published the ".$book["date"].", was published month(s) after : ".$date->format('m/Y'). PHP_EOL, FILE_APPEND);
+                            file_put_contents($filename,"".$book["title"]." published the ".$book["date"].", was published month(s) after : ".$date->format('m/Y'). PHP_EOL, FILE_APPEND);
                             array_push($founded_books, $book);
                         }
                         else{
-                            file_put_contents('log.txt',"".$book["title"]." published the ".$book["date"].", was published month(s) before : ".$date->format('m/Y'). PHP_EOL, FILE_APPEND);
+                            file_put_contents($filename,"".$book["title"]." published the ".$book["date"].", was published month(s) before : ".$date->format('m/Y'). PHP_EOL, FILE_APPEND);
                         }
                     }
                     elseif($date->format('Y') < $book_date->format('Y')) {
-                        file_put_contents('log.txt',"The date : ".$date->format('m/Y').", is lower than : ".$book["title"]." published the ".$book["date"]. PHP_EOL, FILE_APPEND);
+                        file_put_contents($filename,"The date : ".$date->format('m/Y').", is lower than : ".$book["title"]." published the ".$book["date"]. PHP_EOL, FILE_APPEND);
                         array_push($founded_books, $book);
                     }
                 }
@@ -436,7 +436,7 @@ function findBooks($livres, $keyword, $fields=[]){
                 $date = $fields['annee'];
                 $book_date = explode("/",$book["date"]);
                 if ($date <= $book_date[2]) {
-                    file_put_contents('log.txt', "Year : ".$date.", is lower or equals with : ".$book["title"]." published the ".$book["date"]. PHP_EOL, FILE_APPEND);
+                    file_put_contents($filename, "Year : ".$date.", is lower or equals with : ".$book["title"]." published the ".$book["date"]. PHP_EOL, FILE_APPEND);
                     array_push($founded_books, $book);
                 }
             }
@@ -711,52 +711,68 @@ function modifyUser($user, $new_usr, $mdp, $role, $favcolor){
 function cookiesOrNot(){
     //Cookie popup devrait apparaitre qu'une seule fois dans une session utilisateur
     //
-    echo '
-    <div class="d-flex justify-content-end position-fixed bottom-0 end-0 mb-4 m-2 d-none d-sm-none d-md-block" id="toaster">
-            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-animation="true">
-                <div class="toast-header bg-success bg-gradient">
-                    <img src="img/cookie.ico" class="rounded me-2" width="27px" height="27px" title="cookie ico">
-                    <h5><strong class="me-auto badge text-dark text-wrap">Cookies & Privacy</strong></h5>
-                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body text-white bg-dark lh-sm">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="necessary" checked />
-                        <label class="form-check-label" for="necessary">
-                            <p>
-                                <strong>Necessary cookies</strong>
-                                <muted>help with the basic functionality of our website, e.g remember if you gave consent to cookies.</muted>
-                            </p>
-                        </label>
+     if(!isset($_POST["cookie_popup"])){
+        echo '
+        <div class="d-flex justify-content-end position-fixed bottom-0 end-0 mb-4 m-2 d-none d-sm-none d-md-block" id="toaster">
+                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-animation="true">
+                    <div class="toast-header bg-success bg-gradient">
+                        <img src="img/cookie.ico" class="rounded me-2" width="27px" height="27px" title="cookie ico">
+                        <h5><strong class="me-auto badge text-dark text-wrap">Cookies & Privacy</strong></h5>
+                        <button type="submit" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close" value="cookie_popup" name="cookie_popup"></button>
                     </div>
-                    <!-- Analytical -->
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="analytical" />
-                        <label class="form-check-label" for="analytical">
-                            <p>
-                                <strong>Analytical cookies</strong>
-                                <muted>make it possible to gather statistics about the use and trafic on our website, so we can make it better.</muted>
-                            </p>
-                        </label>
+                    <div class="toast-body text-white bg-dark lh-sm">
+                    <form method="post">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="necessary" name="necessary" checked />
+                            <label class="form-check-label" for="necessary">
+                                <p>
+                                    <strong>Necessary cookies</strong>
+                                    <muted>help with the basic functionality of our website, e.g remember if you gave consent to cookies.</muted>
+                                </p>
+                            </label>
+                        </div>
+                        <!-- Analytical -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="analytical" name="analytical" />
+                            <label class="form-check-label" for="analytical">
+                                <p>
+                                    <strong>Analytical cookies</strong>
+                                    <muted>make it possible to gather statistics about the use and trafic on our website, so we can make it better.</muted>
+                                </p>
+                            </label>
+                        </div>
+                        <!-- Marketing -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="marketing" name="marketing" />
+                            <label class="form-check-label" for="marketing">
+                                <p>
+                                    <strong>Marketing cookies</strong>
+                                    <muted>make it possible to show you more relevant social media content and advertisements on our website and other platforms.</muted>
+                                </p>
+                            </label>
+                        </div>
+                    </form>
+                        <div class="learn-more">
+                            <a class="d-inline rounded-pill link-danger badge bg-warning text-wrap p-2" href="#" target="">Learn More</a>
+                        </div>
+                        <hr>
                     </div>
-                    <!-- Marketing -->
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="marketing" />
-                        <label class="form-check-label" for="marketing">
-                            <p>
-                                <strong>Marketing cookies</strong>
-                                <muted>make it possible to show you more relevant social media content and advertisements on our website and other platforms.</muted>
-                            </p>
-                        </label>
-                    </div>
-                    <div class="learn-more">
-                        <a class="d-inline rounded-pill link-danger badge bg-warning text-wrap" href="#" target="">Learn More</a>
-                    </div>
-                    <hr>
                 </div>
             </div>
-        </div>
-        ';
+            ';
+            //<span class="text-white-50">close to get rid of this pop-up</span>
+     }
+     else{
+        if(isset($_POST["necessary"])){
+            array_push($_SESSION["cookie"], "necessary");
+        }
+        if(isset($_POST["analytical"])){
+            array_push($_SESSION["cookie"], "analytical");
+        }
+        if(isset($_POST["necessary"])){
+            array_push($_SESSION["cookie"], "marketing");
+        }
+     }
     
 }
 
