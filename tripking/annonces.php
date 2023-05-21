@@ -94,7 +94,7 @@ function showAnnonces($annonces, $found){
     echo '<tr class="">
         <th scope="row">';
         echo $found['id'];
-        echo '</th><td><a href="annonces/page_annonce.php?id='.$found['id'].'" class="text-dark">';
+        echo '</th><td><a href="page_annonce.php?id='.$found['id'].'" class="text-dark">';
         echo $found['titre'];
         echo '</a></td><td>'; 
         echo $found['lieu'];
