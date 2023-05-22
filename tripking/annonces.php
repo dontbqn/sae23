@@ -123,7 +123,7 @@ echo '
 ';
 
 }
-function addAnnonce($titre, $lieu, $pays, $prixnuit){
+function addAnnonce($titre, $lieu, $pays, $prixnuit, $bon_plan){
      // encode sans avoir decoder => ecrase le fichier déja present
      $annonces = json_decode(file_get_contents("annonces/annonces.json", true), true);
      //
@@ -136,7 +136,7 @@ function addAnnonce($titre, $lieu, $pays, $prixnuit){
             <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/>
             </svg>Ce titre existe déjà !    <br/>
             <a type="button" class="btn text-center border border-black mt-3" href="deposer-une-annonce.php">reload page</a></div>';
-            pagefooter();
+            footer();
             die();
         }
         if($annonce["id"] >= $compteur){
@@ -368,7 +368,7 @@ function modifyAnnonce($annonce, $new_usr, $mdp, $role, $favcolor){
         $_SESSION['annonce'] = $new_usr;
         $_SESSION['favcolor'] = $favcolor;
         deleteUser($annonces[$annonce]);
-        addAnnonce();
+        addAnnonce($titre, $lieu, $pays, $prixnuit, $bon_plan);
         $_SESSION['mdp'] = ($annonces[$new_usr]['mdp']);
         $res=json_encode($annonces, JSON_PRETTY_PRINT);
         file_put_contents("./annonces/annonces.json",$res); //résultat dans annonces.json

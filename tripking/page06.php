@@ -13,12 +13,11 @@ else{
         header("Location: page01.php");
     }
     else{
-        include("./fonctions.php");
+        include("./fonctions_start.php");
         setup();
         /*
         Page Accueil
         */
-        pageheader();
         pagenavbar("page06.php");
         $users = json_decode(file_get_contents("data/users.json"), true);
         echo '
@@ -48,7 +47,7 @@ else{
                         if($user["user"] == $nom && $mdp == $user["mdp"]){
                             deleteUser($user); 
                             getUsers(null);
-                            pagefooter();
+                            footer();
                             die();
                         }
                     }

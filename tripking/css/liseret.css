@@ -1,0 +1,21 @@
+@keyframes moveText {
+    0% {
+        transform: translateX(500%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.move-left {
+    animation: moveText 10s linear infinite;
+}
+
+.navbar {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.navbar-text {
+    display: inline-block;
+}

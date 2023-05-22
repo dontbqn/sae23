@@ -1,36 +1,83 @@
 <?php
 session_start();
-include("./fonctions.php");
-setup();
+include("./fonctions_start.php");
 /*
 Page Accueil
 */
-pageheader();
+setup();
 pagenavbar("page01.php");
 
 ?>
 <body>
-
-    <h1 class="my-4 text-center">
-        Accueil
-    </h1>
-    </div>
-    <div class="container col-7">
+    <div class="container pt-4 pb-3">
         <div class="text-center">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore consequuntur voluptatibus tenetur odit, culpa itaque illo voluptates quasi incidunt soluta ex ipsam odio asperiores exercitationem minima, cumque eum cupiditate. Doloribus eveniet voluptas, itaque explicabo esse rem quis veniam iure a quo! Repellendus sed itaque rem ipsam voluptas consequuntur enim quaerat vero quia quo dignissimos voluptates dolorum accusamus odit soluta repudiandae, possimus laudantium dicta in quam voluptate maxime inventore? Optio quaerat ea voluptates nobis excepturi temporibus deserunt, aspernatur minus tempora quia. Obcaecati sint soluta accusantium asperiores odit tenetur quia omnis. Nesciunt adipisci facilis a asperiores maiores esse nisi reiciendis quidem in.</p>
-            <p>Reprehenderit tempore similique aperiam ducimus magnam corporis voluptate nesciunt porro, molestiae temporibus obcaecati sit voluptatibus, mollitia sed sint quod aliquid expedita ea ad? Id odit repellat numquam voluptas quis quod mollitia. Quod dicta porro quae ut iure dolorem autem nulla voluptatem et hic dignissimos qui non error debitis, eum architecto voluptates, temporibus nostrum maxime omnis suscipit ipsum. Beatae labore blanditiis unde laboriosam! Ab voluptatem eum quas non nobis, officiis deleniti dolore, iure voluptatum soluta sint? Deleniti ad quidem earum fuga soluta hic. Alias ab nam earum. Recusandae corporis officiis in, ut similique vitae nam consequatur enim, placeat eveniet necessitatibus minima!</p>
+            <a class="navbar-brand" href="#">
+                <img src="images/presentation.png" class="img-fluid" alt="Presentation Picture" width="649" height="433">
+            </a>
         </div>
-        <h3 class="m-2">Retrouvez sur notre site</h3>
-    <hr>
-    </div>
-    <div class="container mb-5 col-7 bg-dark bg-gradient bg-opacity-75 overflow-scroll rounded-5">
-        <div class="m-3">
-        <?php
-            $livres = json_decode(file_get_contents("data/data.json"), true);
-            showBooks($livres, $found=False);
-        ?>
+        <div class="container text-start my-5">
+            <h1 class="display-5">    
+                L'Aventure Trip King commence ici !
+            </h1>
+            <p class="col-7 p-2">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore consequuntur voluptatibus tenetur odit, culpa itaque illo voluptates quasi incidunt soluta ex ipsam odio asperiores exercitationem minima, cumque eum cupiditate. Doloribus eveniet voluptas, itaque explicabo esse rem quis veniam iure a quo! Repellendus sed itaque rem ipsam voluptas consequuntur enim quaerat vero quia quo dignissimos voluptates dolorum accusamus odit soluta repudiandae, possimus laudantium dicta in quam voluptate maxime inventore? Optio quaerat ea voluptates nobis excepturi temporibus deserunt, aspernatur minus tempora quia. Obcaecati sint soluta accusantium asperiores odit tenetur quia omnis. Nesciunt adipisci facilis a asperiores maiores esse nisi reiciendis quidem in.
+            </p>
+        </div>
+        <div class="container my-5 text-end">
+            <h1 class="display-6">
+                8247.. personnes logés grâce à TripKing !
+            </h1>
+            <p class="text-end p-2">
+                Avec nos logements disponibles dans toutes l'Europe, Tripking a su emerveiller vos vacances et week-ends toute l'année. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore consequuntur voluptatibus tenetur odit, culpa itaque illo voluptates quasi incidunt soluta ex ipsam odio asperiores exercitationem minima, cumque eum cupiditate. Doloribus eveniet voluptas, itaque explicabo esse rem quis veniam iure a quo! Repellendus sed itaque rem ipsam voluptas consequuntur enim quaerat vero quia quo dignissimos voluptates dolorum accusamus odit soluta repudiandae, possimus laudantium dicta in quam voluptate maxime inventore? Optio quaerat ea voluptates nobis excepturi temporibus deserunt, aspernatur minus tempora quia. Obcaecati sin
+            </p>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div id="carouselExampleCaptions" class="carousel slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em">First slide</text></svg>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>First slide label</h5>
+                        <p>Some representative placeholder content for the first slide.</p>
+                    </div>
+                    </div>
+                    <div class="carousel-item">
+                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Second slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#666"></rect><text x="50%" y="50%" fill="#444" dy=".3em">Second slide</text></svg>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Second slide label</h5>
+                        <p>Some representative placeholder content for the second slide.</p>
+                    </div>
+                    </div>
+                    <div class="carousel-item">
+                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Third slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#555"></rect><text x="50%" y="50%" fill="#333" dy=".3em">Third slide</text></svg>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Third slide label</h5>
+                        <p>Some representative placeholder content for the third slide.</p>
+                    </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
         </div>
     </div>
+    
+
+
+
+
+    <?php footer(); ?>
 </body>
 
 </html>

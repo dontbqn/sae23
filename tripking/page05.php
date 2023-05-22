@@ -1,11 +1,10 @@
 <?php
 session_start();
-include("./fonctions.php");
+include("./fonctions_start.php");
 setup();
 /*
 Page Fichier Utilisateur
 */
-pageheader();
 pagenavbar("page05.php");
 ?>
     <body>
@@ -136,7 +135,7 @@ pagenavbar("page05.php");
 
 
     </body>
-    <?php pagefooter(); ?>
+    <?php footer(); ?>
 </html>
 
 

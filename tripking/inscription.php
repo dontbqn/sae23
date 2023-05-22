@@ -1,9 +1,8 @@
 <?php
 session_start();
-include("./fonctions.php");
+include("./fonctions_start.php");
 setup();
-pageheader();
-pagenavbar("");
+pagenavbar("inscription.php");
 ?>
     <body>
         <h1 class="my-4 text-center">
@@ -43,5 +42,5 @@ pagenavbar("");
             </div>
         </div>
     </body>
-<?php pagefooter(); ?>
+<?php footer(); ?>
 </html>

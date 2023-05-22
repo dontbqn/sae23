@@ -1,9 +1,8 @@
 <?php
 session_start();
-include("./fonctions.php");
+include("./fonctions_start.php");
 include("./annonces.php");
 setup();
-pageheader();
 pagenavbar("explorer.php");
 ?>
     <body>
@@ -86,4 +85,5 @@ pagenavbar("explorer.php");
         
     </div>
     </body>
+    <?php footer(); ?>
 </html>

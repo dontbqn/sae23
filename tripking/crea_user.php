@@ -18,18 +18,10 @@ else{
         /*
         Page Créa-User
         */
-        pageheader();
         pagenavbar("crea_user.php");
         newUsers();
         header("Location: page06.php");
     }
 }
-
-
-
-
-
-
-
 
 ?>

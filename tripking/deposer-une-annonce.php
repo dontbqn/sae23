@@ -1,9 +1,8 @@
 <?php
 session_start();
-include("./fonctions.php");
+include("./fonctions_start.php");
 include("./annonces.php");
 setup();
-pageheader();
 pagenavbar("deposer-une-annonce.php");
 ?>
     <body>
@@ -73,5 +72,5 @@ pagenavbar("deposer-une-annonce.php");
             </div>
         </div>
     </body>
-<?php pagefooter(); ?>
+<?php footer(); ?>
 </html>

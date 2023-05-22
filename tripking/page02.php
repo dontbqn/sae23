@@ -3,9 +3,8 @@ session_start();
 /*
 Page Formulaire
 */
-include("./fonctions.php");
+include("./fonctions_start.php");
 setup();
-pageheader();
 pagenavbar("page02.php");
 ?>
 <body>
@@ -116,7 +115,7 @@ pagenavbar("page02.php");
 
 
     </body>
-    <?php pagefooter(); ?>
+    <?php footer(); ?>
 </html>
 
 

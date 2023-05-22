@@ -1,79 +1,6 @@
 <?php
-/*
 
-Header <header>
-Forme : Jumbotron ou équivalent
-Contenu : titre du site, logo
-Navigation <nav>
-Forme : Navbar, horizontale
-Contenu : liens vers les différentes pages
-Contenu <div>
-Contenu : spécifique à chaque page dont le contenu est précisé à chaque fois
-Footer <footer>
-Forme : Jumbotron ou équivalent en BS 5.
-Contenu :
-Première ligne : prénom, nom, mail de l’auteur, groupe, date et heure
-Deuxième ligne : symbole du copyright avec année (généré en PHP), adresse IP et port de la
-station du client (voir la variable $_SERVER)
-*/
-
-function pageheader(){
-    echo '
-    <header class="jumbotron row m-3 p-1">
-    <div class="col-sm-4 logo">
-        <img src="images/.png" class="img-fluid" style="height:10px;">SOLDES 50% - BONS PLANS - SUIVEZ NOTRE ACTUALITE
-    </div>
-    <div class="col-sm-2">';
-
-    echo '</header>';
-}
-
-function setup(){
-    echo '
-    <!DOCTYPE HTML>
-    <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="author" content="Adrien Crico">
-        <link rel="icon" href="images/bugs.ico">
-        <title>Site Dynamique</title>
-        <meta name="viewport" content="width=device-width">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">    
-        <link href="css/styledbooks.css" rel="stylesheet">
-    </head>
-    ';
-    if(!isset($_SESSION['cookie'])){ // Thème du fond par défaut pour tous les utilisateurs
-        cookiesOrNot();
-    }
-}
-function pagefooter(){
-    echo '
-    <footer class="footer jumbotron px-5">
-                <div class="row">
-                    <div class="d-md-flex justify-content-between">
-                        <div class="col-sm-1 d-none d-sm-none d-md-block"> <!--Hidden on small pages-->
-                                <a href="https://iut-stmalo.univ-rennes1.fr/">
-                                    <img class="mt-5" src="images/RT-St-malo.png" title="R&T" alt="R&T" height="40"/>
-                                </a>
-                        </div>
-                        <div class="col-xl">
-                            <div class="copyright border-top text-center m-4 py-3">
-                                <address class="text-black-50">Adrien Crico Groupe 1 - <a class="link-dark" href="mailto:adrien.crico@etudiant.univ-rennes1.fr">adrien.crico@etudiant.univ-rennes1.fr</a> - '.date('l jS \of F Y h:i:s A').'</address>
-                                <p class="text-black-50">ⓒ2022 IP: '.$_SERVER["REMOTE_ADDR"].' PORT: '.$_SERVER["REMOTE_PORT"].' </p>
-                            </div>
-                        </div>
-                        <div class="col-sm-1 d-none d-sm-none d-md-block"> <!--Hidden on small pages-->
-                                <a href="https://iut-stmalo.univ-rennes1.fr/">
-                                    <img class="mt-5 mx-4 d-block" src="images/IUT-de-Saint-Malo-logo.png" title="IUT de Saint-Malo" alt="IUT-de-Saint-Malo-logo" width="60" height="50"/>
-                                </a>
-                            </div>
-                    </div>
-            </footer>
-    ';
-}
-
-function pagenavbar($pageactive){
+function pagenavbar2($pageactive){
 
     echo '<nav class="navbar navbar-expand-lg navbar-light bg-secondary bg-opacity-75 bg-gradient">
     <a class="navbar-brand" href="page01.php"><img src="images/RT-St-malo.png" height=50></a>
@@ -177,7 +104,7 @@ function pagenavbar($pageactive){
                                 </form>';
                     echo '
                             </div>
-                        </div>
+                        </div>f
                     </div>
                 </div>';
             }
@@ -244,14 +171,6 @@ function pagenavbar($pageactive){
     </div>
     ';
 
-}
-
-
-function navbarItemActive(){
-    return 'fw-semibold active border border-2 rounded-3 border-light bg-secondary bg-opacity-50 ps-2 py-3';
-}
-function navbarItem(){
-    return 'border border-2 rounded-3 border-light bg-secondary bg-opacity-25 ps-2 py-1';
 }
 
 function showBooks($livres, $found){
@@ -428,7 +347,7 @@ function findBooks($livres, $keyword, $fields=[]){
                         <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/>
                         <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/>
                         </svg> Vous n\'avez entrez que l\'option : "mois"</div>';
-                        pagefooter();
+                        footer();
                         die();
                 }
             }
@@ -499,7 +418,7 @@ function addUser($usr, $mdp, $role="user"){
             <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/>
             </svg>This username is already taken    <br/>
             <a type="button" class="btn text-center border border-black mt-3" href="page06.php">reload page</a></div>';
-            pagefooter();
+            footer();
             die();
         }
     }
@@ -707,74 +626,5 @@ function modifyUser($user, $new_usr, $mdp, $role, $favcolor){
     }
     
 }
-
-function cookiesOrNot(){
-    //Cookie popup devrait apparaitre qu'une seule fois dans une session utilisateur
-    //
-     if(!isset($_POST["cookie_popup"])){
-        echo '
-        <div class="d-flex justify-content-end position-fixed bottom-0 end-0 mb-4 m-2 d-none d-sm-none d-md-block" id="toaster">
-                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-animation="true">
-                    <div class="toast-header bg-success bg-gradient">
-                        <img src="img/cookie.ico" class="rounded me-2" width="27px" height="27px" title="cookie ico">
-                        <h5><strong class="me-auto badge text-dark text-wrap">Cookies & Privacy</strong></h5>
-                        <button type="submit" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close" value="cookie_popup" name="cookie_popup"></button>
-                    </div>
-                    <div class="toast-body text-white bg-dark lh-sm">
-                    <form method="post">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="necessary" name="necessary" checked />
-                            <label class="form-check-label" for="necessary">
-                                <p>
-                                    <strong>Necessary cookies</strong>
-                                    <muted>help with the basic functionality of our website, e.g remember if you gave consent to cookies.</muted>
-                                </p>
-                            </label>
-                        </div>
-                        <!-- Analytical -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="analytical" name="analytical" />
-                            <label class="form-check-label" for="analytical">
-                                <p>
-                                    <strong>Analytical cookies</strong>
-                                    <muted>make it possible to gather statistics about the use and trafic on our website, so we can make it better.</muted>
-                                </p>
-                            </label>
-                        </div>
-                        <!-- Marketing -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="marketing" name="marketing" />
-                            <label class="form-check-label" for="marketing">
-                                <p>
-                                    <strong>Marketing cookies</strong>
-                                    <muted>make it possible to show you more relevant social media content and advertisements on our website and other platforms.</muted>
-                                </p>
-                            </label>
-                        </div>
-                    </form>
-                        <div class="learn-more">
-                            <a class="d-inline rounded-pill link-danger badge bg-warning text-wrap p-2" href="#" target="">Learn More</a>
-                        </div>
-                        <hr>
-                    </div>
-                </div>
-            </div>
-            ';
-            //<span class="text-white-50">close to get rid of this pop-up</span>
-     }
-     else{
-        if(isset($_POST["necessary"])){
-            array_push($_SESSION["cookie"], "necessary");
-        }
-        if(isset($_POST["analytical"])){
-            array_push($_SESSION["cookie"], "analytical");
-        }
-        if(isset($_POST["necessary"])){
-            array_push($_SESSION["cookie"], "marketing");
-        }
-     }
-    
-}
-
 
 ?>
