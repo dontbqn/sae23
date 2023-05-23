@@ -9,7 +9,7 @@ pagenavbar("page01.php");
 
 ?>
 <body>
-    <div class="container pt-4 pb-3">
+    <div class="container pt-4 pb-3 my-5">
         <div class="text-center">
             <a class="navbar-brand" href="#">
                 <img src="images/presentation.png" class="img my-2" alt="Presentation Picture" width="800" height="433">
@@ -31,7 +31,7 @@ pagenavbar("page01.php");
                 Avec nos logements disponibles dans toutes l'Europe, Tripking a su emerveiller vos vacances et week-ends toute l'année. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore consequuntur voluptatibus tenetur odit, culpa itaque illo voluptates quasi incidunt soluta ex ipsam odio asperiores exercitationem minima, cumque eum cupiditate. Doloribus eveniet voluptas, itaque explicabo esse rem quis veniam iure a quo! Repellendus sed itaque rem ipsam voluptas consequuntur enim quaerat vero quia quo dignissimos voluptates dolorum accusamus odit soluta repudiandae, possimus laudantium dicta in quam voluptate maxime inventore? Optio quaerat ea voluptates nobis excepturi temporibus deserunt, aspernatur minus tempora quia. Obcaecati sin
             </p>
         </div>
-        <div class="d-flex justify-content-center">
+        <div class="container w-50 my-5">
             <div id="carouselExampleCaptions" class="carousel slide">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -40,25 +40,25 @@ pagenavbar("page01.php");
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em">First slide</text></svg>
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Some representative placeholder content for the first slide.</p>
-                    </div>
-                    </div>
-                    <div class="carousel-item">
-                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Second slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#666"></rect><text x="50%" y="50%" fill="#444" dy=".3em">Second slide</text></svg>
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
-                        <p>Some representative placeholder content for the second slide.</p>
-                    </div>
+                        <img src="./images/louis.png" class="w-100">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>First slide label</h5>
+                            <p>Some representative placeholder content for the first slide.</p>
+                        </div>
                     </div>
                     <div class="carousel-item">
-                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Third slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#555"></rect><text x="50%" y="50%" fill="#333" dy=".3em">Third slide</text></svg>
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Third slide label</h5>
-                        <p>Some representative placeholder content for the third slide.</p>
+                        <img src="./images/louis.png" class="w-100">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Second slide label</h5>
+                            <p>Some representative placeholder content for the second slide.</p>
+                        </div>
                     </div>
+                    <div class="carousel-item">
+                        <img src="./images/louis.png" class="w-100">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Third slide label</h5>
+                            <p>Some representative placeholder content for the third slide.</p>
+                        </div>
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">

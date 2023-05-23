@@ -45,13 +45,6 @@ function newAnnonce(){
             );
     $res = json_encode($default_users, JSON_PRETTY_PRINT);
     file_put_contents("./annonces/annonces.json", $res);
-    echo '
-        <div class="d-flex justify-content-center">
-
-            <pre>
-            '.print_r($res).'
-            </pre>
-        </div>';
 }
 function showAnnonces($annonces, $found){
     if($annonces == []){

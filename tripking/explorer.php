@@ -48,10 +48,10 @@ pagenavbar("explorer.php");
             </form>
         </div>
         ';
-    //Variables vides pour l'instant
-    newAnnonce();
-    $annonces = json_decode(file_get_contents("annonces/annonces.json"), true);
-    showAnnonces($annonces, $found=False);   
+        //Variables vides pour l'instant
+        newAnnonce();
+        $annonces = json_decode(file_get_contents("./annonces/annonces.json"), true);
+        showAnnonces($annonces, $found=False);   
     }
     else{
         //Take inputs annonces and call findAnnonces() function from them
@@ -70,16 +70,9 @@ pagenavbar("explorer.php");
             }
             $fields[$btn] = $btn;
         }
-        if(!$_POST["mois"]==0){
-            $mois = date("F", mktime(0, 0, 0,$_POST["mois"], 10)); // 1 => year 2010, valeur à négligé dans ce contexte d'utilisation, "m" pour inverse 02=>February
-            $fields["mois"] = $mois;
-        }
-        if(!$_POST["annee"]==0){
-            $annee = $_POST["annee"];
-            $fields["annee"] = $annee;
-        }
-        $annonces = json_decode(file_get_contents("./annonces.json"), true);
-        //findAnnonces($annonces, $keywords, $fields);
+
+        $annonces = json_decode(file_get_contents("./annonces/annonces.json"), true);
+        findAnnonces($annonces, $keywords, $fields);
     }
     ?>
         

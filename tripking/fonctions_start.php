@@ -4,11 +4,11 @@ include("./fonctions.php");
 
 function liseret(){
     echo '
-    <nav class="navbar bg-secondary ">
-        <div class="container-fluid ">
-            <span class="navbar-text ">
-                GROSSE PROMO SUR LES LOGEMENT!!! -50%
-            </span>
+    <nav class="navbar bg-secondary">
+        <div class="container-fluid">
+            <a class="navbar-text text-decoration-none link-light" href="./bons_plans.php">
+            &#128722;&#127939; GROSSE PROMO SUR LES LOGEMENTS !! -50% PARTOUT
+            </a>
         </div>
     </nav>
     ';
@@ -40,8 +40,8 @@ function setup(){
                 echo "VOUS AVEZ ETE RECONNU, relancement de la session en cours";
                 connexion($_COOKIE['LOGGED_USER'],$_COOKIE['MOTDEPASSE']);
             }
-            echo 'cookies : ';
-            print_r($_COOKIE);
+            //echo 'cookies : ';
+            //sprint_r($_COOKIE);
         }
 }
 
@@ -246,6 +246,8 @@ function pagenavbar($pageactive){
                         </form>";
                 }
             }
+            
+            
         }
         else{
             echo 'Non connecté';
@@ -255,6 +257,9 @@ function pagenavbar($pageactive){
         echo '
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
+
+        <a type="button" href="./reservations.php" class="btn btn-sm active text-wrap badge mx-2 px-4">mes réservations</a>
+
         <div class="offcanvas-body">
         <ul class="list-group list-group-flush">
             <li class="nav-item list-group-item">
@@ -298,7 +303,6 @@ function pagenavbar($pageactive){
                 <li class="nav-item list-group-item">
                     <a class="nav-link '.($pageactive == "partenaires.php" ? navbarItemActive() : navbarItem()).'" href="partenaires.php">Partenaires</a>
                 </li>
-
             </ul>
         </div>
     </div>
