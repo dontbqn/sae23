@@ -14,7 +14,7 @@ else{
     }
     else{
         include("./fonctions.php");
-        setup();
+        setup();bbgdbg
         /*
         Page Créa-User
         */
