@@ -12,7 +12,7 @@ pagenavbar("page01.php");
     <div class="container pt-4 pb-3">
         <div class="text-center">
             <a class="navbar-brand" href="#">
-                <img src="images/presentation.png" class="img-fluid" alt="Presentation Picture" width="649" height="433">
+                <img src="images/presentation.png" class="img my-2" alt="Presentation Picture" width="800" height="433">
             </a>
         </div>
         <div class="container text-start my-5">

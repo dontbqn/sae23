@@ -1,177 +1,5 @@
 <?php
 
-function pagenavbar2($pageactive){
-
-    echo '<nav class="navbar navbar-expand-lg navbar-light bg-secondary bg-opacity-75 bg-gradient">
-    <a class="navbar-brand" href="page01.php"><img src="images/RT-St-malo.png" height=50></a>
-    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">|</button>
-    ';
-    echo '
-        <div class="row">
-            <input class="form-control shadow-none col-5 ms-4" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
-            <datalist id="datalistOptions">
-            <option value="San Francisco">
-            <option value="New York">
-            <option value="Seattle">
-            <option value="Los Angeles">
-            <option value="Chicago">
-            </datalist>
-        </div>
-        <div class="col-2 justify-content-end">
-        ';
-        if(isset($_SESSION['user'])){
-            if(isset($_SESSION['role']) && $_SESSION['role']=="visitor"){
-                if(isset($_POST["deconnect"])){
-                    deconnexion();
-                }
-                else{
-                    echo "
-                    <form method='post'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-power mb-3 me-1' viewBox='0 0 16 16'>
-                        <path d='M7.5 1v7h1V1h-1z'/>
-                        <path d='M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z'/>
-                        </svg><button type='submit' name='deconnect' class='btn btn-outline-warning btn-danger btn-sm badge text-wrap'>Deconnexion</a></form><br>";
-                        echo '<span class="text-center fst-italic">connected as '.$_SESSION["user"].'</span>';
-    
-                }
-            }
-            elseif(isset($_SESSION['role']) && ($_SESSION['role']=="admin" || $_SESSION['role']=="superadmin")){
-                if(isset($_POST["deconnect"])){
-                    deconnexion();
-                }
-                else{
-                    echo "
-                        <form method='post'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-power mb-3 me-1' viewBox='0 0 16 16'>
-                        <path d='M7.5 1v7h1V1h-1z'/>
-                        <path d='M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z'/>
-                        </svg><button type='submit' name='deconnect' class='text-black btn btn-outline-warning btn-danger btn-sm badge text-wrap'>Change account</a></form><br>";
-                        echo '<span class="text-center fst-italic">connected as '.$_SESSION["user"].'</span>';
-                }
-            }
-            else{ //in the case of anonymous visitors
-                if(isset($_POST["deconnect"])){
-                    deconnexion();
-                }
-                else{
-                    echo "
-                        <form method='post'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-power mb-1' viewBox='0 0 16 16'>
-                        <path d='M7.5 1v7h1V1h-1z'/>
-                        <path d='M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z'/>
-                        </svg><button type='submit' name='deconnect' class='btn btn-outline-warning btn-danger btn-sm badge text-wrap'>Deconnexion</a></form>";
-                }
-            }
-        }
-        else{
-            echo "
-            <button type='submit' class='btn btn-outline-secondary btn-dark btn-sm badge text-wrap' data-bs-toggle='modal' data-bs-target='#connectModal'>Se connecter</button>";
-            if(!isset($_POST['connect'])){
-                echo '
-                <div class="modal fade" id="connectModal" tabindex="-1" aria-labelledby="connectModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="connectModalLabel">Vous n\'êtes pas connecté</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form class="" id="form_connect" method="post">
-                                    <div class="mb-3">
-                                        <label for="user" class="col-form-label">Pseudo</label>
-                                        <input type="text" class="form-control shadow-none" name="user" id="user" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="mdp" class="col-form-label">Mot de passe</label>
-                                        <input type="password" class="form-control shadow-none passwords" placeholder="" name="mdp" id="mdp" required>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input type="checkbox" name="mdp_check" class="form-check-input my-2 p-2 shadow-none" id="dontwatchme">
-                                        <label for="mdp_check"> rendre visible</label>
-                                        <script src="js/pass_verif.js"></script>
-                                    </div>
-                                    <div class="row p-2 mt-1 ms-1">
-                                        <div class="col form-check">
-                                            <input type="checkbox" class="form-check-input" name="remember" checked>
-                                            <label for="remember">Se souvenir ?</label>
-                                        </div>
-                                        <div class="col text-center">
-                                            <label for="inscription">Pas encore membre ?</label>
-                                            <a class="link-warning" href="inscription.php"> Rejoignez-nous !</a>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-success" data-bs-dismiss="modal" name="connect">Connexion</button>
-                                </form>';
-                    echo '
-                            </div>
-                        </div>f
-                    </div>
-                </div>';
-            }
-            else{
-                $nom = $_POST['user'];
-                $mdp = $_POST['mdp'];
-                //echo '<pre>';
-                //echo password_hash($mdp,PASSWORD_DEFAULT);
-                //echo '</pre>';
-                if(isset($_POST["remember"])){
-                    setcookie('USER_SET_COOKIE', time() + 3600 * 24 * 3); //temps avant fin du cookie
-                    //var_dump($_COOKIE);
-                }
-                // Si un utilisateur lance le site, il n'est plus connecté (session fini)
-                // Mais grâce au cookie d'auth, on peut aller rechercher à qui correspond
-                // le cookie et relancer la session automatiquement pour l'utilisateur
-                connexion($nom, $mdp);
-            }
-        echo '
-        </div>
-            '; 
-        }
-    echo '
-        </nav>
-
-    <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">SIDE BAR</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-        <ul>
-            <li class="nav-item">
-            <a class="nav-link '.($pageactive == "page01.php" ? navbarItemActive() : navbarItem()).'" href="page01.php">Accueil</a>
-        </li>';
-        echo '<li class="nav-item">
-            <a class="nav-link '.($pageactive == "page02.php" ? navbarItemActive()  : navbarItem()).'" href="page02.php">Formulaires</a>
-        </li>';
-
-        echo '<li class="nav-item">
-        <a class="nav-link '.($pageactive == "page08.php" ? navbarItemActive() : navbarItem()).'" href="page08.php">Informations</a>
-        </li>';
-        echo '
-        <li class="nav-item">
-        <a class="nav-link '.($pageactive == "page05.php" ? navbarItemActive() : navbarItem()).'" href="page05.php">Profil</a>
-        </li>';
-        if(isset($_SESSION)){
-            if(isset($_SESSION['user']) && ($_SESSION['role']=="admin" || $_SESSION["role"] == "superadmin")){
-                echo '
-                <li class="nav-item">
-                <a class="nav-link '.($pageactive == "page06.php" ? "active bg-danger fw-bolder border bg-opacity-50 border-2 border-danger bg-gradient rounded-3 p-3" : navbarItem()).'" href="page06.php">Admin</a>
-                </li>';
-            }
-        }
-        echo '
-                <li class="nav-item">
-                    <a class="nav-link '.($pageactive == "deposer-une-annonce.php" ? navbarItemActive() : navbarItem()).'" href="deposer-une-annonce.php">Déposer votre annonce</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link '.($pageactive == "explorer.php" ? navbarItemActive() : navbarItem()).'" href="explorer.php">Explorer</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    ';
-
-}
 
 function showBooks($livres, $found){
     if($livres == []){
@@ -454,12 +282,16 @@ function deleteUser($usr){
 }
 function deconnexion(){
     echo '<script>console.log("Deconnexion en cours")</script>';
-    $_SESSION = [];
+    // setting the expiration date to an hour ago to delete cookies
+    if($_SESSION["remember"]=!true){ 
+        setcookie("LOGGED_USER", "", time() - 3600); // On supprime cookies user/mdp si $session remember n'est pas initialisé
+        setcookie("MOTDEPASSE", "", time() - 3600);
+    }
     session_unset();
     session_destroy();
     header("Location: page01.php");
 }
-function connexion($nom, $mdp){
+function connexion($nom, $mdp, $remember=false){
     $founded=false;
     $database = json_decode(file_get_contents('data/users.json', true), true);
     foreach($database as $user){
@@ -468,8 +300,28 @@ function connexion($nom, $mdp){
             $_SESSION['mdp'] = $user["mdp"];
             $_SESSION['role'] = $user["role"];
             $_SESSION["favcolor"] = "#ffffff";
-            echo "<script>console.log('Connexion validée');</script>";
+            $_SESSION["remember"] = true;
             $founded=true;
+            if($remember==true){
+                setcookie(
+                    'LOGGED_USER',
+                    $nom,
+                    [
+                        'expires' => time() + 3*24*3600, // 3 jours avant expiration du cookie
+                        'secure' => true,
+                        'httponly' => true,
+                    ]
+                );
+                setcookie(
+                    'MOTDEPASSE',
+                    password_hash($mdp, PASSWORD_DEFAULT),
+                    [
+                        'expires' => time() + 3*24*3600, // 3 jours avant expiration du cookie
+                        'secure' => true,
+                        'httponly' => true,
+                    ]
+                );
+            }
         }
     }
     if($founded==false){
@@ -477,9 +329,8 @@ function connexion($nom, $mdp){
     }
     header("Refresh:0");
     //json files don't support comments
-    // my admin pass is admin
-    // user=user and anonymous = ano
 }
+
 function getUsers($database){
     if(!isset($database)){
         $path ="data/users.json";

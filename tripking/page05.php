@@ -9,7 +9,7 @@ pagenavbar("page05.php");
 ?>
     <body>
 
-        <h1 class="my-4 text-center bg-black bg-opacity-25" style="color:<?php echo $_SESSION['favcolor'] ?>;">
+        <h1 class="my-4 text-center bg-black bg-opacity-25" style="color:<?php $session = isset($_SESSION['favcolor']) ? $_SESSION['favcolor'] : "" ?>;">
             Fichier Utilisateur
         </h1>
         <div class="d-flex mb-5 container justify-content-center p-5 border text-wrap border-2 col-7 shadow-md text-break rounded-2 bg-secondary bg-gradient bg-opacity-25">
@@ -102,7 +102,7 @@ pagenavbar("page05.php");
                         <input type="color" id="favcolor" disabled name="favcolor" value="#ff0000">
                     </div>
                         <div class="form-group mt-2 mb-3">
-                        <input type="submit" class="form-control btn btn-lg btn-warning disabled" id="modify_user" rows="3" name="modify_user" style="background-color:'.$_SESSION['favcolor'].'">
+                        <input type="submit" class="form-control btn btn-lg btn-warning disabled" id="modify_user" rows="3" name="modify_user" style="background-color:'.$session = isset($_SESSION['favcolor']) ? $_SESSION['favcolor'] : "".'">
                     </div>
                     </form>';                    
                     if(isset($_POST["modify_user"])){

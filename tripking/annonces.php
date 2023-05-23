@@ -368,7 +368,7 @@ function modifyAnnonce($annonce, $new_usr, $mdp, $role, $favcolor){
         $_SESSION['annonce'] = $new_usr;
         $_SESSION['favcolor'] = $favcolor;
         deleteUser($annonces[$annonce]);
-        addAnnonce($titre, $lieu, $pays, $prixnuit, $bon_plan);
+        //addAnnonce($titre, $lieu, $pays, $prixnuit, $bon_plan);
         $_SESSION['mdp'] = ($annonces[$new_usr]['mdp']);
         $res=json_encode($annonces, JSON_PRETTY_PRINT);
         file_put_contents("./annonces/annonces.json",$res); //résultat dans annonces.json

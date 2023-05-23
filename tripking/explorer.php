@@ -79,7 +79,7 @@ pagenavbar("explorer.php");
             $fields["annee"] = $annee;
         }
         $annonces = json_decode(file_get_contents("./annonces.json"), true);
-        findAnnonces($annonces, $keywords, $fields);
+        //findAnnonces($annonces, $keywords, $fields);
     }
     ?>
         

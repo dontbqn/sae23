@@ -64,7 +64,7 @@ pagenavbar("deposer-une-annonce.php");
             }
             else{
                 //Création de la nouvelle annonce
-                addAnnonce();
+                //addAnnonce();
                 //Récupération du nouvel id
                 //Redirection vers la page d'annonce nouvellement créée grâce à son id
                 header('Location : ./annonce.php');
