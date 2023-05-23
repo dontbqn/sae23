@@ -4,6 +4,7 @@ Projet de groupe __SAE23__, construire un site-web dynamique d'entreprise (FI1G1
 
 A faire : 
 - Page d'annonce selon l'annonce cliquer en cours => espace commentaire à organiser comme il se doit
+- Un bouton fixé en bas de page permettant de "chatter" avec un Bot Assistant
 - Ajout de commentaires à penser ( qui peut poster un commentaire ? (fonction addCommentaire à faire)
 - Page 'Explorer' hideuse, voir excalidraw pour adapter à la charte graphique etc. d'un site de location.
 - Fonctions de recherches d'annonces en cours
