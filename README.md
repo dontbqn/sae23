@@ -1,4 +1,4 @@
-### TripKing
+# TripKing
 Projet de groupe __SAE23__, construire un site-web dynamique d'entreprise (FI1G1)
 
 
@@ -13,7 +13,7 @@ A faire :
 ## Contributors
 Bastien, Aronn, Clément, Adrien
 
-# Reviewers
+### Reviewers
 [@menguyfr](https://github.com/frmenguy)
 [@d4vid](https://github.com/cD4v1D)
 [@Vinmorne](https://github.com/Vinmorne)
