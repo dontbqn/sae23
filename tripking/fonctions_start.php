@@ -46,7 +46,7 @@ function pagenavbar($pageactive){
         <nav class="row navbar">
             <div class="col ">
                 <a class="navbar-brand" href="#">
-                    <img src="images/téléchargement.png" alt="" width="50" height="44">
+                    <img src="images/logo.png" alt="" width="50" height="44">
                     <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">|||</button>
                 </a>
             </div>
