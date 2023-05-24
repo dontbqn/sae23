@@ -24,8 +24,8 @@ function newAnnonce(){
             "bon_plan" => False,
             "commentaires" => array("c01","c02","c56"),
             "images" => array(
-                "./annonces/01/img1.jpg",
-                "./annonces/01/img2.jpg"
+                "./annonces/1/img1.jpg",
+                "./annonces/1/img2.jpg"
             )
             ),
         "2" => array(
@@ -38,8 +38,8 @@ function newAnnonce(){
             "bon_plan" => True,
             "commentaires" => array("c04","c07","c17"),
             "images" => array(
-                "./annonces/02/img1.jpg",
-                "./annonces/02/img2.jpg"
+                "./annonces/2/img1.jpg",
+                "./annonces/2/img2.jpg"
             )
             )
             );
@@ -177,7 +177,7 @@ function getAnnonces($annoncesbase){
         $path ="./annonces/annonces.json";
         $annonces = json_decode(file_get_contents($path, true), true);
         echo '
-        <div class="container mb-1 col-10">
+        <div class="container mb-1" id="annonces">
             <span class="align-middle">Nombre d\'annonces : '.count($annonces).'</span>
         </div>
         <div class="container pb-4 pt-3 text-white border-black border-2 rounded-2 bg-black bg-gradient bg-opacity-50 my-3">
@@ -219,13 +219,13 @@ function getAnnonces($annoncesbase){
             echo '<td>';
             echo $annonce['bon_plan'] == True ? "&#10003;" : "&#9932;";
             echo '</td>';        
-            echo '<td><a>voir les images</a>';
+            echo '<td><a class="link-light" href="./annonces/'.$annonce['id'].'/">voir les images</a>';
             echo '</td>
             </tr>';
             echo '
                 <td style="border: none"><form method="post">
                     <input type="hidden" name="id" value="'.$annonce['id'].'">
-                    <input type="submit" name="delete_annonce" class="btn btn-sm btn-danger text-decoration-none" value="supprimer">
+                    <button type="submit" name="delete_annonce" class="btn btn-sm btn-danger text-decoration-none" value=""><img src="images/foryou.png" class="" width="30" height="30"></button>
                 </form></td>
                 </tr>
             ';
@@ -233,7 +233,7 @@ function getAnnonces($annoncesbase){
     }
     else{
         echo '
-        <div class="container mb-1 col-10">
+        <div class="container mb-1" id="annonces">
             <span class="align-middle">Nombre d\'annonces : '.count($annoncesbase).'</span>
         </div>
         <div class="container pb-4 pt-3 text-white border-black border-2 rounded-2 bg-black bg-gradient bg-opacity-50 my-3">
@@ -273,15 +273,15 @@ function getAnnonces($annoncesbase){
             echo '</td>';
             echo '<td>';
             echo $annonce['bon_plan'] == True ? "&#10003;" : "&#9932;";
-            echo '</td>';        
-            echo '<td><a>voir les images</a>';
+            echo '</td>';    
+            //page d'images ??    
+            echo '<td><a class="link-light" href="./annonces/'.$annonce['id'].'/">voir les images</a>';
             //<a href="" title="voir l\'annonce"><img src="'.$annonce['images'][0].'" class="img-fluid border border-1 border-light" width="100" height="100" alt="Annonce Preview"/>
-            echo '</td>
-            </tr>';
+            echo '</td>';
             echo '
                 <td style="border: none"><form method="post">
                     <input type="hidden" name="id" value="'.$annonce['id'].'">
-                    <input type="submit" name="delete_annonce" class="btn btn-sm btn-danger text-decoration-none" value="supprimer">
+                    <button type="submit" name="delete_annonce" class="btn btn-sm btn-danger text-decoration-none" value=""><img src="images/delete.png" class="" width="20" height="20"></button>
                 </form></td>
                 </tr>
             ';

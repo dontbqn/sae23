@@ -336,7 +336,7 @@ function getUsers($database){
         $path ="data/users.json";
         $users = json_decode(file_get_contents($path, true), true);
         echo '
-        <div class="container mb-1 col-10">
+        <div class="container mb-1 col-10" id="utilisateurs">
             <span class="align-middle">Nombre d\'utilisateurs : '.count($users).'</span>
         </div>
         <div class="container pb-4 pt-3 px-2 text-white border-black border-2 rounded-2 bg-black bg-gradient col-10">
@@ -364,15 +364,15 @@ function getUsers($database){
                 <td style="border: none"><form method="post">
                     <input type="hidden" name="username" value="'.$user['user'].'">
                     <input type="hidden" name="usermdp" value="'.$user['mdp'].'">
-                    <input type="submit" name="delete_usr" class="btn btn-sm btn-danger text-decoration-none" value="X">
-                </form></td>
+                    <button type="submit" name="delete_usr" class="btn btn-sm btn-danger text-decoration-none" value=""><img src="images/delete.png" class="" width="20" height="20"></button>
+                    </form></td>
                 </tr>
             ';
         }
     }
     else{
         echo '
-        <div class="container mb-1 col-10">
+        <div class="container mb-1 col-10" id="utilisateurs">
             <span class="align-middle">Nombre d\'utilisateurs : '.count($database).'</span>
         </div>
         <div class="container pb-4 pt-3 px-2 text-white border-black border-2 rounded-2 bg-black bg-gradient col-10">
@@ -399,7 +399,7 @@ function getUsers($database){
             <td style="border: none"><form method="post">
                 <input type="hidden" name="username" value="'.$user['user'].'">
                 <input type="hidden" name="usermdp" value="'.$user['mdp'].'">
-                <input type="submit" name="delete_usr" class="btn btn-sm btn-danger text-decoration-none" value="X">
+                <button type="submit" name="delete_usr" class="btn btn-sm btn-danger text-decoration-none" value=""><img src="images/delete.png" class="" width="20" height="20"></button>
             </form></td>
             </tr>
         ';

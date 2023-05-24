@@ -21,9 +21,16 @@ else{
         pagenavbar("page06.php");
         $users = json_decode(file_get_contents("data/users.json"), true);
         echo '
-        <body>
-        <div class="container mb-1 col-10">
-            <h1 class="my-4 text-center">Administration</h1>';
+            <body>
+            <div class="container mb-1 col-10">
+                <h1 class="my-4 text-center">Administration</h1>
+                <hr>
+                <div class="list-group list-group-flush text-center">
+                    <a href="#utilisateurs" class="list-group-item list-group-item-action">Gestion Utilisateurs</a>
+                    <a href="#annonces" class="list-group-item list-group-item-action">Gestion Annonces</a>
+                </div>
+                <hr>
+                ';
         echo '<div class="mt-2 fw-bold text-center">$_SESSION array content<pre>';
         echo print_r($_SESSION).'</pre></div>';
         echo '
@@ -68,7 +75,7 @@ else{
 
             if(!isset($_POST["add_user"])){
                 echo '
-                    <div class="container col-3 d-flex justify-content-center border-4 border mt-2 mb-4">
+                    <div class="container col-3 d-flex justify-content-center border-4 border mt-2 mb-4 utilisateurs">
                         <form method="post" class="row g-1 p-3 list-group list-group-flush mt-2 mb-3">
                             <div class="form-floating">
                                 <select class="form-select form-control list-group-item shadow-none" id="role" name="role" placeholder="role" required>
@@ -102,19 +109,19 @@ else{
                             <button type="submit" name="add_user" class="btn btn-success">+</button>
                         </form>
                     </div>';
-                    echo '
-                    <div role="alert" aria-live="assertive" aria-atomic="true" class="toast position-static show top-0 end-0" data-bs-autohide="false">
-                        <div class="toast-header">
-                            <img src="images/louis.png" class="rounded ms-1 me-2" alt="bugslogo" width="20" height="20">
-                            <strong class="me-auto">Need a reboot ?</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                        <div class="toast-body text-center">
-                            <form method="post">
+                    echo '<br><br>
+                    <div class="position-relative">
+                        <div role="alert" aria-live="assertive" aria-atomic="true" class="toast position-absolute show top-50 start-50 translate-middle" data-bs-autohide="false">
+                            <div class="toast-header">
+                                <img src="images/louis.png" class="rounded ms-1 me-2" alt="bugslogo" width="20" height="20">
+                                <strong class="me-auto">Need a reboot ?</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body text-center">
                                 <a type="button" href="crea_user.php" class="btn btn-outline-danger" name="resetall">Reset all database (crea_user)</a>
-                            </form>
+                            </div>
                         </div>
-                    </div>
+                    </div><br><br>
                     <script src="js/toaster.js"></script>
                     ';
             }
@@ -146,7 +153,7 @@ else{
         </div>';
         if(!isset($_POST["add_user"])){
             echo '
-                <div class="container col-3 d-flex justify-content-center border-4 border mt-2 mb-4">
+                <div class="container col-3 d-flex justify-content-center border-4 border mt-2 mb-4 utilisateurs">
                     <form method="post" class="row g-1 p-3 list-group list-group-flush mt-3 mb-3">
                         <div class="form-floating">
                             <select class="form-select form-control list-group-item shadow-none" id="role" name="role" placeholder="role" required>
@@ -219,20 +226,21 @@ else{
     $annonces = json_decode(file_get_contents("annonces/annonces.json"), true);
     getAnnonces($annonces);
     echo '
-    <div role="alert" aria-live="assertive" aria-atomic="true" class="toast position-static show top-0 end-0" data-bs-autohide="false">
-        <div class="toast-header">
-            <img src="images/louis.png" class="rounded ms-1 me-2" alt="bugslogo" width="20" height="20">
-            <strong class="me-auto">Need a reboot ?</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    <br><br>
+    <div class="position-relative mb-3">
+        <div role="alert" aria-live="assertive" aria-atomic="true" class="toast position-absolute show top-50 start-50 translate-middle show" data-bs-autohide="false">
+            <div class="toast-header">
+                <img src="images/louis.png" class="rounded ms-1 me-2" alt="bugslogo" width="20" height="20">
+                <strong class="me-auto">Need a reboot ?</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body text-center">
+                <a type="button" href="" class="btn btn-outline-danger" name="resetall">Reinitialiser les annonces (newAnnonces)</a>
+            </div>
         </div>
-        <div class="toast-body text-center">
-            <form method="post">
-                <a type="button" href="crea_user.php" class="btn btn-outline-danger" name="resetall">Reinitialiser les annonces (newAnnonces)</a>
-            </form>
-        </div>
-    </div>
-    <script src="js/toaster.js"></script>
+    </div><br><br>
     ';
 ?>
     </body>
+    <?php footer(); ?>
 </html>

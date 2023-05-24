@@ -20,15 +20,18 @@ pagenavbar("explorer.php");
         </h1>
         
         <div class="container col-11 border border-2 rounded-4 shadow mt-4 mb-5 p-3">
-            <div id="map" class="p-3" style="height: 500px"></div>
+            <div id="map" class="p-3 w-100" style="height: 500px"></div>
+            <script type="text/javascript" src="js/codegrid.js"></script>
             <script>
+                var codegrid = require('codegridjs');
+                grid = codegrid.CodeGrid();
                 //  https://leafletjs.com/examples/quick-start/
                 //
                 //  Credits : OpenStreetMap
                 //  data is available under the Open Database License.
                 //  https://www.openstreetmap.org/copyright
 
-                var map = L.map('map').setView([49.55, 26.46], 4); //49.55/26.46/4 => Englobe presque toute l'Europe
+                var map = L.map('map').setView([52.27, 22.24], 4); //49.55/26.46/4 => Englobe presque toute l'Europe
                 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -53,6 +56,18 @@ pagenavbar("explorer.php");
                     fillOpacity: 0.5,
                     radius: 800000
                 }).addTo(map);
+
+                var popup = L.popup();
+                function onMapClick(e) {
+                    $lat = explode(",", e.latlng)[0];
+                    popup
+                        .setLatLng(e.latlng)
+                        .setContent("You clicked the map at " + e.latlng.toString() +" it correspond to the country :"+$lat)
+                        .openOn(map);
+                    
+                    //grid.getCode (e.lat, e.lng, callback (error, code));
+                }
+                map.on('click', onMapClick);
             </script>
 
             

@@ -53,7 +53,9 @@ function pagenavbar($pageactive){
                 <a class="navbar-brand" href="./page01.php">
                     <img src="images/logo.png" alt="" width="50" height="44">
                 </a>
-                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">|||</button>
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+                    <img src="images/menu.png" class="img-fluid" width="30" height="30">
+                </button>
             </div>
 
             <div class="col">
@@ -295,7 +297,7 @@ function pagenavbar($pageactive){
                     <a class="nav-link '.($pageactive == "restrictions.php" ? navbarItemActive() : navbarItem()).'" href="restrictions.php">Restrictions de voyage</a>
                 </li>
                 <li class="nav-item list-group-item">
-                    <a class="nav-link '.($pageactive == "pourvous.php" ? navbarItemActive() : navbarItem()).'" href="pourvous.php">Pour vous</a>
+                    <a class="nav-link '.($pageactive == "pourvous.php" ? navbarItemActive() : navbarItem()).'" href="pourvous.php"><img src="images/foryou.png" class="me-1" width="30" height="30">Pour vous</a>
                 </li>
                 <li class="nav-item list-group-item">
                     <a class="nav-link '.($pageactive == "about.php" ? navbarItemActive() : navbarItem()).'" href="explorer.php">Qui sommes-nous ?</a>
@@ -324,9 +326,9 @@ function footer(){
             <div class="col-6 col-md-3 mb-3">
                 <h5>Entrepise</h5>
                 <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">A propos</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Partenaires</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Rejoignez-vous</a></li>
+                    <li class="nav-item mb-2"><a href="./entreprise/about.php" class="nav-link p-0 text-muted">A propos</a></li>
+                    <li class="nav-item mb-2"><a href="./entreprise/partenaires.php" class="nav-link p-0 text-muted">Partenaires</a></li>
+                    <li class="nav-item mb-2"><a href="./entreprise/carriere.php" class="nav-link p-0 text-muted">Rejoignez-vous</a></li>
                 </ul>
                 <br>
                 
@@ -335,9 +337,9 @@ function footer(){
             <div class="col-6 col-md-3 mb-3">
                 <h5>Contact</h5>
                 <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Aide / Support</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Remboursement</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Informations complémentaires</a></li>
+                    <li class="nav-item mb-2"><a href="./contact/aide.php" class="nav-link p-0 text-muted">Aide / Support</a></li>
+                    <li class="nav-item mb-2"><a href="./contact/remboursement.php" class="nav-link p-0 text-muted">Remboursement</a></li>
+                    <li class="nav-item mb-2"><a href="./contact/infosupp.php" class="nav-link p-0 text-muted">Informations complémentaires</a></li>
                 </ul>
             </div>
             
@@ -360,33 +362,35 @@ function footer(){
                 <div class="col-sm-4">
                     <div class="btn-group" role="group">
                             <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            Langue
+                            FR / EN
                             </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">FR</a></li>
-                                <li><a class="dropdown-item" href="#">EN</a></li>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><button class="dropdown-item"><img src="images/FR.png" alt="" width="20" height="20"></button></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><button class="dropdown-item"><img src="images/EN.png" alt="" width="20" height="20"></button></li>
                             </ul>
                         </div>
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            devise
+                            € / $
                             </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">€</a></li>
-                                <li><a class="dropdown-item" href="#">$</a></li>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><button class="dropdown-item">€</button></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><button class="dropdown-item">$</button></li>
                             </ul>
                     </div>
                 </div>
                 <div class="col-sm-8">
                     <div>
-                        <a class="" href="#">
-                            <img src="image12/insta.png" alt="" width="40" height="40">
+                        <a href="https://www.twitter.com/tripking/" class="">
+                            <img src="images/twitter.png" alt="" width="40" height="40">
                         </a>
-                        <a class="" href="#">
-                            <img src="image12/insta.png" alt="" width="40" height="40">
+                        <a href="https://www.instagram.com/tripking/" class="">
+                            <img src="images/insta.png" alt="" width="40" height="40">
                         </a>
-                        <a class="" href="#">
-                            <img src="image12/insta.png" alt="" width="40" height="40">
+                        <a href="www.facebook.com/tripking/" class="">
+                            <img src="images/facebook.png" alt="" width="40" height="40">
                         </a>
                     </div>
                 </div>
