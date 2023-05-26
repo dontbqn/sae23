@@ -38,7 +38,7 @@ pagenavbar("about.php");
                             <td><?php echo $personnage['prenom'] ?></td>
                             <td><?php echo $personnage['nom'] ?></td>
                             <td><?php echo $personnage['date_naissance'] ?></td>
-                            <td style="border: none"><a href="data/supprimer_personnage.php?id=<?php echo $personnage['id'] ?>" class="btn btn-sm btn-danger material-icons">close</a></td>
+                            <td style="border: none"><a href="supprimer_personnage.php?id=<?php echo $personnage['id'] ?>" class="btn btn-sm btn-danger material-icons">close</a></td>
                         </tr>
                     <?php
                     }
