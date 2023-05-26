@@ -47,7 +47,7 @@ pagenavbar("about.php");
             </table>
         </div>
         <h2 class="my-4">Ajouter un personnage</h2>
-        <form action="tripking/ajouter_personnage.php">
+        <form action="/ajouter_personnage.php">
             <div class="form-row my-4">
                 <div class="offset-1 col-3">
                     <input type="text" class="form-control" placeholder="Prénom" name="prenom" required>
