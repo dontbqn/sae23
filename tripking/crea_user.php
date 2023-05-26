@@ -14,7 +14,7 @@ else{
     }
     else{
         include("./fonctions.php");
-       
+        newUsers();
         header("Location: page06.php");
     }
 }

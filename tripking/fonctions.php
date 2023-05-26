@@ -234,8 +234,8 @@ function newUsers(){
         <div class="d-flex justify-content-center container col-10 my-4 border border-3 p-5">
     
         <pre>';
-    $res = json_encode($default_users, JSON_PRETTY_PRINT);
-    file_put_contents("./data/users.json", $res);
+        $w = file_put_contents("data/users.json", json_encode($default_users));
+    
     echo '
         </pre>
         </div>';
