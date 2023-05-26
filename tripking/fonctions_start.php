@@ -50,7 +50,7 @@ function pagenavbar($pageactive){
     <div class="container-fluid pt-4">
         <nav class="row navbar">
             <div class="col ">
-                <a class="navbar-brand" href="./page01.php">
+                <a class="navbar-brand" href="./Acceuil.php">
                     <img src="images/logo.png" alt="" width="50" height="44">
                 </a>
                 <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
@@ -146,7 +146,7 @@ function pagenavbar($pageactive){
 
             if(isset($_SESSION['user'])){ // Utilisateur connecté => on affiche son pseudo
                 echo '
-                    <a class="navbar-brand" href="page05.php">
+                    <a class="navbar-brand" href="Fichier_Utilisateur.php">
                         <span class="fs-6 me-1">'.$_SESSION["user"].'</span>
                         <img src="images/icone_user.png" alt="" width="40" height="40">
                     </a>
@@ -265,18 +265,18 @@ function pagenavbar($pageactive){
         <div class="offcanvas-body">
         <ul class="list-group list-group-flush">
             <li class="nav-item list-group-item">
-            <a class="nav-link '.($pageactive == "page01.php" ? navbarItemActive() : navbarItem()).'" href="page01.php">Accueil</a>
+            <a class="nav-link '.($pageactive == "Acceuil.php" ? navbarItemActive() : navbarItem()).'" href="Acceuil.php">Accueil</a>
         </li>';
         echo '<li class="nav-item list-group-item">
-            <a class="nav-link '.($pageactive == "page02.php" ? navbarItemActive()  : navbarItem()).'" href="page02.php">Formulaires</a>
+            <a class="nav-link '.($pageactive == "Formulaires.php" ? navbarItemActive()  : navbarItem()).'" href="Formulaires.php">Formulaires</a>
         </li>';
 
         echo '<li class="nav-item list-group-item">
-        <a class="nav-link '.($pageactive == "page08.php" ? navbarItemActive() : navbarItem()).'" href="page08.php">Informations</a>
+        <a class="nav-link '.($pageactive == "Informations.php" ? navbarItemActive() : navbarItem()).'" href="Informations.php">Informations</a>
         </li>';
         echo '
         <li class="nav-item list-group-item">
-        <a class="nav-link '.($pageactive == "page05.php" ? navbarItemActive() : navbarItem()).'" href="page05.php">Profil</a>
+        <a class="nav-link '.($pageactive == "Fichier_Utilisateur.php" ? navbarItemActive() : navbarItem()).'" href="Fichier_Utilisateur.php">Profil</a>
         </li>';
         if(isset($_SESSION)){
             if(isset($_SESSION['user']) && ($_SESSION['role']=="admin" || $_SESSION["role"] == "superadmin")){
