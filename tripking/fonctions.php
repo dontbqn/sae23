@@ -199,8 +199,8 @@ function findBooks($livres, $keyword, $fields=[]){
 }
 
 function newUsers(){
-    //fichier json contenant 4 premiers users
-    $default_users = array(
+     //fichier json contenant 4 premiers users
+     $default_users = array(
         "bagel" => array(
             "user"=> "bagel",
             "mdp"=> "$2y$10\$Nf2pZndPyVGVg9ZgM3m8mOEDqStoyijjTZdFk7rBme1egCF8pKLZq",
@@ -212,9 +212,15 @@ function newUsers(){
         "anonymous" => array(
             "user" => "anonymous",
             "mdp" => "$2y$10$2iN\/YTDup6GDioGs4PJV3uhffURT8ZQSGpvTP4xWFVMVkBJntTdOq",
-            "role" => "visitor",
+            "role" => "user",
             "favoris"=>[], //Liste des ids d'annonces misent en favoris (censé être illimité)
+        
         ),
+        "Harriette Salois "=> array(
+            "user"=> "H.Slois ",
+            "mdp"=> password_hash("Aeh3te4ah", PASSWORD_DEFAULT),
+            "role"=> "admin"),
+
         "admin" => array(
             "user" => "admin",
             "mdp" => "$2y$10\$pxQCauEXDSIRncE17E6W.eQidzMH8kxHVBiAR9jF7vKwcomC4sXhu",
@@ -222,7 +228,7 @@ function newUsers(){
         "Jean-Paul"=> array(
             "user"=> "Jean-Paul",
             "mdp"=> "$2y$10\$zeycWYo5FUC.CLriKeaOV.t5pNkxd.7hFwkcUbJxOdzrnA40SI\/d.",
-            "role"=> "visitor")
+            "role"=> "user")
         );
     echo '
         <div class="d-flex justify-content-center container col-10 my-4 border border-3 p-5">
