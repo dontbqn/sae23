@@ -38,7 +38,7 @@ pagenavbar("about.php");
                             <td><?php echo $personnage['prenom'] ?></td>
                             <td><?php echo $personnage['nom'] ?></td>
                             <td><?php echo $personnage['date_naissance'] ?></td>
-                            <td style="border: none"><a href="supprimer_personnage.php?id=<?php echo $personnage['id'] ?>" class="btn btn-sm btn-danger material-icons">close</a></td>
+                            <td style="border: none"><a href="tripking/supprimer_personnage.php?id=<?php echo $personnage['id'] ?>" class="btn btn-sm btn-danger material-icons">close</a></td>
                         </tr>
                     <?php
                     }
@@ -47,7 +47,7 @@ pagenavbar("about.php");
             </table>
         </div>
         <h2 class="my-4">Ajouter un personnage</h2>
-        <form action="ajouter_personnage.php">
+        <form action="tripking/ajouter_personnage.php">
             <div class="form-row my-4">
                 <div class="offset-1 col-3">
                     <input type="text" class="form-control" placeholder="Prénom" name="prenom" required>

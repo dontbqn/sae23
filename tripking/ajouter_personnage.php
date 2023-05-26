@@ -17,4 +17,4 @@ array_push($personnages, array(
     "date_naissance" => $_GET['date_naissance']
 ));
 file_put_contents("data/partenaires.json", json_encode($personnages));
-header("Location: ../about.php");
+header("Location: ..tripking/about.php");

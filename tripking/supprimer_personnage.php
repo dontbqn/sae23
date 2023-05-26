@@ -16,4 +16,4 @@ foreach($personnages as $key => $personnage) {
     }
 }
 file_put_contents("data/partenaire.json", json_encode($personnages));
-header("Location: ../about.php");
+header("Location: ..tripking/about.php");
