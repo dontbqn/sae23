@@ -1,7 +1,7 @@
 <?php
 /* Auteur : Séverin Messiaen */
 
-if (!isset($_GET["prenom"]) || !isset($_GET["nom"]) || !isset($_GET["date_naissance"])) {
+if (!isset($_GET["id"])) {
     echo ("Il manque des arguments !");
     echo ("<pre>");
     var_dump($_GET);
@@ -9,12 +9,11 @@ if (!isset($_GET["prenom"]) || !isset($_GET["nom"]) || !isset($_GET["date_naissa
     die();
 }
 
-$personnages = json_decode(file_get_contents("partenaires.json"), true);
-array_push($personnages, array(
-    "id" => end($personnages)['id'] + 1,
-    "nom" => $_GET['nom'],
-    "prenom" => $_GET['prenom'],
-    "date_naissance" => $_GET['date_naissance']
-));
-file_put_contents("partenaires.json", json_encode($personnages));
+$personnages = json_decode(file_get_contents("partenaire.json"), true);
+foreach($personnages as $key => $personnage) {
+    if($personnage['id'] == $_GET['id']) {
+        unset($personnages[$key]);
+    }
+}
+file_put_contents("partenaire.json", json_encode($personnages));
 header("Location: ../about.php");
