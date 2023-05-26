@@ -14,12 +14,7 @@ else{
     }
     else{
         include("./fonctions.php");
-        setup();
-        /*
-        Page Créa-User
-        */
-        pagenavbar("crea_user.php");
-        newUsers();
+       
         header("Location: page06.php");
     }
 }
