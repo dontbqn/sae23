@@ -67,7 +67,8 @@ pagenavbar("explorer.php");
                                     Autre transport disponible  
                                 </label>
                             </div>
-                            <div class="ms-1 col-2 bg-light">
+                        <div class="col-2">
+                            <div class="ms-1  bg-light">
                                 <label for="price_range" class="">Prix Max/nuit</label>
                                 <div class="px-3">
                                     <span class="col-6">10€</span>
@@ -75,6 +76,7 @@ pagenavbar("explorer.php");
                                     <input type="range" class="form-range" min="0" max="50" step="5" id="price_range">
                                 </div>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>

@@ -99,20 +99,44 @@ $thisannonce;
 
                         </div>
                     </div>
-                        <div class="col-4 border border-black border-4 p-4">
-                            NUIT + ARRIVE / DEPART DATES + NBRE VOYAGEur + RESERVER
+                        <div class="col-4 border border-3 p-5 my-3">
                             <form method="post" action="./reservations.php">
-                                <div class="">
-                                    <label for="voyageurs"> Voyageur(s) </label>
-                                    <select>
+                                <div class="d-flex justify-content-evenly">
+                                        <div class="form-floating border border-1">
+                                            <input type="date" class="form-control" id="floatdepart" placeholder="14/06/23">
+                                            <label for="floatdepart">DEPART</label>
+                                        </div>
+                                        <div class="form-floating">
+                                            <input type="date" class="form-control" id="floatarrivee" placeholder="14/06/23">
+                                            <label for="floatarrivee">ARRIVEE</label>
+                                        </div>
+                                </div>
+                                <div class="mt-3 d-flex justify-content-evenly">
+                                    <label for="voyageurs" class="form-label"> Voyageur(s)</label>
+                                    <select class="form-select" name="voyageurs" id="voyageurs">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                     </select>
                                 </div>
-                                <div class="btn btn-lg">
-                                    <button type="submit" value="reserve">RESERVER</button>
+                                <hr class="bg-dark">
+                                <div class="d-flex justify-content-center">
+                                <strong class="">TOTAL</strong>';
+
+                                    if(isset($_POST["reserve"])){
+                                        $jours = $_POST["jours"];
+                                        $price = $thisannonce["prix_nuit"]*$jours;
+                                        echo $price;
+                                    }
+                                    else{
+                                        echo '<span class="ms-4">0</span>';
+                                    }
+
+                                    echo'
+                                </div>
+                                <div class="mt-1 text-center mx-auto">
+                                    <button type="submit" class="btn btn-xl" value="reserve">RESERVER</button>
                                 </div>
                             </form>
                         </div>
@@ -120,7 +144,7 @@ $thisannonce;
 
 
                             
-                            <div>
+                            <div class="container border border-2">
                                 <h3>A propos de ce logement</h3>
                                 <article>
                                     annonce description

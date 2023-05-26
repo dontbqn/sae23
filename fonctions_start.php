@@ -36,9 +36,23 @@ function setup(){
         }
         else{
             if(!$_SESSION["user"]){
-                //Cookie LOGGED_USER, donc utilisateur existe, on relance sa session
-                echo "VOUS AVEZ ETE RECONNU, relancement de la session en cours";
-                connexion($_COOKIE['LOGGED_USER'],$_COOKIE['MOTDEPASSE']);
+                // Cookie LOGGED_USER, donc utilisateur existe, on relance sa session
+
+                echo "VOUS AVEZ ETE RECONNU, relancement de la session en cours : ";
+                $usercookie = $_COOKIE['LOGGED_USER'];
+                $hashcookie =  $_COOKIE['MOTDEPASSE'];
+                //connexion($_COOKIE['LOGGED_USER'],$_COOKIE['MOTDEPASSE']);
+                /*
+                $users = json_decode(file_get_contents("data/users.json", true), true);
+                foreach($users as $user){
+                    if($user["user"] == $usercookie){
+                        $usertoken = $user["tokenid"];
+                    }
+                }
+                */
+
+                // Connexion via tokenID avec mot de passe + token
+                //connexion($usercookie,$userhash);
             }
             //echo 'cookies : ';
             //sprint_r($_COOKIE);
@@ -57,7 +71,6 @@ function pagenavbar($pageactive){
                     <img src="images/menu.png" class="img-fluid" width="30" height="30">
                 </button>
             </div>
-
             <div class="col">
                 <form class="d-flex" role="search" method="post" action="./explorer.php">
                     <input class="form-control me-2 shadow-none" list="datalistOptions" type="search" placeholder="Search" aria-label="Search" style="width: 400px;">
@@ -84,7 +97,7 @@ function pagenavbar($pageactive){
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form class="" id="form_connect" method="post">
+                                <form id="form_connect" method="post">
                                             <div class="mb-3">
                                                 <label for="user" class="col-form-label">Pseudo</label>
                                                 <input type="text" class="form-control shadow-none" name="user" id="user" required>
@@ -124,7 +137,6 @@ function pagenavbar($pageactive){
 
                 $nom = $_POST['user'];
                 $mdp = $_POST['mdp'];
-                $remember=false;
                 //echo '<pre>';
                 //echo password_hash($mdp,PASSWORD_DEFAULT);
                 //echo '</pre>';

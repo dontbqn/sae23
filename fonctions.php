@@ -299,7 +299,6 @@ function connexion($nom, $mdp, $remember=false){
             $_SESSION['user'] = $user["user"];
             $_SESSION['mdp'] = $user["mdp"];
             $_SESSION['role'] = $user["role"];
-            $_SESSION["favcolor"] = "#ffffff";
             $_SESSION["remember"] = true;
             $founded=true;
             if($remember==true){
