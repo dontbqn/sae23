@@ -163,7 +163,7 @@ function pagenavbar($pageactive){
                 <a class="navbar-brand" href="#">
                     <img src="images/icone_coeur.png" alt="" width="40" height="40">
                 </a>
-                <div class="btn-group" role="group" style="z-index: 1;">
+                <div class="btn-group" role="group">
                     <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         FR / EN
                     </button>
@@ -173,7 +173,7 @@ function pagenavbar($pageactive){
                         <li><button class="dropdown-item"><img src="images/EN.png" alt="" width="20" height="20"></button></li>
                     </ul>
                 </div>
-                <div class="btn-group" role="group" style="z-index: 1;">
+                <div class="btn-group" role="group">
                     <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         € / $
                     </button>
