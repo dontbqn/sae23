@@ -21,10 +21,8 @@ pagenavbar("explorer.php");
         
         <div class="container col-11 border border-2 rounded-4 shadow mt-4 mb-5 p-3">
             <div id="map" class="p-3 w-100" style="height: 500px"></div>
-            <script type="text/javascript" src="js/codegrid.js"></script>
             <script>
-                var codegrid = require('codegridjs');
-                grid = codegrid.CodeGrid();
+
                 //  https://leafletjs.com/examples/quick-start/
                 //
                 //  Credits : OpenStreetMap
@@ -59,7 +57,7 @@ pagenavbar("explorer.php");
 
                 var popup = L.popup();
                 function onMapClick(e) {
-                    $lat = explode(",", e.latlng)[0];
+
                     popup
                         .setLatLng(e.latlng)
                         .setContent("You clicked the map at " + e.latlng.toString() +" it correspond to the country :"+$lat)
