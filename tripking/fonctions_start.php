@@ -49,7 +49,7 @@ function pagenavbar($pageactive){
     echo '
     <div class="container-fluid pt-4">
         <nav class="row navbar">
-            <div class="col">
+            <div class="col d-flex">
                 <a class="navbar" href="./Accueil.php">
                     <img src="images/logo.png" alt="" width="50" height="44">
                 </a>
