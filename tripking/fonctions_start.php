@@ -265,7 +265,7 @@ function pagenavbar($pageactive){
         <div class="offcanvas-body">
         <ul class="list-group list-group-flush">
             <li class="nav-item list-group-item">
-            <a class="nav-link '.($pageactive == "Acceuil.php" ? navbarItemActive() : navbarItem()).'" href="Acceuil.php">Accueil</a>
+            <a class="nav-link '.($pageactive == "Accueil.php" ? navbarItemActive() : navbarItem()).'" href="Accueil.php">Accueil</a>
         </li>';
         echo '<li class="nav-item list-group-item">
             <a class="nav-link '.($pageactive == "Formulaires.php" ? navbarItemActive()  : navbarItem()).'" href="Formulaires.php">Formulaires</a>

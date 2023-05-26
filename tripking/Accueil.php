@@ -5,7 +5,7 @@ include("./fonctions_start.php");
 Page Accueil
 */
 setup();
-pagenavbar("Acceuil.php");
+pagenavbar("Accueil.php");
 
 ?>
 <body>
