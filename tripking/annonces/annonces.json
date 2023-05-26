@@ -13,8 +13,8 @@
             "c56"
         ],
         "images": [
-            ".\/annonces\/01\/img1.jpg",
-            ".\/annonces\/01\/img2.jpg"
+            ".\/annonces\/1\/img1.jpg",
+            ".\/annonces\/1\/img2.jpg"
         ]
     },
     "2": {
@@ -31,8 +31,8 @@
             "c17"
         ],
         "images": [
-            ".\/annonces\/02\/img1.jpg",
-            ".\/annonces\/02\/img2.jpg"
+            ".\/annonces\/2\/img1.jpg",
+            ".\/annonces\/2\/img2.jpg"
         ]
     }
 }
