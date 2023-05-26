@@ -204,37 +204,48 @@ function newUsers(){
         "bagel" => array(
             "user"=> "bagel",
             "mdp"=> "$2y$10\$Nf2pZndPyVGVg9ZgM3m8mOEDqStoyijjTZdFk7rBme1egCF8pKLZq",
-            "role"=> "superadmin"),
+            "role"=> "superadmin",
+            "ID"=> random_bytes(56)),
         "user" => array(
             "user" => "user",
             "mdp" => "$2y$10\$g3HpUec5Idvak/9RVCKFhuppOpGOmRWoCYiAQVKfJk8rgaxrG/G5W",
-            "role" => "user"),
+            "role" => "user",
+            "ID"=> random_bytes(20)
+        ),
+
         "anonymous" => array(
             "user" => "anonymous",
             "mdp" => "$2y$10$2iN\/YTDup6GDioGs4PJV3uhffURT8ZQSGpvTP4xWFVMVkBJntTdOq",
             "role" => "user",
-            "favoris"=>[], //Liste des ids d'annonces misent en favoris (censé être illimité)
+            "ID"=> random_bytes(20), //Liste des ids d'annonces misent en favoris (censé être illimité)
         
         ),
         "Harriette Salois "=> array(
             "user"=> "H.Slois ",
             "mdp"=> password_hash("Aeh3te4ah", PASSWORD_DEFAULT),
-            "role"=> "admin"),
+            "role"=> "admin",
+            "ID"=> random_bytes(20)),
 
         "admin" => array(
             "user" => "admin",
             "mdp" => "$2y$10\$pxQCauEXDSIRncE17E6W.eQidzMH8kxHVBiAR9jF7vKwcomC4sXhu",
-            "role" => "admin"),
+            "role" => "admin",
+            "ID"=> random_bytes(20)
+        ),
         "Jean-Paul"=> array(
             "user"=> "Jean-Paul",
             "mdp"=> "$2y$10\$zeycWYo5FUC.CLriKeaOV.t5pNkxd.7hFwkcUbJxOdzrnA40SI\/d.",
-            "role"=> "user")
+            "role"=> "user",
+            "ID"=> random_bytes(20)
+        )
         );
     echo '
         <div class="d-flex justify-content-center container col-10 my-4 border border-3 p-5">
     
         <pre>';
-        $w = file_put_contents("data/users.json", json_encode($default_users));
+       
+        $w = file_put_contents("data/users.json", json_encode($default_users, JSON_PRETTY_PRINT));
+
     
     echo '
         </pre>
@@ -355,6 +366,8 @@ function getUsers($database){
                                 <th scope="col">Utilisateur</th>
                                 <th scope="col">Mot de passe</th>
                                 <th scope="col">Rôle</th>
+                                <th scope="col">ID</th>
+
                             </tr>
                         </thead>
                         <tbody>';
@@ -367,6 +380,8 @@ function getUsers($database){
                 $user['mdp'].'</td>
                 <td>'.
                 $user['role'].'</td>
+                <td>'.
+                $user['ID'].'</td>
                 <td style="border: none"><form method="post">
                     <input type="hidden" name="username" value="'.$user['user'].'">
                     <input type="hidden" name="usermdp" value="'.$user['mdp'].'">
