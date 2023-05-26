@@ -50,7 +50,7 @@ function pagenavbar($pageactive){
     <div class="container-fluid pt-4">
         <nav class="row navbar">
             <div class="col ">
-                <a class="navbar-brand" href="./Acceuil.php">
+                <a class="navbar" href="./Acceuil.php">
                     <img src="images/logo.png" alt="" width="50" height="44">
                 </a>
                 <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
