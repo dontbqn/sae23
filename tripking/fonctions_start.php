@@ -49,8 +49,8 @@ function pagenavbar($pageactive){
     echo '
     <div class="container-fluid pt-4">
         <nav class="row navbar">
-            <div class="col" role="group">
-                <a class="navbar" href="./Acceuil.php">
+            <div class="col">
+                <a class="navbar" href="./Accueil.php">
                     <img src="images/logo.png" alt="" width="50" height="44">
                 </a>
                 <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
