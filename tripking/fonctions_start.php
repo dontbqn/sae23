@@ -165,20 +165,22 @@ function pagenavbar($pageactive){
                 </a>
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Langue
+                        FR / EN
                     </button>
-                    <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">FR</a></li>
-                    <li><a class="dropdown-item" href="#">EN</a></li>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><button class="dropdown-item"><img src="images/FR.png" alt="" width="20" height="20"></button></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><button class="dropdown-item"><img src="images/EN.png" alt="" width="20" height="20"></button></li>
                     </ul>
                 </div>
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    devise
+                        € / $
                     </button>
-                    <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">€</a></li>
-                    <li><a class="dropdown-item" href="#">$</a></li>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><button class="dropdown-item">€</button></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><button class="dropdown-item">$</button></li>
                     </ul>
                 </div>
             </div>
