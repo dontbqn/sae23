@@ -5,7 +5,7 @@ setup();
 /*
 Page Informations
 */
-pagenavbar("page08.php");
+pagenavbar("Informations.php");
 ?>
     <body>
             <h1 class="my-4 text-center">

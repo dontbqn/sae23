@@ -5,7 +5,7 @@ Page Formulaire
 */
 include("./fonctions_start.php");
 setup();
-pagenavbar("page02.php");
+pagenavbar("Formulaire.php");
 ?>
 <body>
 

@@ -5,7 +5,7 @@ setup();
 /*
 Page Fichier Utilisateur
 */
-pagenavbar("page05.php");
+pagenavbar("Fichier_Utilisateur.php");
 ?>
     <body>
 
