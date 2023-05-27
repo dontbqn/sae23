@@ -295,7 +295,7 @@ function getAnnonces($annoncesbase){
     ';
 }
 
-function findAnnonces($text){
+function findAnnonces1($text){
     $founded_annonces=[];
     $text = htmlspecialchars(strtolower($text));
     $annonces = json_decode(file_get_contents("./annonces/annonces.json", true), true);
@@ -307,12 +307,54 @@ function findAnnonces($text){
             }
         }
     }
-    foreach($founded_annonces as $key => $founded){
+    foreach($founded_annonces as $key => $founded){ //Suppr annonces duppliqués de la liste
         if (array_search($founded, $founded_annonces) !== $key) {
             unset($founded_annonces[$key]);
           }
     }
     getAnnonces($founded_annonces);
+    
+}
+function findAnnonces($keywords, $radioBtn, $checkboxBtn, $priceRange) {
+    $founded_annonces = [];
+    $keywords = htmlspecialchars(strtolower($keywords));
+    $annonces = json_decode(file_get_contents("./annonces/annonces.json"), true);
+    
+    if($keywords == "" && $radioBtn == null && $checkboxBtn == null && $priceRange == 0){
+        return getAnnonces($annonces);
+        
+    }
+    $keywords = explode(" ", $keywords);
+
+    foreach ($keywords as $key) {
+        foreach ($annonces as $annonce) {
+            if (str_contains(strtolower($annonce["titre"]), $key)) {
+                array_push($founded_annonces, $annonce);
+            } elseif ($radioBtn === 'lieu_pays' && str_contains(strtolower($annonce["lieu"]), $key)) {
+                array_push($founded_annonces, $annonce);
+            } elseif ($radioBtn === 'contenu' && str_contains(strtolower($annonce["contenu"]), $key)) {
+                array_push($founded_annonces, $annonce);
+            }
+        }
+    }
+
+    $filtered_annonces = [];
+    foreach ($founded_annonces as $founded) {
+        if (
+            ($checkboxBtn === 'bus' && str_contains(strtolower($founded["transport"]), 'bus')) ||
+            ($checkboxBtn === 'train' && str_contains(strtolower($founded["transport"]), 'train')) ||
+            ($checkboxBtn === 'avion' && str_contains(strtolower($founded["transport"]), 'avion')) ||
+            ($checkboxBtn === 'autre_tr' && str_contains(strtolower($founded["transport"]), 'autre'))
+        ) {
+            $filtered_annonces[] = $founded;
+        }
+    }
+
+    $filtered_annonces = array_filter($filtered_annonces, function ($annonce) use ($priceRange) {
+        return $annonce["prix_nuit"] <= $priceRange;
+    });
+
+    getAnnonces($filtered_annonces);
 }
 
 

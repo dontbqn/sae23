@@ -189,7 +189,7 @@ function findBooks($livres, $keyword, $fields=[]){
             }
         }
     }
-    foreach($founded_books as $key => $founded){
+    foreach($founded_books as $key => $founded){ //Suppr duppliqués
         if (array_search($founded, $founded_books) !== $key) {
             unset($founded_books[$key]);
           }

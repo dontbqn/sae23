@@ -68,12 +68,14 @@ pagenavbar("explorer.php");
                                 </label>
                             </div>
                         <div class="col-2">
-                            <div class="ms-1  bg-light">
-                                <label for="price_range" class="">Prix Max/nuit</label>
-                                <div class="px-3">
-                                    <span class="col-6">10€</span>
-                                    <span class="col-6">50€</span>
-                                    <input type="range" class="form-range" min="0" max="50" step="5" id="price_range">
+                            <div class="ms-1 bg-dark bg-opacity-25 border border-1 border-black">
+                                <label for="price_range" class="ms-1 p-2 fw-bold">Prix Max/nuit</label>
+                                <div class="px-3 pb-2 input-group">
+                                    <span class="col-5 input-group-item">10€</span>
+                                    <span class="col-2 input-group-item" id="range_value"></span>
+                                    <span class="col-5 text-end input-group-item">50€</span>
+                                    <input type="range" class="form-range" min="0" max="50" step="5" value="0" name="price_range" id="price_range">
+                                    <script src="./js/rangeinp.js"></script>
                                 </div>
                             </div>
                         </div>
@@ -93,6 +95,7 @@ pagenavbar("explorer.php");
     }
     else{
         //Take inputs annonces and call findAnnonces() function from them
+        /*
         $keywords = htmlspecialchars($_POST["keywords"]);
         $fields=[];
         if(isset($_POST["radioBtn"])){
@@ -111,6 +114,17 @@ pagenavbar("explorer.php");
 
         $annonces = json_decode(file_get_contents("./annonces/annonces.json"), true);
         findAnnonces($annonces, $keywords, $fields);
+        */
+
+            // Récupérer toutes les valeurs des balises <input>
+        $keywords = $_POST['keywords'];
+        if(isset($_POST["radioBtn"])){$radioBtn = $_POST['radioBtn'];}else{$radioBtn = null;}
+        if(isset($_POST["checkboxBtn"])){$checkboxBtn = $_POST['checkboxBtn'];}else{$checkboxBtn = null;}
+        $priceRange = $_POST['price_range'];
+
+        // Appeler la fonction findAnnonces() avec les valeurs récupérées
+        print_r($_POST);
+        findAnnonces($keywords, $radioBtn, $checkboxBtn, $priceRange);
     }
     ?>
         
