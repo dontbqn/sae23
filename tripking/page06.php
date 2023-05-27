@@ -26,8 +26,8 @@ else{
                 <h1 class="my-4 text-center">Administration</h1>
                 <hr>
                 <div class="list-group list-group-flush text-center">
-                    <a href="#utilisateurs" class="list-group-item list-group-item-action">Gestion Utilisateurs</a>
-                    <a href="#annonces" class="list-group-item list-group-item-action">Gestion Annonces</a>
+                    <a href="#utilisateurs" class="list-group-item list-group-item-action bg-light bg-gradient bg-opacity-25">Gestion Utilisateurs</a>
+                    <a href="#annonces" class="list-group-item list-group-item-action bg-light bg-gradient bg-opacity-25">Gestion Annonces</a>
                 </div>
                 <hr>
                 ';

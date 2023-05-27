@@ -1,6 +1,11 @@
 <?php
 
-include("./fonctions.php");
+if (file_exists("./fonctions.php")) {
+    include("./fonctions.php");
+} else{
+    include("../fonctions.php");
+}
+
 
 function liseret(){
     echo '
@@ -35,10 +40,10 @@ function setup(){
             cookiesOrNot();
         }
         else{
-            if(!$_SESSION["user"]){
-                // Cookie LOGGED_USER, donc utilisateur existe, on relance sa session
+            if(!isset($_SESSION["user"])){
+                // Cookie LOGGED_USER, donc utilisateur existe, on relance sa session via son TOKEN ID
 
-                echo "VOUS AVEZ ETE RECONNU, relancement de la session en cours : ";
+                echo "VOUS AVEZ ETE RECONNU, relancement de la session en cours ";
                 $usercookie = $_COOKIE['LOGGED_USER'];
                 $hashcookie =  $_COOKIE['MOTDEPASSE'];
                 //connexion($_COOKIE['LOGGED_USER'],$_COOKIE['MOTDEPASSE']);
@@ -74,7 +79,7 @@ function pagenavbar($pageactive){
             <div class="col">
                 <form class="d-flex" role="search" method="post" action="./explorer.php">
                     <input class="form-control me-2 shadow-none" list="datalistOptions" type="search" placeholder="Search" aria-label="Search" style="width: 400px;">
-                    <button class="btn btn-outline-dark" type="submit">Search</button>
+                    <button class="btn btn-outline-dark btn-light" type="submit">Search</button>
                     <datalist id="datalistOptions">
                         <option value="San Francisco">
                         <option value="New York">
@@ -162,8 +167,8 @@ function pagenavbar($pageactive){
                         <a type="button" class="btn-theme pe-1"><img src="images/night.png" width="20" height="20" /></a>
                         <script src="js/theme.js"></script>
                     </a>
-                    <a class="navbar-brand" href="page05.php">
-                        <span class="fs-6 me-1">'.$_SESSION["user"].'</span>
+                    <a type="button" class="navbar-brand ms-1" href="page05.php">
+                        <span class="fs-6 me-1 pseudo font-monospace">'.$_SESSION["user"].'</span>
                         <img src="images/icone_user.png" alt="" width="40" height="40">
                     </a>
                 ';
@@ -203,9 +208,50 @@ function pagenavbar($pageactive){
 
     <div class="container-fluid pt-3">
         <div class="row ">
-            <div class="col-md-6 offset-md-3 text-center">
-                <button type="button" class="btn btn-danger ms-2">texte</button>
-                <button type="button" class="btn btn-danger ms-2">texte</button>
+            <div class="col-md-6 offset-md-3 text-center">'; 
+                // On check si l'utilisateur possède les droits
+                //d'accès à l'intra
+                if(isset($_SESSION['user'])){
+                    if(isset($_SESSION['role']) && $_SESSION['role']=="visitor"){
+                        echo '
+                        <a type="button" class="btn btn-danger ms-2" href="bonsplan.php">Bons Plans</a>
+                        <a type="button" class="btn btn-danger ms-2" href="pourvous.php">Pour vous</a>
+                        ';
+                    }elseif(isset($_SESSION['role']) && $_SESSION['role']=="admin" ||$_SESSION['role']=="superadmin" ){
+                        $employee = $_SESSION['user'];
+                        if(!file_exists("./entreprise/salaries/$employee")){ // Boutons admins
+                            $employee = null;
+                        }
+                        echo '
+                        <a type="button" class="btn btn-danger ms-2" href="';echo ($employee !== null) ? './entreprise/salaries/'.$employee : 'error_page.php?message=EmployeeNotFound'; echo '">Accès à l\'espace perso</a>
+                        <a type="button" class="btn btn-danger ms-2" href="./entreprise/intranet.php">Accès à l\'Intranet</a>
+                        ';
+                    }
+                    elseif(isset($_SESSION['role']) && $_SESSION['role']=="employe"){ // Boutons employés
+                        $employee = $_SESSION['user'];
+                        if(!file_exists("./entreprise/salaries/$employee")){
+                            $employee = null;
+                        }
+                        echo '
+                        <a type="button" class="btn btn-danger ms-2" href="';echo ($employee !== null) ? './entreprise/salaries/'.$employee : 'error_page.php?message=EmployeeNotFound'; echo '">Accès à l\'espace perso</a>
+                        <a type="button" class="btn btn-danger ms-2" href="./entreprise/intranet.php">Accès à l\'Intranet</a>
+                        ';
+                    }
+                    elseif(isset($_SESSION['role']) && $_SESSION['role']=="partenaire"){ // Boutons partenaire
+                        $partenaire = $_SESSION['user'];
+                        if(!file_exists("./entreprise/partenaires/$partenaire")){
+                            $partenaire = null;
+                        }
+                        echo '
+                        <a type="button" class="btn btn-danger ms-2" href="';echo ($partenaire !== null) ? './entreprise/partenaires/'.$partenaire : 'error_page.php?message=PartenaireNotFound'; echo '">Accès à l\'espace Partenaire</a>
+                        ';
+                    }
+                    else{
+                        return null; // Boutons plèbe
+                    }
+                }
+
+                echo '
             </div>
         </div>
     </div>
@@ -285,7 +331,7 @@ function pagenavbar($pageactive){
         </li>';
 
         echo '<li class="nav-item list-group-item">
-        <a class="nav-link '.($pageactive == "page08.php" ? navbarItemActive() : navbarItem()).'" href="page08.php">Informations</a>
+        <a class="nav-link '.($pageactive == "wiki.php" ? navbarItemActive() : navbarItem()).'" href="wiki.php">Wiki</a>
         </li>';
         echo '
         <li class="nav-item list-group-item">
@@ -313,10 +359,10 @@ function pagenavbar($pageactive){
                     <a class="nav-link '.($pageactive == "pourvous.php" ? navbarItemActive() : navbarItem()).'" href="pourvous.php"><img src="images/foryou.png" class="me-1" width="30" height="30">Pour vous</a>
                 </li>
                 <li class="nav-item list-group-item">
-                    <a class="nav-link '.($pageactive == "about.php" ? navbarItemActive() : navbarItem()).'" href="explorer.php">Qui sommes-nous ?</a>
+                    <a class="nav-link '.($pageactive == "about.php" ? navbarItemActive() : navbarItem()).'" href="./entreprise/about.php">Qui sommes-nous ?</a>
                 </li>
                 <li class="nav-item list-group-item">
-                    <a class="nav-link '.($pageactive == "partenaires.php" ? navbarItemActive() : navbarItem()).'" href="partenaires.php">Partenaires</a>
+                    <a class="nav-link '.($pageactive == "partenaires.php" ? navbarItemActive() : navbarItem()).'" href="./entreprise/partenaires.php">Partenaires</a>
                 </li>
             </ul>
         </div>
@@ -339,9 +385,9 @@ function footer(){
             <div class="col-6 col-md-3 mb-3">
                 <h5>Entrepise</h5>
                 <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a href="./entreprise/about.php" class="nav-link p-0 text-muted">A propos</a></li>
-                    <li class="nav-item mb-2"><a href="./entreprise/partenaires.php" class="nav-link p-0 text-muted">Partenaires</a></li>
-                    <li class="nav-item mb-2"><a href="./entreprise/carriere.php" class="nav-link p-0 text-muted">Rejoignez-vous</a></li>
+                    <li class="nav-item mb-2"><a href="./entreprise/about.php" class="nav-link p-0 footlink text-black-50">A propos</a></li>
+                    <li class="nav-item mb-2"><a href="./entreprise/partenaires.php" class="nav-link p-0 footlink text-black-50">Partenaires</a></li>
+                    <li class="nav-item mb-2"><a href="./entreprise/carriere.php" class="nav-link p-0 footlink text-black-50">Rejoignez-vous</a></li>
                 </ul>
                 <br>
                 
@@ -350,12 +396,12 @@ function footer(){
             <div class="col-6 col-md-3 mb-3">
                 <h5>Contact</h5>
                 <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a href="./contact/aide.php" class="nav-link p-0 text-muted">Aide / Support</a></li>
-                    <li class="nav-item mb-2"><a href="./contact/remboursement.php" class="nav-link p-0 text-muted">Remboursement</a></li>
-                    <li class="nav-item mb-2"><a href="./contact/infosupp.php" class="nav-link p-0 text-muted">Informations complémentaires</a></li>
+                    <li class="nav-item mb-2"><a href="./contact/aide.php" class="nav-link p-0 footlink text-black-50">Aide / Support</a></li>
+                    <li class="nav-item mb-2"><a href="./contact/remboursement.php" class="nav-link p-0 footlink text-black-50">Remboursement</a></li>
+                    <li class="nav-item mb-2"><a href="./contact/infosupp.php" class="nav-link p-0 footlink text-black-50">Informations complémentaires</a></li>
                 </ul>
             </div>
-            
+
             <div class="col-md-5 offset-md-1 mb-3">
                 <form method="post">
                     <h5>Subscribe to our newsletter</h5>
@@ -396,15 +442,15 @@ function footer(){
                 </div>
                 <div class="col-sm-8">
                     <div>
-                        <a href="https://www.twitter.com/tripking/" class="">
+                        <button href="https://www.twitter.com/tripking/" class="">
                             <img src="images/twitter.png" alt="" width="40" height="40">
-                        </a>
-                        <a href="https://www.instagram.com/tripking/" class="">
+                        </button>
+                        <button href="https://www.instagram.com/tripking/" class="">
                             <img src="images/insta.png" alt="" width="40" height="40">
-                        </a>
-                        <a href="www.facebook.com/tripking/" class="">
+                        </button>
+                        <button href="www.facebook.com/tripking/" class="">
                             <img src="images/facebook.png" alt="" width="40" height="40">
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -472,6 +518,7 @@ function cookiesOrNot(){
             //<span class="text-white-50">close to get rid of this pop-up</span>
      }
      else{
+        var_dump($_SESSION["cookie"]);
         if(isset($_POST["necessary"])){
             array_push($_SESSION["cookie"], "necessary");
         }
@@ -484,5 +531,19 @@ function cookiesOrNot(){
      }
     
 }
+
+function accesPerso($user){
+    //return filename of user's personal file space
+    if(file_exists("./entreprise/salaries/$user")){
+        return $user;
+    }
+    else{
+        echo '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle mb-1" viewBox="0 0 16 16">
+        <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/>
+        <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/>
+        </svg>  Aucun espace perso pour '.$user.'    <br/>';
+    }
+}
+
 ?>
 
