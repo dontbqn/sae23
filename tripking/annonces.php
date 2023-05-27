@@ -13,7 +13,7 @@ function newAnnonce(){
 		"bon_plan":True, //booléen
 		"commentaires":[c01,]
     },
-    */
+        */
         "1" => array(
             "id"=> 1,
             "titre"=> "Barcelone T4 vue sur Mer Thalasso",
@@ -23,6 +23,7 @@ function newAnnonce(){
             "nb_fav" => 2,
             "bon_plan" => False,
             "commentaires" => array("c01","c02","c56"),
+            "description" => "WOoooooo",
             "images" => array(
                 "./annonces/1/img1.jpg",
                 "./annonces/1/img2.jpg"
@@ -37,19 +38,66 @@ function newAnnonce(){
             "nb_fav" => 0,
             "bon_plan" => True,
             "commentaires" => array("c04","c07","c17"),
+            "description" => "Caaaaaaaaaaaaaaaaaa",
             "images" => array(
                 "./annonces/2/img1.jpg",
                 "./annonces/2/img2.jpg"
             )
-            )
+            ),
+            "3" => array(
+                "id" => 3,
+                "titre" => "Villa de luxe avec piscine",
+                "lieu" => "Marbella",
+                "pays" => "Espagne",
+                "prix_nuit" => 200,
+                "nb_fav" => 5,
+                "bon_plan" => false,
+                "commentaires" => array("c09", "c15", "c28"),
+                "description" => "Villa de luxe avec piscine privée, jardin tropical et vue panoramique sur la mer. Un paradis pour des vacances exclusives.",
+                "images" => array(
+                    "./annonces/3/img1.jpg",
+                    "./annonces/3/img2.jpg",
+                    "./annonces/3/img3.jpg")
+                ),
+            "4" => array(
+                "id" => 4,
+                "titre" => "Chalet de montagne confortable",
+                "lieu" => "Chamonix",
+                "pays" => "France",
+                "prix_nuit" => 100,
+                "nb_fav" => 3,
+                "bon_plan" => false,
+                "commentaires" => array("c12", "c18", "c21"),
+                "description" => "Chalet de montagne confortable avec une vue imprenable sur les sommets enneigés.",
+                "images" => array(
+                    "./annonces/4/img1.jpg",
+                    "./annonces/4/img2.jpg"
+                )
+                ),
+            "5" => array(
+                "id" => 5,
+                "titre" => "Appartement moderne en centre-ville",
+                "lieu" => "Paris",
+                "pays" => "France",
+                "prix_nuit" => 80,
+                "nb_fav" => 1,
+                "bon_plan" => true,
+                "commentaires" => array("c08", "c14", "c22"),
+                "description" => "Appartement moderne situé en plein cœur de Paris, à proximité des attractions principales.",
+                "images" => array(
+                        "./annonces/5/img1.jpg",
+                        "./annonces/5/img2.jpg",
+                        "./annonces/5/img3.jpg"
+                    )
+                ),
             );
     $res = json_encode($default_users, JSON_PRETTY_PRINT);
     file_put_contents("./annonces/annonces.json", $res);
 }
-function showAnnonces($annonces, $found){
+function showAnnonces($annonces, $found=false){
     if($annonces == []){
         echo '
-        <div class="p-2 pt-2 mt-2">
+        <div class="p-2 mt-2">
             Aucune annonce correspondante.
         </div>
         ';
@@ -67,51 +115,26 @@ function showAnnonces($annonces, $found){
             <hr class="display-3 col-4 bg-dark">
         ';
     }
+echo '<div class="row">';
 
+foreach ($annonces as $found) {
     echo '
-    <table class="table">
-    <thead>
-        <tr>
-        <th scope="col">#</th>
-        <th scope="col">Titre</th>
-        <th scope="col">Lieu</th>
-        <th scope="col">Pays</th>
-        <th scope="col">1 Nuit</th>
-        <th scope="col">&#128159;</th>
-        <th scope="col">Bon Plan &#128293;</th>
-        </tr>
-    </thead>
-    <tbody>';
-
-  foreach($annonces as $found) {
-    echo '<tr class="">
-        <th scope="row">';
-        echo $found['id'];
-        echo '</th><td><a href="page_annonce.php?id='.$found['id'].'" class="text-dark">';
-        echo $found['titre'];
-        echo '</a></td><td>'; 
-        echo $found['lieu'];
-        echo '</td><td>
-        <a class="text-dark" href="">';
-        echo $found['pays'];
-        echo '</a>
-        </td>';
-        echo '<td>';
-        echo $found['prix_nuit'];
-        echo '€</td>';
-        echo '<td>';
-        echo $found['nb_fav'];
-        echo '</td>';
-        echo '<td>';
-        echo $found['bon_plan'] == True ? "&#10003;" : "&#9932;";
-        echo '</td>';        
-        echo '<td><a href="" title="voir l\'annonce"><img src="'.$found['images'][0].'" class="img-fluid border border-1 border-light" width="100" height="100" alt="Annonce Preview"/></a>';
-        echo '</td>
-        </tr>';
+        <div class="col-md-4">
+            <div class="card mb-3 bg-opacity-25">
+                <img src="'.$found['images'][0].'" class="card-img-top" alt="Annonce Preview">
+                <div class="card-body">
+                    <h5 class="card-title fw-semibold">'.$found['titre'].'</h5>
+                    <p class="card-text fst-italic">'.$found['lieu'].'</p>
+                    <p class="card-text">
+                        <strong>'.$found['prix_nuit'].'€</strong> / Nuit
+                    </p>
+                    <a type="button" href="page_annonce.php?id='.$found['id'].'" class="btn btn-dark">Voir +</a>
+                </div>
+            </div>
+        </div>';
 }
-echo '
-    </tbody>
-    </table>
+echo '</div>
+
 </div>
 ';
 
@@ -295,39 +318,55 @@ function getAnnonces($annoncesbase){
     ';
 }
 
-function findAnnonces1($text){
-    $founded_annonces=[];
-    $text = htmlspecialchars(strtolower($text));
-    $annonces = json_decode(file_get_contents("./annonces/annonces.json", true), true);
-    $text = explode(" ", $text);
-    foreach ($text as $key) {
-        foreach($annonces as $annonce){
-            if(str_contains(strtolower($annonce["titre"]), $key)){
-                array_push($founded_annonces, $annonce);
-            }
-        }
-    }
-    foreach($founded_annonces as $key => $founded){ //Suppr annonces duppliqués de la liste
-        if (array_search($founded, $founded_annonces) !== $key) {
-            unset($founded_annonces[$key]);
-          }
-    }
-    getAnnonces($founded_annonces);
-    
-}
 function findAnnonces($keywords, $radioBtn, $checkboxBtn, $priceRange) {
     $founded_annonces = [];
-    $keywords = htmlspecialchars(strtolower($keywords));
+    $keywords = strip_tags($keywords); // Remove HTML tags
+    $keywords = htmlentities($keywords, ENT_QUOTES, 'UTF-8'); // Encode special characters
     $annonces = json_decode(file_get_contents("./annonces/annonces.json"), true);
-    
+    $filtered_annonces = [];
+
     if($keywords == "" && $radioBtn == null && $checkboxBtn == null && $priceRange == 0){
         return getAnnonces($annonces);
-        
     }
-    $keywords = explode(" ", $keywords);
+    $transports = ["train","avion","bus","voiture","autres_tr"];
+    echo '
+        <ul class="mt-2 bg-dark bg-opacity-25 border border-black border-3 px-3 m-4">';
+        echo '<li>Recherche : '.($keywords).'</li>';
+        if($checkboxBtn != null){ //Transport
+            
+            if(in_array($checkboxBtn, $transports)){
+                echo "<li>Recherche par $checkboxBtn </li>";
+            }
+            else{
+                echo "<li>Tous les types de transport</li>";
+            }
+        }
+        $recherchepar = ["titre","lieu_pays","contenu"];
+        if($radioBtn != null){ //Transport
+            if(in_array($radioBtn, $recherchepar)){
+                if($radioBtn == "lieu_pays"){
+                    echo "<li>Recherche par Lieu / Pays </li>";
+                }
+                else{
+                    echo "<li>Recherche par $radioBtn </li>";
+                }
+            }
+            else{
+                echo "<li>Titre, lieux, pays ou contenu</li>";
+            }
+        }
+        if($priceRange != null){ //Transport
+            echo "<li>Prix Maximum/nuit : $priceRange €</li>";
+        }
+        echo '</ul>';
 
+
+    $keywords = explode(" ", $keywords);
     foreach ($keywords as $key) {
+        //Affiche recherche en cours
         foreach ($annonces as $annonce) {
+            //echo strtolower($annonce["titre"]);
+            $key = strtolower($key);
             if (str_contains(strtolower($annonce["titre"]), $key)) {
                 array_push($founded_annonces, $annonce);
             } elseif ($radioBtn === 'lieu_pays' && str_contains(strtolower($annonce["lieu"]), $key)) {
@@ -338,23 +377,13 @@ function findAnnonces($keywords, $radioBtn, $checkboxBtn, $priceRange) {
         }
     }
 
-    $filtered_annonces = [];
-    foreach ($founded_annonces as $founded) {
-        if (
-            ($checkboxBtn === 'bus' && str_contains(strtolower($founded["transport"]), 'bus')) ||
-            ($checkboxBtn === 'train' && str_contains(strtolower($founded["transport"]), 'train')) ||
-            ($checkboxBtn === 'avion' && str_contains(strtolower($founded["transport"]), 'avion')) ||
-            ($checkboxBtn === 'autre_tr' && str_contains(strtolower($founded["transport"]), 'autre'))
-        ) {
-            $filtered_annonces[] = $founded;
-        }
-    }
-
-    $filtered_annonces = array_filter($filtered_annonces, function ($annonce) use ($priceRange) {
-        return $annonce["prix_nuit"] <= $priceRange;
+    $filtered_annonces = array_filter($founded_annonces, function ($annonce) use ($priceRange) {
+        return $annonce['prix_nuit'] <= $priceRange;
     });
-
-    getAnnonces($filtered_annonces);
+    print_r($founded_annonces);
+    echo '<br>';
+    print_r($filtered_annonces);
+    showAnnonces($filtered_annonces);
 }
 
 
@@ -410,4 +439,158 @@ function modifyAnnonce($annonce, $new_usr, $mdp, $role, $favcolor){
     }
     
 }
+
+function newCommentaires(){
+    //fichier json contenant les premiers commentaires
+        /*
+
+        */
+        $commentaires = array(
+            "c04" => array(
+                "id" => "c04",
+                "auteur" => "bagel",
+                "titre" => "Super Weekend en famille !",
+                "note" => 2,
+                "message" => "J4AI ADORé la vue et le balcon superbe."
+            ),
+            "c01" => array(
+                "id" => "c01",
+                "auteur" => "alice123",
+                "titre" => "Expérience incroyable",
+                "note" => 5,
+                "message" => "Nous avons passé un séjour fantastique dans cet endroit. Tout était parfait !"
+            ),
+            "c02" => array(
+                "id" => "c02",
+                "auteur" => "john_doe",
+                "titre" => "Vacances relaxantes",
+                "note" => 4,
+                "message" => "L'endroit était paisible et l'appartement était très confortable. Nous avons vraiment apprécié notre séjour."
+            ),
+            "c03" => array(
+                "id" => "c03",
+                "auteur" => "emma89",
+                "titre" => "Séjour agréable",
+                "note" => 3,
+                "message" => "L'appartement était bien situé mais aurait pu être mieux entretenu."
+            ),
+            "c05" => array(
+                "id" => "c05",
+                "auteur" => "james007",
+                "titre" => "Wonderful stay",
+                "note" => 5,
+                "message" => "The place exceeded our expectations. Highly recommended!"
+            ),
+            "c06" => array(
+                "id" => "c06",
+                "auteur" => "lucy123",
+                "titre" => "Perfect location",
+                "note" => 4,
+                "message" => "The apartment was conveniently located close to all the attractions."
+            ),
+            "c07" => array(
+                "id" => "c07",
+                "auteur" => "mike22",
+                "titre" => "Great value for money",
+                "note" => 4,
+                "message" => "We got more than what we paid for. It was a fantastic deal!"
+            ),
+            "c08" => array(
+                "id" => "c08",
+                "auteur" => "sarah87",
+                "titre" => "Cozy and comfortable",
+                "note" => 5,
+                "message" => "The place had a warm and cozy atmosphere. We felt right at home."
+            ),
+            "c09" => array(
+                "id" => "c09",
+                "auteur" => "alex123",
+                "titre" => "Lovely apartment",
+                "note" => 4,
+                "message" => "We enjoyed our stay in this lovely apartment. It had everything we needed."
+            ),
+            "c10" => array(
+                "id" => "c10",
+                "auteur" => "julia56",
+                "titre" => "Fantastic view",
+                "note" => 5,
+                "message" => "The view from the apartment was breathtaking. We couldn't get enough of it."
+            ),
+            "c11" => array(
+                "id" => "c11",
+                "auteur" => "peter789",
+                "titre" => "Excellent service",
+                "note" => 5,
+                "message" => "The host provided exceptional service throughout our stay. Highly recommended!"
+            ),
+            "c12" => array(
+                "id" => "c12",
+                "auteur" => "sophie23",
+                "titre" => "Amazing location",
+                "note" => 4,
+                "message" => "The apartment was located in the heart of the city. It was so convenient for exploring."
+            ),
+            "c13" => array(
+                "id" => "c13",
+                "auteur" => "david456",
+                "titre" => "Wonderful amenities",
+                "note" => 5,
+                "message" => "The apartment had all the amenities we needed for a comfortable stay."
+            ),
+            "c14" => array(
+                "id" => "c14",
+                "auteur" => "natalie19",
+                "titre" => "Friendly host",
+                "note" => 4,
+                "message" => "The host was very friendly and helpful. We had a great experience."
+            ),
+            "c15" => array(
+                "id" => "c15",
+                "auteur" => "michael34",
+                "titre" => "Spacious and clean",
+                "note" => 4,
+                "message" => "The apartment was spacious and clean. We had a comfortable stay."
+            ),
+            "c16" => array(
+                "id" => "c16",
+                "auteur" => "lily789",
+                "titre" => "Excellent value",
+                "note" => 5,
+                "message" => "We got an excellent value for the price we paid. Highly recommended!"
+            ),
+            "c17" => array(
+                "id" => "c17",
+                "auteur" => "sammy56",
+                "titre" => "Peaceful and relaxing",
+                "note" => 4,
+                "message" => "The place was so peaceful and relaxing. We had a great time unwinding there."
+            ),
+            "c18" => array(
+                "id" => "c18",
+                "auteur" => "olivia12",
+                "titre" => "Charming apartment",
+                "note" => 5,
+                "message" => "The apartment had a charming character and we fell in love with it."
+            ),
+            "c19" => array(
+                "id" => "c19",
+                "auteur" => "ryan45",
+                "titre" => "Excellent location",
+                "note" => 5,
+                "message" => "The location of the apartment was perfect. We could easily reach all the attractions."
+            ),
+            "c20" => array(
+                "id" => "c20",
+                "auteur" => "emma_jones",
+                "titre" => "Home away from home",
+                "note" => 4,
+                "message" => "The apartment felt like a home away from home. We had a comfortable stay."
+            ),
+        );
+      
+    $res = json_encode($commentaires, JSON_PRETTY_PRINT);
+    file_put_contents("./data/commentaires.json", $res);
+}
+
+
 ?>

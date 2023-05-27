@@ -10,8 +10,9 @@
         "commentaires": [
             "c01",
             "c02",
-            "c56"
+            "c05"
         ],
+        "description": "Vue sur Mer avec service et cacahuètes sous le meuble tv la",
         "images": [
             ".\/annonces\/1\/img1.jpg",
             ".\/annonces\/1\/img2.jpg"
@@ -30,9 +31,30 @@
             "c07",
             "c17"
         ],
+        "description": "Alors oui c'est un studio sympa",
         "images": [
             ".\/annonces\/2\/img1.jpg",
             ".\/annonces\/2\/img2.jpg"
+        ]
+    },
+    "3": {
+        "id": 3,
+        "titre": "Villa de luxe avec piscine",
+        "lieu": "Marbella",
+        "pays": "Espagne",
+        "prix_nuit": 200,
+        "nb_fav": 5,
+        "bon_plan": false,
+        "commentaires": [
+            "c09",
+            "c15",
+            "c20"
+        ],
+        "description": "Villa de luxe avec piscine priv\u00e9e, jardin tropical et vue panoramique sur la mer. Un paradis pour des vacances exclusives.",
+        "images": [
+            ".\/annonces\/3\/img1.jpg",
+            ".\/annonces\/3\/img2.jpg",
+            ".\/annonces\/3\/img3.jpg"
         ]
     }
 }

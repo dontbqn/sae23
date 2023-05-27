@@ -1,9 +1,142 @@
 {
     "c04": {
-        "id" : "c04",
+        "id": "c04",
         "auteur": "bagel",
         "titre": "Super Weekend en famille !",
         "note": 2,
-        "message":"J4AI ADORé la vue et le balcon superbe."	
+        "message": "J4AI ADOR\u00e9 la vue et le balcon superbe."
+    },
+    "c01": {
+        "id": "c01",
+        "auteur": "alice123",
+        "titre": "Exp\u00e9rience incroyable",
+        "note": 5,
+        "message": "Nous avons pass\u00e9 un s\u00e9jour fantastique dans cet endroit. Tout \u00e9tait parfait !"
+    },
+    "c02": {
+        "id": "c02",
+        "auteur": "john_doe",
+        "titre": "Vacances relaxantes",
+        "note": 4,
+        "message": "L'endroit \u00e9tait paisible et l'appartement \u00e9tait tr\u00e8s confortable. Nous avons vraiment appr\u00e9ci\u00e9 notre s\u00e9jour."
+    },
+    "c03": {
+        "id": "c03",
+        "auteur": "emma89",
+        "titre": "S\u00e9jour agr\u00e9able",
+        "note": 3,
+        "message": "L'appartement \u00e9tait bien situ\u00e9 mais aurait pu \u00eatre mieux entretenu."
+    },
+    "c05": {
+        "id": "c05",
+        "auteur": "james007",
+        "titre": "Wonderful stay",
+        "note": 5,
+        "message": "The place exceeded our expectations. Highly recommended!"
+    },
+    "c06": {
+        "id": "c06",
+        "auteur": "lucy123",
+        "titre": "Perfect location",
+        "note": 4,
+        "message": "The apartment was conveniently located close to all the attractions."
+    },
+    "c07": {
+        "id": "c07",
+        "auteur": "mike22",
+        "titre": "Great value for money",
+        "note": 4,
+        "message": "We got more than what we paid for. It was a fantastic deal!"
+    },
+    "c08": {
+        "id": "c08",
+        "auteur": "sarah87",
+        "titre": "Cozy and comfortable",
+        "note": 5,
+        "message": "The place had a warm and cozy atmosphere. We felt right at home."
+    },
+    "c09": {
+        "id": "c09",
+        "auteur": "alex123",
+        "titre": "Lovely apartment",
+        "note": 4,
+        "message": "We enjoyed our stay in this lovely apartment. It had everything we needed."
+    },
+    "c10": {
+        "id": "c10",
+        "auteur": "julia56",
+        "titre": "Fantastic view",
+        "note": 5,
+        "message": "The view from the apartment was breathtaking. We couldn't get enough of it."
+    },
+    "c11": {
+        "id": "c11",
+        "auteur": "peter789",
+        "titre": "Excellent service",
+        "note": 5,
+        "message": "The host provided exceptional service throughout our stay. Highly recommended!"
+    },
+    "c12": {
+        "id": "c12",
+        "auteur": "sophie23",
+        "titre": "Amazing location",
+        "note": 4,
+        "message": "The apartment was located in the heart of the city. It was so convenient for exploring."
+    },
+    "c13": {
+        "id": "c13",
+        "auteur": "david456",
+        "titre": "Wonderful amenities",
+        "note": 5,
+        "message": "The apartment had all the amenities we needed for a comfortable stay."
+    },
+    "c14": {
+        "id": "c14",
+        "auteur": "natalie19",
+        "titre": "Friendly host",
+        "note": 4,
+        "message": "The host was very friendly and helpful. We had a great experience."
+    },
+    "c15": {
+        "id": "c15",
+        "auteur": "michael34",
+        "titre": "Spacious and clean",
+        "note": 4,
+        "message": "The apartment was spacious and clean. We had a comfortable stay."
+    },
+    "c16": {
+        "id": "c16",
+        "auteur": "lily789",
+        "titre": "Excellent value",
+        "note": 5,
+        "message": "We got an excellent value for the price we paid. Highly recommended!"
+    },
+    "c17": {
+        "id": "c17",
+        "auteur": "sammy56",
+        "titre": "Peaceful and relaxing",
+        "note": 4,
+        "message": "The place was so peaceful and relaxing. We had a great time unwinding there."
+    },
+    "c18": {
+        "id": "c18",
+        "auteur": "olivia12",
+        "titre": "Charming apartment",
+        "note": 5,
+        "message": "The apartment had a charming character and we fell in love with it."
+    },
+    "c19": {
+        "id": "c19",
+        "auteur": "ryan45",
+        "titre": "Excellent location",
+        "note": 5,
+        "message": "The location of the apartment was perfect. We could easily reach all the attractions."
+    },
+    "c20": {
+        "id": "c20",
+        "auteur": "emma_jones",
+        "titre": "Home away from home",
+        "note": 4,
+        "message": "The apartment felt like a home away from home. We had a comfortable stay."
     }
 }

@@ -24,16 +24,16 @@ $thisannonce;
                 </h1>
                 <div class="mx-5 border border-2 rounded-4 shadow my-2 p-3">
                     <div class="row">
-                        <div class="col-9">
+                        <div class="col-8">
                             <div class="row">
-                                <h1 class="">'.$thisannonce["titre"].'</h1>
+                                <h1>'.$thisannonce["titre"].'</h1>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <div>
                                     <h2 class="fs-3">&#128205;'.$thisannonce["lieu"].', '.$annonce["pays"].'</h2>
                                 </div>
                                 <div class="text-end p-2 me-2 link-black">
-                                    <button class="badge bg-dark rounded-pill text-decoration-none partage">partager</button>
+                                    <button class="badge bg-dark rounded-pill text-decoration-none partage py-2 px-3">partager</button>
                                     <div class="menu-partage visually-hidden" style="cursor:pointer">
                                         <a id="twitter-link" class="link-underline-danger link-dark">Twitter</a>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
@@ -96,32 +96,31 @@ $thisannonce;
                                     <span class="visually-hidden">Next</span>
                                 </button>
                             </div>
-
                         </div>
                     </div>
-                        <div class="col-4 border border-3 p-5 my-3">
-                            <form method="post" action="./reservations.php">
-                                <div class="d-flex justify-content-evenly">
-                                        <div class="form-floating border border-1">
-                                            <input type="date" class="form-control" id="floatdepart" placeholder="14/06/23">
-                                            <label for="floatdepart">DEPART</label>
-                                        </div>
-                                        <div class="form-floating">
-                                            <input type="date" class="form-control" id="floatarrivee" placeholder="14/06/23">
-                                            <label for="floatarrivee">ARRIVEE</label>
-                                        </div>
-                                </div>
-                                <div class="mt-3 d-flex justify-content-evenly">
-                                    <label for="voyageurs" class="form-label"> Voyageur(s)</label>
-                                    <select class="form-select" name="voyageurs" id="voyageurs">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                    </select>
-                                </div>
-                                <hr class="bg-dark">
-                                <div class="d-flex justify-content-center">
+                    <div class="col-4 border border-3 p-5 my-3">
+                        <form method="post" action="./reservations.php">
+                            <div class="d-flex justify-content-evenly">
+                                    <div class="form-floating border border-1">
+                                        <input type="date" class="form-control" id="floatdepart" placeholder="14/06/23">
+                                        <label for="floatdepart">DEPART</label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input type="date" class="form-control" id="floatarrivee" placeholder="14/06/23">
+                                        <label for="floatarrivee">ARRIVEE</label>
+                                    </div>
+                            </div>
+                            <div class="mt-3 d-flex justify-content-evenly">
+                                <label for="voyageurs" class="form-label"> Voyageur(s)</label>
+                                <select class="form-select" name="voyageurs" id="voyageurs">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
+                            <hr class="bg-dark">
+                            <div class="d-flex justify-content-center">
                                 <strong class="">TOTAL</strong>';
 
                                     if(isset($_POST["reserve"])){
@@ -134,43 +133,53 @@ $thisannonce;
                                     }
 
                                     echo'
-                                </div>
-                                <div class="mt-1 text-center mx-auto">
-                                    <button type="submit" class="btn btn-xl" value="reserve">RESERVER</button>
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+                            <div class="mt-1 text-center mx-auto">
+                                <button type="submit" class="btn btn-xl" value="reserve">RESERVER</button>
+                            </div>
+                        </form>
+                    </div>
 
 
+                        <div class="container border border-2">
+                            <h3>A propos de ce logement</h3>
+                            <article>
+                                '.$thisannonce["description"].'
+                                
+                            </article>
+                            <br/>
+                            <a class="link-underline-light link-secondary fs-3 mb-1">Commentaires : <a>
+                            <div>';
+                                //Affichage des commentaires
+                                newCommentaires();
+                                $commentaires = ($thisannonce['commentaires']);
+                                foreach($commentaires as $id_commentaire){
+                                    $data_coms = json_decode(file_get_contents("./data/commentaires.json"), true);
+                                    foreach($data_coms as $commentaire){
+                                        if($commentaire['id'] == $id_commentaire){
+                                            echo '<div class="card p-3 col-6">';
+                                            echo '<div class="card-header">';
+                                                echo '<div class="row">';
+                                                    echo '<div class="col-2 font-monospace">';
+                                                        echo $commentaire["id"];
+                                                    echo '</div>
+                                                    <div class="col-8">';
+                                                        echo '<span class="fw-bold fs-5">'.$commentaire["titre"];echo "</span><br>";
+                                                    echo '</div>
+                                                    <div class="col-2">';
+                                                        echo $commentaire["note"].'<span class="fs-6">/5</span> &#9733;';
+                                                    echo '</div>';
+                                                    echo '<span class="fst-italic fs-5 p-1">'.$commentaire["auteur"];echo "</span><br>";
 
-                            
-                            <div class="container border border-2">
-                                <h3>A propos de ce logement</h3>
-                                <article>
-                                    annonce description
-                                    
-                                </article>
-                                <br/>
-                                <h5 class="link-dark">Commentaires :<h5>
-                                <div>';
-                                    //Affichage des commentaires
-                                    $commentaires = ($thisannonce['commentaires']);
-                                    foreach($commentaires as $id_commentaire){
-                                        $data_coms = json_decode(file_get_contents("./data/commentaires.json"), true);
-                                        foreach($data_coms as $commentaire){
-                                            if($commentaire['id'] == $id_commentaire){
-                                                echo '<div class="card p-3 col-6">';
-                                                echo $commentaire["id"];
-                                                echo "<br>note : ".$commentaire["note"];
-                                                echo '<div class="card-header">';
-                                                echo $commentaire["titre"];
                                                 echo '</div>';
-                                                echo "auteur : ".$commentaire["auteur"];echo "<br>";
-                                                echo "message : ".$commentaire["message"];echo "<br>";
+                                                echo '</div>';
+                                                echo '<div class="card-body">';
+                                                    echo $commentaire["message"];echo "<br>";
                                                 echo "</div>";
-                                            }
+                                            echo "</div>";
                                         }
                                     }
+                                }
 
                         echo '
                                 </div>
@@ -183,16 +192,16 @@ $thisannonce;
                         // Annonces qui pourraient vous plaire
                             $max = count($annonces);
                             $ints = [];
-                            $j=1;
-                            foreach($annonces as $ann){
-                                if($thisannonce["id"]!=$j){
+                            $j= count($annonces)+5;
+                            while($max < $j){
+                                foreach($annonces as $ann){
                                     echo '
-                                    <div class="list-group-item">
-                                        <img src="'.$ann["images"][0].'" class="d-block w-100 rounded-4">
-                                    </div>
-                                        ';
+                                        <div class="list-group-item">
+                                            <img src="'.$ann["images"][0].'" class="d-block w-100 rounded-4" width="10" height="200">
+                                        </div>
+                                    ';
+                                    $j--;
                                 }
-                                $j++;
                             }
                             //$j = random_int(0, $max);
                             //array_push($ints, $j);
