@@ -223,7 +223,7 @@ function pagenavbar($pageactive){
                             $employee = null;
                         }
                         echo '
-                        <a type="button" class="btn btn-danger ms-2" href="';echo ($employee !== null) ? './entreprise/salaries/'.$employee : 'error_page.php?message=EmployeeNotFound'; echo '">Accès à l\'espace perso</a>
+                        <a type="button" class="btn btn-danger ms-2" href="';echo ($employee !== null) ? './entreprise/salaries/'.$employee."/$employee.php" : 'error_page.php?message=EmployeeNotFound'; echo '">Accès à l\'espace perso</a>
                         <a type="button" class="btn btn-danger ms-2" href="./entreprise/intranet.php">Accès à l\'Intranet</a>
                         ';
                     }

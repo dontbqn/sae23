@@ -8,7 +8,7 @@ setup();
 pagenavbar("page01.php");
 
 ?>
-<body class="">
+<body>
     <div class="container pt-4 pb-3 my-5">
         <div class="text-center">
             <a class="navbar-brand" href="#">
