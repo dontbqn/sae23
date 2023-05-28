@@ -367,6 +367,53 @@ function pagenavbar($pageactive){
         </div>
     </div>
     ';
+        // Assistant ChatBot
+        echo '  <div class="fixed-bottom">
+                    <span class="btn btn-primary ms-4 mb-3 btn-lg rounded-circle" id="liveToastBtn"> ? </span>
+                </div>
+                <div class="toast-container fixed-bottom ms-5 mb-5">
+                    <div id="liveToast" class="toast" role="alert" class="show" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                        <div class="toast-header">
+                            <img src="images/louis.png" class="rounded ms-1 me-2" alt="bugslogo" width="25" height="25">
+                            <strong class="me-auto fs-6"> TripBot </strong>
+                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                            <div class="mb-3 p-1 text-dark">
+                                Hey l\'ami ! Je suis ton assistant personnel, envoie moi un message décrivant ton problème et je ferai de mon mieux pour t\'aider ! Bonne journée :p
+                            </div>
+                            <form method="post" action="./contact/aide.php">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a comment here" maxlength="300" id="floatingText" style="height: 100px" required></textarea>
+                                    <label for="floatingText">Votre message</label>
+                                </div>
+                                <small class="ps-1 mb-1">300 caractères max.</small>
+                            
+                                <div class="d-grid gap-2 col-3 mx-auto badge tex">
+                                    <button class="bg-primary p-2 text-light" type="submit">envoyer</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <script> // From BootStrap Docs 5.3 /components/toasts/ 
+                const toastTrigger = document.getElementById(\'liveToastBtn\')
+                const toastLive = document.getElementById(\'liveToast\')
+
+                if (toastTrigger) {
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive)
+                toastTrigger.addEventListener(\'click\', () => {
+                    toastBootstrap.show()
+                })
+                }
+                </script>
+            ';
+
+
+
+
+
+
 }
 
 function navbarItemActive(){

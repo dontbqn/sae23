@@ -72,9 +72,6 @@ pagenavbar("page01.php");
             </div>
         </div>
     </div>
-    
-
-
 
 
     <?php footer(); ?>
