@@ -50,11 +50,8 @@ session_start();
                 ';
                 // Modification fichier
                 if(isset($_POST['modif'])) {
-                    echo ($_POST["file"]);
+                    echo 'modification du fichier suivant : '.$_POST["file"];
                 }
-
-
-
 
 
                 // Lecture de fichier
@@ -64,10 +61,11 @@ session_start();
     
                     if (file_exists($filePath)) {
                         $fileExtension = pathinfo($filePath, PATHINFO_EXTENSION);
-    
+                        echo '<div class="container border border-3 rounded-3">';
                         if ($fileExtension === 'gif') {
                             echo '<h6>Contenu du gif '.$filePath.'</h6>';
                             echo '<img src="'.$filePath.'" alt="GIF Image">';
+
                         } elseif($fileExtension === 'mp4'){
                             echo '<h6>Contenu du mp4 '.$filePath.'</h6>';
                             echo '<video controls>';
@@ -76,13 +74,15 @@ session_start();
                             echo '</video>';
                         } else{
                             echo '<p>"'.$filePath.'"</p>';
-                            echo '<div class="container p-5 border border-1">';
+                            echo '<div class="container p-5">';
+                            echo htmlspecialchars(file_get_contents($filePath));
                             echo htmlspecialchars(file_get_contents($filePath));
                             echo '</div>';
                         }
                     } else {
                         echo '<p>Le fichier sélectionné n\'existe pas.</p>';
                     }
+                    echo '</div>';
                 }
 
 
@@ -93,32 +93,34 @@ session_start();
                 <form class="d-flex justify-content-center" method="POST" enctype="multipart/form-data"> 
                     <?php //enctype "multipart/form-data" is used if the usera wants to upload a file throught the form  ?>
                     <label class="me-2">Select a file to upload : </label>
-                    <input type="file" id="file_txt" name="file_txt" accept=".txt .php .js .csv .odt .pdf">
+                    <input type="file" id="file_txt" name="file_txt" accept=".txt, .php, .js, .csv, .odt, .pdf">
                     <input type="submit" name="submit_file" class="col-3 btn btn-sm btn-outline-warning btn-white" value="Lire ce fichier">
                 </form>
                     <?php
                     if (isset($_FILES['file_txt'])) {
-                        $file = $_FILES['file_txt']["name"]!= "" ? $_FILES['file_txt'] : False;
-                        if($file == False){
-                            echo '<div class="text-danger fw-bold">Entrez un fichier valide !</div>';
-                        }
-                        else{
+                        $file = $_FILES['file_txt'];
+                        if ($file['name'] != "") {
                             $path = $file['tmp_name'];
-                            //stock file temporary in file
-                            $newfilePath = __DIR__.$file["name"];
-                            move_uploaded_file($path, $newfilePath);
-                            echo "<br> <div class='mt-4 p-4 fs-6 bg-secondary bg-opacity-50 rounded-1 border-white'>";
-                            print(file_get_contents($newfilePath));
-                            echo '
-                            </div>
-                            <aside class="mt-4">
-                                <ul>
-                                    <li><em>name : '.$file["name"].'</em></li>
-                                    <li><em>type : '.$file["type"].'</em></li>
-                                    <li><em>size : '.$file["size"].' octets</em></li>
-                                </ul>
-                            </aside>
-                            ';
+                            $newFilePath = __DIR__.DIRECTORY_SEPARATOR.$file['name'];
+                            echo $newFilePath;
+                            if (move_uploaded_file($path, $newFilePath)) {
+                                echo '<div class="text-success fw-bold">Le fichier a été ajouté avec succès !</div>';
+                                echo "<br><div class='mt-4 p-4 fs-6 bg-secondary bg-opacity-50 rounded-1 border-white'>";
+                                echo htmlspecialchars(file_get_contents($newFilePath));
+                                echo '
+                                </div>
+                                <aside class="mt-4">
+                                    <ul>
+                                        <li><em>name: '.$file['name'].'</em></li>
+                                        <li><em>type : '.$file['type'].'</em></li>
+                                        <li><em>size: '.$file['size'].' octets</em></li>
+                                    </ul>
+                                </aside>';
+                            } else {
+                                echo '<div class="text-danger fw-bold">Une erreur est survenue lors de l\'ajout du fichier.</div>';
+                            }
+                        } else {
+                            echo '<div class="text-danger fw-bold">Entrez un fichier valide !</div>';
                         }
                     }
                     ?>
