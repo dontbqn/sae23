@@ -34,8 +34,6 @@ function setup(){
         <link href="css/liseret.css" rel="stylesheet">
     </head>
     ';
-
-    echo '<header>'.liseret().'</header>';  
         if(!isset($_COOKIE['LOGGED_USER'])){ // Thème du fond par défaut pour tous les utilisateurs
             cookiesOrNot();
         }
@@ -65,6 +63,7 @@ function setup(){
 }
 
 function pagenavbar($pageactive){
+    echo '<header>'.liseret().'</header>';  
     echo '
     <div class="container-fluid pt-4">
         <nav class="row navbar">

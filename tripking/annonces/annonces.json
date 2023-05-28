@@ -10,9 +10,9 @@
         "commentaires": [
             "c01",
             "c02",
-            "c05"
+            "c56"
         ],
-        "description": "Vue sur Mer avec service et cacahuètes sous le meuble tv la",
+        "description": "Cet appartement enchanteur est nich\u00e9 dans un quartier pris\u00e9 de Barcelone, offrant une vue imprenable sur la mer depuis son balcon. D\u00e8s que vous entrez dans l'appartement, vous serez \u00e9merveill\u00e9 par la luminosit\u00e9 qui baigne chaque pi\u00e8ce gr\u00e2ce \u00e0 de grandes fen\u00eatres laissant entrer le soleil m\u00e9diterran\u00e9en\r\n\r\n            Les portes-fen\u00eatres s'ouvrent sur le balcon spacieux offrant une vue panoramique sur la mer.\r\n            \r\n            La cuisine est enti\u00e8rement \u00e9quip\u00e9e avec des appareils modernes et dispose d'un espace de rangement g\u00e9n\u00e9reux.\r\n            \r\n            L'appartement dispose d\u2019un chambre confortable et accueillante. La chambre principale b\u00e9n\u00e9ficie \u00e9galement d'une vue sur la mer, ce qui vous permettra de vous r\u00e9veiller chaque matin en contemplant la beaut\u00e9 de l'horizon. Les salles de bains sont \u00e9l\u00e9gamment am\u00e9nag\u00e9es et offrent tout le confort n\u00e9cessaire.\r\n            \r\n            En sortant de l'appartement, vous n'aurez qu'\u00e0 parcourir quelques minutes \u00e0 pied pour vous retrouver sur la plage de sable fin de Barcelone.\r\n            \r\n            De plus, l'emplacement de l'appartement est id\u00e9al pour explorer les merveilles de Barcelone. Vous trouverez \u00e0 proximit\u00e9 des restaurants, des caf\u00e9s, des boutiques et des attractions touristiques embl\u00e9matiques, vous offrant une exp\u00e9rience authentique de la vie barcelonaise.\r\n            \r\n            En r\u00e9sum\u00e9, cet appartement \u00e0 Barcelone avec vue sur la mer depuis le balcon est un v\u00e9ritable havre de paix lumineux, id\u00e9alement situ\u00e9 \u00e0 quelques minutes de la plage.",
         "images": [
             ".\/annonces\/1\/img1.jpg",
             ".\/annonces\/1\/img2.jpg"
@@ -29,9 +29,11 @@
         "commentaires": [
             "c04",
             "c07",
-            "c17"
+            "c17",
+            "c13",
+            "c18"
         ],
-        "description": "Alors oui c'est un studio sympa",
+        "description": "Ce charmant studio se situe \u00e0 Saint-Malo, une ville c\u00f4ti\u00e8re magnifique en Bretagne, r\u00e9put\u00e9e pour ses plages et son ambiance pittoresque. Le studio se trouve \u00e0 seulement quelques minutes \u00e0 pied de la mer, offrant ainsi un acc\u00e8s facile \u00e0 la plage et aux promenades en bord de mer.\r\n\r\n            En entrant dans le studio, vous serez imm\u00e9diatement s\u00e9duit par son atmosph\u00e8re chaleureuse et lumineuse. Les grandes fen\u00eatres permettent \u00e0 la lumi\u00e8re naturelle d'inonder la pi\u00e8ce, cr\u00e9ant ainsi une ambiance accueillante et relaxante. Les rideaux l\u00e9gers et les couleurs claires des murs ajoutent une touche de fra\u00eecheur \u00e0 l'ensemble.\r\n            \r\n            La chambre principale est spacieuse et meubl\u00e9e avec go\u00fbt. Un lit confortable occupe le centre de la pi\u00e8ce, offrant un endroit id\u00e9al pour se reposer apr\u00e8s une journ\u00e9e pass\u00e9e \u00e0 explorer la ville. \u00c0 c\u00f4t\u00e9 du lit, vous trouverez une table de chevet pratique pour ranger vos effets personnels.\r\n            \r\n            Le coin salon est am\u00e9nag\u00e9 de mani\u00e8re fonctionnelle, avec un petit canap\u00e9 et une table basse, o\u00f9 vous pourrez vous d\u00e9tendre en regardant la t\u00e9l\u00e9vision. Juste \u00e0 c\u00f4t\u00e9, se trouve une kitchenette \u00e9quip\u00e9e avec tout ce dont vous avez besoin. Un coin repas avec une table et des chaises est \u00e9galement pr\u00e9vu pour profiter de vos repas.\r\n            \r\n            La salle de bains est moderne et propre, avec une douche, un lavabo et des toilettes. \r\n            \r\n            Enfin, pour compl\u00e9ter le tableau, le studio dispose d'une connexion Internet haut d\u00e9bit, vous permettant de rester connect\u00e9(e) pendant votre s\u00e9jour.\r\n            \r\n            En r\u00e9sum\u00e9, ce studio \u00e0 Saint-Malo est id\u00e9alement situ\u00e9 \u00e0 quelques minutes de la mer, offrant une chambre lumineuse et confortable pour votre s\u00e9jour. Que vous souhaitiez vous d\u00e9tendre sur la plage, explorer la ville ou simplement profiter de la tranquillit\u00e9 de la c\u00f4te bretonne, cet endroit est parfait pour vous.",
         "images": [
             ".\/annonces\/2\/img1.jpg",
             ".\/annonces\/2\/img2.jpg"
@@ -48,13 +50,53 @@
         "commentaires": [
             "c09",
             "c15",
-            "c20"
+            "c28",
+            "c11"
         ],
         "description": "Villa de luxe avec piscine priv\u00e9e, jardin tropical et vue panoramique sur la mer. Un paradis pour des vacances exclusives.",
         "images": [
             ".\/annonces\/3\/img1.jpg",
             ".\/annonces\/3\/img2.jpg",
             ".\/annonces\/3\/img3.jpg"
+        ]
+    },
+    "4": {
+        "id": 4,
+        "titre": "Chalet de montagne confortable",
+        "lieu": "Chamonix",
+        "pays": "France",
+        "prix_nuit": 100,
+        "nb_fav": 3,
+        "bon_plan": false,
+        "commentaires": [
+            "c12",
+            "c18",
+            "c21"
+        ],
+        "description": "Chalet de montagne confortable avec une vue imprenable sur les sommets enneig\u00e9s.",
+        "images": [
+            ".\/annonces\/4\/img1.jpg",
+            ".\/annonces\/4\/img2.jpg"
+        ]
+    },
+    "5": {
+        "id": 5,
+        "titre": "Appartement moderne en centre-ville",
+        "lieu": "Paris",
+        "pays": "France",
+        "prix_nuit": 80,
+        "nb_fav": 1,
+        "bon_plan": true,
+        "commentaires": [
+            "c08",
+            "c14",
+            "c22"
+        ],
+        "description": "Appartement, Chambres total,1 chambre total,Dispo chambres,Dispo : 1 chambre,Disponible,Disponible maintenant,Locations \u00e0 court terme accept\u00e9es,Locations \u00e0 court terme accept\u00e9es,Dur\u00e9e minimum,2 mois minimum,Dur\u00e9e maximum,4 mois maximum,Ameublement,Meubl\u00e9, Studio 25m2, situ\u00e9 Rond-point de Rennes, proximit\u00e9 transports, commerces, lyc\u00e9es, facs et \u00e9coles sup. Il est meubl\u00e9, toutes charges comprises, tout confort, moderne, tout blanc, ind\u00e9pendant, silencieux et ensoleill\u00e9. Recherche nouvel \u00e9tudiant calme et studieux pour finir l'ann\u00e9e scolaire (apr\u00e8s d\u00e9part de l'ancien locataire en erasmus, et avant reprise d'une nouvelle location \u00e0 l'ann\u00e9e...)",
+        "images": [
+            ".\/annonces\/5\/img1.jpg",
+            ".\/annonces\/5\/img2.jpg",
+            ".\/annonces\/5\/img3.jpg"
         ]
     }
 }

@@ -94,7 +94,7 @@ setup();
                       <div class="card-body">
                         <h5 class="card-title">Annuaire de l\'entreprise</h5>
                         <p class="card-text">Consultez l\'annuaire de l\'entreprise (30 personnes minimum).</p>
-                        <a href="lien_vers_page_annuaire.html" class="btn btn-primary">Accéder</a>
+                        <a href="annuaire.php" class="btn btn-primary">Accéder</a>
                       </div>
                     </div>
                   </div>

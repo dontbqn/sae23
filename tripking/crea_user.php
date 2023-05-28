@@ -13,7 +13,7 @@ else{
         header("Location: page01.php");
     }
     else{
-        include("./fonctions.php");
+        include("./fonctions_start.php");
         setup();
         /*
         Page Créa-User

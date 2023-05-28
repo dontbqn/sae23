@@ -23,7 +23,19 @@ function newAnnonce(){
             "nb_fav" => 2,
             "bon_plan" => False,
             "commentaires" => array("c01","c02","c56"),
-            "description" => "WOoooooo",
+            "description" => "Cet appartement enchanteur est niché dans un quartier prisé de Barcelone, offrant une vue imprenable sur la mer depuis son balcon. Dès que vous entrez dans l'appartement, vous serez émerveillé par la luminosité qui baigne chaque pièce grâce à de grandes fenêtres laissant entrer le soleil méditerranéen
+
+            Les portes-fenêtres s'ouvrent sur le balcon spacieux offrant une vue panoramique sur la mer.
+            
+            La cuisine est entièrement équipée avec des appareils modernes et dispose d'un espace de rangement généreux.
+            
+            L'appartement dispose d’un chambre confortable et accueillante. La chambre principale bénéficie également d'une vue sur la mer, ce qui vous permettra de vous réveiller chaque matin en contemplant la beauté de l'horizon. Les salles de bains sont élégamment aménagées et offrent tout le confort nécessaire.
+            
+            En sortant de l'appartement, vous n'aurez qu'à parcourir quelques minutes à pied pour vous retrouver sur la plage de sable fin de Barcelone.
+            
+            De plus, l'emplacement de l'appartement est idéal pour explorer les merveilles de Barcelone. Vous trouverez à proximité des restaurants, des cafés, des boutiques et des attractions touristiques emblématiques, vous offrant une expérience authentique de la vie barcelonaise.
+            
+            En résumé, cet appartement à Barcelone avec vue sur la mer depuis le balcon est un véritable havre de paix lumineux, idéalement situé à quelques minutes de la plage.",
             "images" => array(
                 "./annonces/1/img1.jpg",
                 "./annonces/1/img2.jpg"
@@ -37,8 +49,20 @@ function newAnnonce(){
             "prix_nuit"=> 15,
             "nb_fav" => 0,
             "bon_plan" => True,
-            "commentaires" => array("c04","c07","c17"),
-            "description" => "Caaaaaaaaaaaaaaaaaa",
+            "commentaires" => array("c04","c07","c17","c13","c18"),
+            "description" => "Ce charmant studio se situe à Saint-Malo, une ville côtière magnifique en Bretagne, réputée pour ses plages et son ambiance pittoresque. Le studio se trouve à seulement quelques minutes à pied de la mer, offrant ainsi un accès facile à la plage et aux promenades en bord de mer.
+
+            En entrant dans le studio, vous serez immédiatement séduit par son atmosphère chaleureuse et lumineuse. Les grandes fenêtres permettent à la lumière naturelle d'inonder la pièce, créant ainsi une ambiance accueillante et relaxante. Les rideaux légers et les couleurs claires des murs ajoutent une touche de fraîcheur à l'ensemble.
+            
+            La chambre principale est spacieuse et meublée avec goût. Un lit confortable occupe le centre de la pièce, offrant un endroit idéal pour se reposer après une journée passée à explorer la ville. À côté du lit, vous trouverez une table de chevet pratique pour ranger vos effets personnels.
+            
+            Le coin salon est aménagé de manière fonctionnelle, avec un petit canapé et une table basse, où vous pourrez vous détendre en regardant la télévision. Juste à côté, se trouve une kitchenette équipée avec tout ce dont vous avez besoin. Un coin repas avec une table et des chaises est également prévu pour profiter de vos repas.
+            
+            La salle de bains est moderne et propre, avec une douche, un lavabo et des toilettes. 
+            
+            Enfin, pour compléter le tableau, le studio dispose d'une connexion Internet haut débit, vous permettant de rester connecté(e) pendant votre séjour.
+            
+            En résumé, ce studio à Saint-Malo est idéalement situé à quelques minutes de la mer, offrant une chambre lumineuse et confortable pour votre séjour. Que vous souhaitiez vous détendre sur la plage, explorer la ville ou simplement profiter de la tranquillité de la côte bretonne, cet endroit est parfait pour vous.",
             "images" => array(
                 "./annonces/2/img1.jpg",
                 "./annonces/2/img2.jpg"
@@ -52,7 +76,7 @@ function newAnnonce(){
                 "prix_nuit" => 200,
                 "nb_fav" => 5,
                 "bon_plan" => false,
-                "commentaires" => array("c09", "c15", "c28"),
+                "commentaires" => array("c09", "c15", "c28","c11"),
                 "description" => "Villa de luxe avec piscine privée, jardin tropical et vue panoramique sur la mer. Un paradis pour des vacances exclusives.",
                 "images" => array(
                     "./annonces/3/img1.jpg",
@@ -83,7 +107,7 @@ function newAnnonce(){
                 "nb_fav" => 1,
                 "bon_plan" => true,
                 "commentaires" => array("c08", "c14", "c22"),
-                "description" => "Appartement moderne situé en plein cœur de Paris, à proximité des attractions principales.",
+                "description" => "Appartement, Chambres total,1 chambre total,Dispo chambres,Dispo : 1 chambre,Disponible,Disponible maintenant,Locations à court terme acceptées,Locations à court terme acceptées,Durée minimum,2 mois minimum,Durée maximum,4 mois maximum,Ameublement,Meublé, Studio 25m2, situé Rond-point de Rennes, proximité transports, commerces, lycées, facs et écoles sup. Il est meublé, toutes charges comprises, tout confort, moderne, tout blanc, indépendant, silencieux et ensoleillé. Recherche nouvel étudiant calme et studieux pour finir l'année scolaire (après départ de l'ancien locataire en erasmus, et avant reprise d'une nouvelle location à l'année...)",
                 "images" => array(
                         "./annonces/5/img1.jpg",
                         "./annonces/5/img2.jpg",

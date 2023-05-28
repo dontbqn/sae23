@@ -4,6 +4,7 @@ include("./fonctions_start.php");
 include("./annonces.php");
 setup();
 pagenavbar("page_annonce.php");
+//newAnnonce();
 $thisannonce;
 ?>
     <body>
@@ -72,7 +73,7 @@ $thisannonce;
                                 foreach($thisannonce["images"] as $key => $img){
                                     echo '                    
                                         <div class="carousel-item">
-                                            <img src="'.$thisannonce["images"][$key].'" class="d-block w-100 rounded-4" alt="Slide'.$key.'" style="cursor: zoom-in;">
+                                            <img src="'.$thisannonce["images"][$key].'" class="d-block w-100 rounded-4" alt="Slide'.$key.'" style="cursor: zoom-in;max-height:482px;">
                                             <div class="carousel-caption d-none d-md-block">
                                                 <h5>'.$thisannonce["titre"].'</h5>
                                                 <p>'.$thisannonce["lieu"].'</p>
@@ -139,6 +140,7 @@ $thisannonce;
                             </div>
                         </form>
                     </div>
+                    <span class="font-monospace align-self-end mt-auto">référence #'.$thisannonce["id"].'</span>
                     </div>
 
 
@@ -148,14 +150,25 @@ $thisannonce;
                                 '.$thisannonce["description"].'
                                 
                             </article>
-                            <br/>
-                            <a class="link-underline-light link-secondary fs-3 mb-1">Commentaires : <a>
-                            <div class="d-flex p-2 overflow-x-scroll">';
-                                //Affichage des commentaires
-                                newCommentaires();
-                                $commentaires = ($thisannonce['commentaires']);
+                            <br/>';
+                            //Affichage des commentaires
+                            $data_coms = json_decode(file_get_contents("./data/commentaires.json"), true);
+                            $commentaires = ($thisannonce['commentaires']);
+                            $somme = 0;
+                            $count = count($commentaires);
+                            foreach($commentaires as $id_commentaire){
+                                foreach($data_coms as $commentaire){
+                                    if($commentaire['id'] == $id_commentaire){
+                                        $somme+=$commentaire["note"];
+                                        break;
+                                    }
+                                }
+                            }
+                            echo '
+                            <a class="link-underline-light link-secondary fs-4 mb-2 p-0">'.$count.' Commentaires :  <a><span class="fs-4 fw-semibold">'.number_format((float)($somme/$count), 1, '.', '').'<span class="fs-6">/5</span> &#9733;</span>
+                            <div class="d-flex p-2 overflow-x-scroll">';                                                                                // Moyenne des notes enregistrées
+                                //newCommentaires(); pour reinitaliser la base
                                 foreach($commentaires as $id_commentaire){
-                                    $data_coms = json_decode(file_get_contents("./data/commentaires.json"), true);
                                     foreach($data_coms as $commentaire){
                                         if($commentaire['id'] == $id_commentaire){
                                             echo '<div class="card p-3 col-6 mx-2">';
@@ -181,7 +194,6 @@ $thisannonce;
                                         }
                                     }
                                 }
-
                     echo '
                                 </div>
                             </div>
@@ -189,9 +201,9 @@ $thisannonce;
                     ';
 
                     echo '
-                        <div class="col-6 my-5">
+                        <div class="col-8 mx-auto my-5">
                             <h3 class="fs-4 text-center mt-1 pt-2">Annonces qui pourraient vous plaire</h3>
-                            <div class="row row-cols-5 row-cols-lg-5 g-2 g-lg-5">
+                            <div class="row g-4">
                         ';
                         $max = 5; // Nombre maximum d'annonces à afficher
                         $count = 0; // Compteur pour le nombre d'annonces affichées
@@ -202,11 +214,12 @@ $thisannonce;
                                 break; // Sortir de la boucle si le nombre maximum d'annonces est atteint
                             }
                             echo '
-                                <div class="">
-                                    <a type="button" href="page_annonce.php?id='.$annonce['id'].'">
+                                <div class="col-4 py-2">
+                                    <a type="button" class="text-decoration-none link-dark" href="page_annonce.php?id='.$annonce['id'].'">
                                     ';
                                     echo '
-                                        <img src="'.$annonce["images"][0].'" class="w-100 rounded-4">
+                                        <img src="'.$annonce["images"][0].'" class="w-100 rounded-4" style="max-height:190px">
+                                        <figcaption class="overflow-x-hidden">'.$annonce["nb_fav"].' &#10084; '.$annonce["titre"].'</figcaption>
                                     </a>
                                 </div>
                             ';

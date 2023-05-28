@@ -51,6 +51,7 @@ session_start();
                 // Modification fichier
                 if(isset($_POST['modif'])) {
                     echo 'modification du fichier suivant : '.$_POST["file"];
+                    echo '<textarea></textarea>';
                 }
 
 

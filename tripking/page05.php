@@ -52,10 +52,12 @@ pagenavbar("page05.php");
                         </div>
                     </form>';
                     if(isset($_POST["modify_user"])){
-                        if($_POST['user'] == ""){$usr = False;}
-                        else{$usr = $_POST['user'];}
-                        if($_POST['mdp'] == $_SESSION["mdp"]){$mdp = False;}
-                        else{$mdp = $_POST['mdp'];}
+                        $user = htmlentities($_POST["user"], ENT_QUOTES, 'UTF-8');
+                        $postmdp = htmlentities($_POST["mdp"], ENT_QUOTES, 'UTF-8');
+                        if($user == ""){$usr = False;}
+                        else{$usr = $user;}
+                        if($postmdp == $_SESSION["mdp"]){$mdp = False;}
+                        else{$mdp = $postmdp;}
                         if($mdp == False && $usr == False){
                             echo "Aucun changement de mdp / user demandé";
                             $_SESSION['favcolor'] = $_POST['favcolor']; //on suppose changement de couleur
