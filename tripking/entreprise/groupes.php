@@ -83,31 +83,34 @@ $data = json_decode(file_get_contents("../data/roles.json"), true); //Database d
                     <?php 
                     print_r($data);
                     // Modification du rôle
-                    if(isset($_POST['modif'])) {
+                if(isset($_POST['modif'])) {
+                    echo '
+                    <div class="d-flex justify-content-center my-5">
+                        <form method="post" class="bg-secondary bg-opacity-25 col-3 p-3 border border-2 border-black">
+                            <span class="badge bg-dark rounded-pill text-center p-3 ms-2 mb-2 text-wrap">modification du rôle suivant : '.$_POST["role"].'</span>
+                    ';
                         echo '
-                        <div class="d-flex justify-content-center my-5">
-                            <form method="post" class="bg-secondary bg-opacity-25 col-3 p-3 border border-2 border-black">
-                                <span class="badge bg-dark rounded-pill text-center p-3 ms-2 mb-2 text-wrap">modification du rôle suivant : '.$_POST["role"].'</span>
-                        ';
-                            echo '
-                                    <input placeholder="nouveau nom du rôle : '.$_POST["role"].'" class="form-control my-1 shadow-none border border-warning" id="nv_role" name="nv_role">
-                                    <button type="submit" class="form-control btn btn-sm btn-warning my-1" id="modif_role" name="modif_role" >modifier le rôle</button>
-                                ';
-                        echo '
-                            </form>
-                        </div>
-                        ';
-                        if(isset($_POST['modif_role'])){
-                            foreach($data as $role){
-                                if($role["name"] == $_POST["nv_role"]){
-                                    $role["name"] = $_POST["nv_role"];
-                                }
+                                <input placeholder="nouveau nom du rôle : '.$_POST["role"].'" class="form-control my-1 shadow-none border border-warning" id="nv_role" name="nv_role">
+                                <button type="submit" class="form-control btn btn-sm btn-warning my-1" id="modif_role" name="modif_role" >modifier le rôle</button>
+                            ';
+                    echo '
+                        </form>
+                    </div>
+                    ';
+                    if(isset($_POST['modif_role'])){
+                        $roles_updated = [];
+                        echo $_POST["nv_role"];
+                        foreach($data as $role){
+                            if($role["name"] == $_POST["nv_role"]){
+                                $role["name"] = $_POST["nv_role"];
                             }
-                            //$res = json_encode($roles_updated, JSON_PRETTY_PRINT); // base json à jour
-                            echo $res;
-                            file_put_contents("./data/roles.json",$res); // résultat dans roles.json  
-                            //header("Refresh: 0");                  
+                            $roles_updated[] = $role;
                         }
+                        $res = json_encode($roles_updated, JSON_PRETTY_PRINT); // base json à jour
+                        echo $res;
+                        //file_put_contents("../data/roles.json",$res); // résultat dans roles.json  
+                        //header("Refresh: 0");                  
+                    }
                     }
                     else{
                         echo '
