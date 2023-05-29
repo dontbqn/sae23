@@ -199,59 +199,69 @@ function findBooks($livres, $keyword, $fields=[]){
 }
 
 function newUsers(){
-     //fichier json contenant 4 premiers users
-     $default_users = array(
+    //fichier json contenant 4 premiers users
+    $default_users = array(
         "bagel" => array(
             "user"=> "bagel",
             "mdp"=> "$2y$10\$Nf2pZndPyVGVg9ZgM3m8mOEDqStoyijjTZdFk7rBme1egCF8pKLZq",
             "role"=> "superadmin",
-            "ID"=> random_bytes(56)),
+            "email"=> "DreuxLapierre@teleworm.us",
+            "N_date" => "05/06/1982"
+        ),
         "user" => array(
             "user" => "user",
             "mdp" => "$2y$10\$g3HpUec5Idvak/9RVCKFhuppOpGOmRWoCYiAQVKfJk8rgaxrG/G5W",
             "role" => "user",
-            "ID"=> random_bytes(20)
+            "email"=> "user10101010@gmail.com",
+            "N_date" => "18/01/1974",
         ),
 
         "anonymous" => array(
             "user" => "anonymous",
             "mdp" => "$2y$10$2iN\/YTDup6GDioGs4PJV3uhffURT8ZQSGpvTP4xWFVMVkBJntTdOq",
             "role" => "user",
-            "ID"=> random_bytes(20), //Liste des ids d'annonces misent en favoris (censé être illimité)
+            "favoris"=>[], //Liste des ids d'annonces misent en favoris (censé être illimité)
+            "role" => "user",
+            "email"=> "anonymous10101010@gmail.com",
+            "N_date" => "02/12/2000",
         
         ),
         "Harriette Salois "=> array(
             "user"=> "H.Slois ",
             "mdp"=> password_hash("Aeh3te4ah", PASSWORD_DEFAULT),
             "role"=> "admin",
-            "ID"=> random_bytes(20)),
+            "email"=> "NouelChasse@armyspy.com ",
+            "N_date" => "16/04/1968 ",
+        ),
 
         "admin" => array(
             "user" => "admin",
             "mdp" => "$2y$10\$pxQCauEXDSIRncE17E6W.eQidzMH8kxHVBiAR9jF7vKwcomC4sXhu",
             "role" => "admin",
-            "ID"=> random_bytes(20)
+            "email"=> "admin10101010@gmail.com ",
+            "N_date" => "22/11/1992 ",
         ),
+            
         "Jean-Paul"=> array(
             "user"=> "Jean-Paul",
             "mdp"=> "$2y$10\$zeycWYo5FUC.CLriKeaOV.t5pNkxd.7hFwkcUbJxOdzrnA40SI\/d.",
             "role"=> "user",
-            "ID"=> random_bytes(20)
-        )
+            "email"=> "Jean.Paul89@gmail.com ",
+            "N_date" => "17/08/1979 ",)
         );
     echo '
         <div class="d-flex justify-content-center container col-10 my-4 border border-3 p-5">
     
         <pre>';
-       
-        $w = file_put_contents("data/users.json", json_encode($default_users, JSON_PRETTY_PRINT));
-
-    
+    $res = json_encode($default_users, JSON_PRETTY_PRINT);
+    file_put_contents("./data/users.json", $res);
     echo '
         </pre>
         </div>';
 }
-function addUser($usr, $mdp, $role="user"){
+       
+
+function addUser($usr, $mdp, $role="user", $email){
      // encode sans avoir decoder => ecrase le fichier déja present
      $users = json_decode(file_get_contents("data/users.json", true), true);
      // Création liste de données utilisateur
@@ -271,6 +281,9 @@ function addUser($usr, $mdp, $role="user"){
      'user' => $usr,
      'mdp'=> password_hash($mdp, PASSWORD_DEFAULT),
      'role' => $role,
+     'favori' => [],
+     'email' => $email,
+     'N_date' => $date_N,
     );
      $users[$newUser["user"]] = $newUser;
      $res=json_encode($users, JSON_PRETTY_PRINT);
@@ -366,7 +379,7 @@ function getUsers($database){
                                 <th scope="col">Utilisateur</th>
                                 <th scope="col">Mot de passe</th>
                                 <th scope="col">Rôle</th>
-                                <th scope="col">ID</th>
+                                <th scope="col">email</th>
 
                             </tr>
                         </thead>
@@ -380,8 +393,13 @@ function getUsers($database){
                 $user['mdp'].'</td>
                 <td>'.
                 $user['role'].'</td>
-                <td>'.
-                $user['ID'].'</td>
+                <td>'
+                .
+                $user['email'].'</td>
+                <td>'
+                .
+                $user['N_date'].'</td>
+                
                 <td style="border: none"><form method="post">
                     <input type="hidden" name="username" value="'.$user['user'].'">
                     <input type="hidden" name="usermdp" value="'.$user['mdp'].'">
