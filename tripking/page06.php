@@ -110,6 +110,14 @@ else{
                                 <label for="mdp_check"> rendre visible</label>
                                 <script src="js/pass_verif.js"></script>
                             </div>
+                            <div class="mb-3">
+                            <label for="email">Email :</label>
+                            <input type="email" id="email" name="email" aria-describedby="emailHelp"required>
+                            <br><br>
+                        </div><div>
+                            <label for="date_naissance">Date de naissance :</label>
+                            <input type="date" id="date_naissance" name="date_naissance" required><br><br>
+                            </div>
                             <button type="submit" name="add_user" class="btn btn-success">+</button>
                         </form>
                     </div>';
@@ -188,6 +196,14 @@ else{
                             <label for="mdp_check"> rendre visible</label>
                             <script src="js/pass_verif.js"></script>
                         </div>
+                        <div class="mb-3">>
+                            <label for="email">Email :</label>
+                            <input type="email" id="email" name="email" required><br><br>
+                        </div>
+                        <div>
+                            <label for="date_naissance">Date de naissance :</label>
+                            <input type="date" id="date_naissance" name="date_naissance" required><br><br>
+                            </div>
                         <button type="submit" name="add_user" class="btn btn-success">+</button>
                     </form>
                 </div>';
