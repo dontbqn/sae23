@@ -23,6 +23,7 @@ else{
         ;
         $users = json_decode(file_get_contents("data/users.json"), true);
         newUsers();
+        echo random_bytes(5);
         echo '
             <body>
             <div class="container mb-1 col-10">
