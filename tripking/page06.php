@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('./annonces.php');
+
 if(!isset($_SESSION)){
     echo '<script>alert("You don\'t have the rights");</script>';
     sleep(2);
@@ -19,7 +20,9 @@ else{
         Page Accueil
         */
         pagenavbar("page06.php");
+        ;
         $users = json_decode(file_get_contents("data/users.json"), true);
+        newUsers();
         echo '
             <body>
             <div class="container mb-1 col-10">
