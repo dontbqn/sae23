@@ -1,1 +1,45 @@
-{"bagel":{"user":"bagel","mdp":"$2y$10$Nf2pZndPyVGVg9ZgM3m8mOEDqStoyijjTZdFk7rBme1egCF8pKLZq","role":"superadmin"},"user":{"user":"user","mdp":"$2y$10$g3HpUec5Idvak\/9RVCKFhuppOpGOmRWoCYiAQVKfJk8rgaxrG\/G5W","role":"user"},"anonymous":{"user":"anonymous","mdp":"$2y$10$2iN\\\/YTDup6GDioGs4PJV3uhffURT8ZQSGpvTP4xWFVMVkBJntTdOq","role":"user","favoris":[]},"Harriette Salois ":{"user":"H.Slois ","mdp":"$2y$10$sRwv54AF5J40W1Qx5QG6KudyrtmNuKwf\/CRrT6sOP7i8nV2F694Fy","role":"admin"},"admin":{"user":"admin","mdp":"$2y$10$pxQCauEXDSIRncE17E6W.eQidzMH8kxHVBiAR9jF7vKwcomC4sXhu","role":"admin"},"Jean-Paul":{"user":"Jean-Paul","mdp":"$2y$10$zeycWYo5FUC.CLriKeaOV.t5pNkxd.7hFwkcUbJxOdzrnA40SI\\\/d.","role":"user"}}
+{
+    "bagel": {
+        "user": "bagel",
+        "mdp": "$2y$10$Nf2pZndPyVGVg9ZgM3m8mOEDqStoyijjTZdFk7rBme1egCF8pKLZq",
+        "role": "superadmin",
+        "email": "DreuxLapierre@teleworm.us",
+        "N_date": "05\/06\/1982"
+    },
+    "user": {
+        "user": "user",
+        "mdp": "$2y$10$g3HpUec5Idvak\/9RVCKFhuppOpGOmRWoCYiAQVKfJk8rgaxrG\/G5W",
+        "role": "user",
+        "email": "user10101010@gmail.com",
+        "N_date": "18\/01\/1974"
+    },
+    "anonymous": {
+        "user": "anonymous",
+        "mdp": "$2y$10$2iN\\\/YTDup6GDioGs4PJV3uhffURT8ZQSGpvTP4xWFVMVkBJntTdOq",
+        "role": "user",
+        "favoris": [],
+        "email": "anonymous10101010@gmail.com",
+        "N_date": "02\/12\/2000"
+    },
+    "Harriette Salois ": {
+        "user": "H.Slois ",
+        "mdp": "$2y$10$dNuvROHBox55.hpCW8E.dOOGCPKU5xKHPd7m4Fgwj1qPHwibw3miG",
+        "role": "admin",
+        "email": "NouelChasse@armyspy.com ",
+        "N_date": "16\/04\/1968 "
+    },
+    "admin": {
+        "user": "admin",
+        "mdp": "$2y$10$pxQCauEXDSIRncE17E6W.eQidzMH8kxHVBiAR9jF7vKwcomC4sXhu",
+        "role": "admin",
+        "email": "admin10101010@gmail.com ",
+        "N_date": "22\/11\/1992 "
+    },
+    "Jean-Paul": {
+        "user": "Jean-Paul",
+        "mdp": "$2y$10$zeycWYo5FUC.CLriKeaOV.t5pNkxd.7hFwkcUbJxOdzrnA40SI\\\/d.",
+        "role": "user",
+        "email": "Jean.Paul89@gmail.com ",
+        "N_date": "17\/08\/1979 "
+    }
+}
