@@ -2,8 +2,11 @@
 
 if (file_exists("./fonctions.php")) {
     include("./fonctions.php");
-} else{
+} elseif(file_exists("../fonctions.php")){
     include("../fonctions.php");
+}
+else{
+    include("../../fonctions.php");
 }
 
 
@@ -66,8 +69,8 @@ function pagenavbar($pageactive){
     echo '<header>'.liseret().'</header>';  
     echo '
     <div class="container-fluid pt-4">
-        <nav class="row navbar">
-            <div class="col ">
+        <nav class="row">
+            <div class="col">
                 <a class="navbar-brand" href="./page01.php">
                     <img src="images/logo.png" alt="" width="50" height="44">
                 </a>
@@ -163,7 +166,7 @@ function pagenavbar($pageactive){
             if(isset($_SESSION['user'])){ // Utilisateur connecté => on affiche son pseudo
                 echo '
                     <a class="navbar-brand">
-                        <a type="button" class="btn-theme pe-1"><img src="images/night.png" width="20" height="20" /></a>
+                        <button type="button" class="btn shadow-none border-0 btn-theme pe-1 mb-1"><img src="images/night.png" width="20" height="20" /></button>
                         <script src="js/theme.js"></script>
                     </a>
                     <a type="button" class="navbar-brand ms-1" href="page05.php">
@@ -183,22 +186,25 @@ function pagenavbar($pageactive){
                 <a class="navbar-brand" href="#">
                     <img src="images/icone_coeur.png" alt="" width="40" height="40">
                 </a>
-                <div class="btn-group" role="group">
+                
+                <div class="btn-group">
                     <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Langue
+                    FR / EN
                     </button>
-                    <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">FR</a></li>
-                    <li><a class="dropdown-item" href="#">EN</a></li>
+                    <ul class="dropdown-menu dropdown-menu-dark text-center">
+                        <li><button class="dropdown-item"><img src="images/FR.png" alt="" width="20" height="20"></button></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><button class="dropdown-item"><img src="images/EN.png" alt="" width="20" height="20"></button></li>
                     </ul>
                 </div>
-                <div class="btn-group" role="group">
+                <div class="btn-group">
                     <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    devise
+                    € / $
                     </button>
-                    <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">€</a></li>
-                    <li><a class="dropdown-item" href="#">$</a></li>
+                    <ul class="dropdown-menu dropdown-menu-dark text-center">
+                        <li><button class="dropdown-item">€</button></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><button class="dropdown-item">$</button></li>
                     </ul>
                 </div>
             </div>
@@ -206,12 +212,12 @@ function pagenavbar($pageactive){
     </div>
 
     <div class="container-fluid pt-3">
-        <div class="row ">
+        <div class="row">
             <div class="col-md-6 offset-md-3 text-center">'; 
                 // On check si l'utilisateur possède les droits
                 //d'accès à l'intra
                 if(isset($_SESSION['user'])){
-                    if(isset($_SESSION['role']) && $_SESSION['role']=="visitor"){
+                    if(isset($_SESSION['role']) && ($_SESSION['role']=="visitor" || $_SESSION['role']=="user")){
                         echo '
                         <a type="button" class="btn btn-danger ms-2" href="bonsplan.php">Bons Plans</a>
                         <a type="button" class="btn btn-danger ms-2" href="pourvous.php">Pour vous</a>
@@ -226,9 +232,9 @@ function pagenavbar($pageactive){
                         <a type="button" class="btn btn-danger ms-2" href="./entreprise/intranet.php">Accès à l\'Intranet</a>
                         ';
                     }
-                    elseif(isset($_SESSION['role']) && $_SESSION['role']=="employe"){ // Boutons employés
+                    elseif(isset($_SESSION['role']) && $_SESSION['role']=="salarie"){ // Boutons employés
                         $employee = $_SESSION['user'];
-                        if(!file_exists("./entreprise/salaries/$employee")){
+                        if(!file_exists("./entreprise/salaries/$employee.php")){
                             $employee = null;
                         }
                         echo '
@@ -237,16 +243,16 @@ function pagenavbar($pageactive){
                         ';
                     }
                     elseif(isset($_SESSION['role']) && $_SESSION['role']=="partenaire"){ // Boutons partenaire
-                        $partenaire = $_SESSION['user'];
-                        if(!file_exists("./entreprise/partenaires/$partenaire")){
+                        $partenaire = $_SESSION['partenaire'];
+                        if(!file_exists("./entreprise/partenaires/$partenaire.php")){
                             $partenaire = null;
                         }
                         echo '
-                        <a type="button" class="btn btn-danger ms-2" href="';echo ($partenaire !== null) ? './entreprise/partenaires/'.$partenaire : 'error_page.php?message=PartenaireNotFound'; echo '">Accès à l\'espace Partenaire</a>
+                        <a type="button" class="btn btn-danger ms-2" href="';echo ($partenaire !== null) ? './entreprise/partenaires/'.$partenaire.'.php' : 'error_page.php?message=PartenaireNotFound'; echo '">Accès à l\'espace Partenaire</a>
                         ';
                     }
                     else{
-                        return null; // Boutons plèbe
+                        return " "; // Boutons plèbe
                     }
                 }
 
@@ -312,7 +318,6 @@ function pagenavbar($pageactive){
         else{
             echo 'Non connecté';
         }
-
         // FIN DU HEADER OFFCANVAS
         echo '
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -466,24 +471,24 @@ function footer(){
             <div class="row">
                 <div class="col-sm-4">
                     <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            FR / EN
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><button class="dropdown-item"><img src="images/FR.png" alt="" width="20" height="20"></button></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><button class="dropdown-item"><img src="images/EN.png" alt="" width="20" height="20"></button></li>
-                            </ul>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            € / $
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><button class="dropdown-item">€</button></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><button class="dropdown-item">$</button></li>
-                            </ul>
+                        <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        FR / EN
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><button class="dropdown-item"><img src="images/FR.png" alt="" width="20" height="20"></button></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><button class="dropdown-item"><img src="images/EN.png" alt="" width="20" height="20"></button></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        € / $
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><button class="dropdown-item">€</button></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><button class="dropdown-item">$</button></li>
+                        </ul>
                     </div>
                 </div>
                 <div class="col-sm-8">

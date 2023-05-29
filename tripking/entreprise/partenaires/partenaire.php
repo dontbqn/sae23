@@ -1,19 +1,19 @@
 <?php
 session_start();
-include('../annonces.php');
+include('../../annonces.php');
 if(!isset($_SESSION)){
     echo '<script>alert("You don\'t have the rights");</script>';
     sleep(2);
-    header("Location: ../page01.php");
+    header("Location: ../../page01.php");
 }
 else{
     if(!(isset($_SESSION['role']) && ($_SESSION['role']=="admin" || $_SESSION['role']=="superadmin" || $_SESSION['role']=="salarie" || $_SESSION['role']=="partenaire") )){
         echo '<script>alert("You don\'t have the rights");</script>';
         sleep(2);
-        header("Location: ../page01.php");
+        header("Location: ../../page01.php");
     }
     else{
-        include("../fonctions_start.php");
+        include("../../fonctions_start.php");
         setup();
         /*
         Page d'Intranet avec reconfirmation de connexion par formulaire
@@ -30,19 +30,19 @@ else{
                           </h4>
                   </h1>
                   <div class="d-flex container-fluid justify-content-center mt-3">
-                      <div class="col-5 mb-5 border border-2 border-black rounded-3 p-5">
+                      <div class="col-5 mb-5 border border-2 rounded-4 p-3">
                       <form method="post">
-                              <div class="form-group py-1">
+                              <div class="form-group">
                                   <label for="roleinp">Role</label>
-                                  <input type="text" class="form-control shadow-none" id="roleinp" name="roleinp" placeholder="visitor" value="'.$_SESSION["role"].'" readonly>
+                                  <input type="text" class="form-control shadow-none" id="roleinp" name="roleinp" placeholder="visitor" value="visitor" readonly>
                               </div>
-                              <div class="form-group py-1">
+                              <div class="form-group">
                                   <label for="username">Username</label>
-                                  <input type="text" class="form-control shadow-none" id="username" name="username" placeholder="'.$_SESSION["user"].'" required>
+                                  <input type="text" class="form-control shadow-none" id="username" name="username" placeholder="Xx_DarcoxXx96" required>
                               </div>
-                              <div class="form-group py-1">
+                              <div class="form-group">
                                   <label for="motdepasse" class="col-form-label">Password</label>
-                                  <input type="password" class="form-control shadow-none passwords" name="motdepasse" id="motdepasse" placeholder="&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;" required>
+                                  <input type="password" class="form-control shadow-none passwords" name="motdepasse" id="motdepasse" required>
                               </div>  
                               <div class="form-group form-check form-switch my-2">
                                   <input type="checkbox" name="visible_box" class="form-check-input my-2 p-2 shadow-none" id="dontwatchme">
@@ -135,18 +135,18 @@ else{
     }
 }
 ?>
-    
+
     <footer class="container mt-2 pt-5">
         <div class="container text-center">
                 <div>
                     <button href="https://www.twitter.com/tripking/" class="btn">
-                        <img src="../images/twitter.png" alt="" width="40" height="40">
+                        <img src="../../images/twitter.png" alt="" width="40" height="40">
                     </button>
                     <button href="https://www.instagram.com/tripking/" class="btn">
-                        <img src="../images/insta.png" alt="" width="40" height="40">
+                        <img src="../../images/insta.png" alt="" width="40" height="40">
                     </button>
                     <button href="www.facebook.com/tripking/" class="btn">
-                        <img src="../images/facebook.png" alt="" width="40" height="40">
+                        <img src="../../images/facebook.png" alt="" width="40" height="40">
                     </button>
                 </div>
             </div>

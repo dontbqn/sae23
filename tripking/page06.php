@@ -227,24 +227,24 @@ else{
     $annonces = json_decode(file_get_contents("annonces/annonces.json"), true);
     getAnnonces($annonces);
     echo '
-    <br><br>
-    <div class="position-relative mb-3">
-        <div role="alert" aria-live="assertive" aria-atomic="true" class="toast position-absolute show top-50 start-50 translate-middle show" data-bs-autohide="false">
-            <div class="toast-header">
-                <img src="images/louis.png" class="rounded ms-1 me-2" alt="bugslogo" width="20" height="20">
-                <strong class="me-auto">Need a reboot ?</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        <br><br>
+        <div class="position-relative mb-3">
+            <div role="alert" aria-live="assertive" aria-atomic="true" class="toast position-absolute show top-50 start-50 translate-middle show" data-bs-autohide="false">
+                <div class="toast-header">
+                    <img src="images/louis.png" class="rounded ms-1 me-2" alt="bugslogo" width="20" height="20">
+                    <strong class="me-auto">Need a reboot ?</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body text-center">
+                    <a type="button" href="" class="btn btn-outline-danger" name="resetall">Reinitialiser les annonces (newAnnonces)</a>
+                </div>
             </div>
-            <div class="toast-body text-center">
-                <a type="button" href="" class="btn btn-outline-danger" name="resetall">Reinitialiser les annonces (newAnnonces)</a>
-            </div>
-        </div>
-    </div><br><br>
+        </div><br><br>
     ';
 ?>      
-        <h5 class="text-center my-4">Publier une Offre</h5>
-        <div class="d-flex container-fluid justify-content-center">
-            <div class="col-5 mb-5 border border-2 rounded-4 p-3">
+        <div class="d-flex container-fluid justify-content-evenly">
+            <div class="col-5 mb-5 border-dark border border-2 rounded-4 p-3">
+                <h5 class="text-center my-4 bg-success p-3">Publier une Offre</h5>
             <?php if(!isset($_POST['annonce_btn'])){ 
                 echo '
                 <form method="post">
@@ -257,8 +257,12 @@ else{
                             <input type="text" class="form-control shadow-none" id="lieu" name="lieu" placeholder="Barcelone" required>
                         </div>
                         <div class="form-group">
+                            <label for="pays">Pays</label>
+                            <input type="text" class="form-control shadow-none" id="pays" name="pays" placeholder="Espagne" required>
+                        </div>
+                        <div class="form-group">
                             <label for="prixnuit" class="col-form-label">Prix d\'une nuit</label>
-                            <input type="text" class="form-control shadow-none password" name="prixnuit" id="prixnuit" required>
+                            <input type="number" class="form-control shadow-none password" name="prixnuit" id="prixnuit" placeholder="23€" min="5" max="50" required>
                         </div>  
                         <div class="form-group form-check form-switch my-2">
                             <input type="checkbox" name="bonplan" class="form-check-input my-2 p-2 shadow-none" id="bonplan">
@@ -273,6 +277,7 @@ else{
                                 <input type="file" id="file_txt" name="file_txt" accept=".jpg,.png">
                             </form>';
                             if (isset($_FILES['annonce_btn'])) {
+
                                 $file = $_FILES['annonce_btn']["name"]!="" ? $_FILES['annonce_btn'] : False;
                                 if($file == False){
                                     echo '<div class="text-danger fw-bold">Entrez une photo valide !</div>';
@@ -289,11 +294,11 @@ else{
                         echo '
                         </div>
                     </div>
-                        <div class="form-group col-4 mt-2 mb-4">
-                        <input type="submit" class="form-control btn btn-warning" id="annonce_btn" name="annonce_btn">
-                    </div>
+                        <div class="mt-2 mb-4">
+                            <input type="submit" class="form-control btn btn-warning" id="annonce_btn" name="annonce_btn">
+                        </div>
                 </form>
-';
+                ';
             }
             else{
                 //Création de la nouvelle annonce
@@ -302,6 +307,72 @@ else{
                 //Redirection vers la page d'annonce nouvellement créée grâce à son id
                 header('Location : ./annonce.php');
             } ?>
+            </div>
+
+            
+            <div class="col-5 mb-5 border border-dark border-2 rounded-4 p-3">
+                <h5 class="text-center my-4 bg-warning p-3">Modifier une Offre</h5>
+                <?php if(!isset($_POST['modif_annonce'])){  // Modifier une Annonce
+                    echo '
+                        <form name="form_modif" method="post" action="'.$_SERVER['PHP_SELF'].'">
+                                <div class="form-group">
+                                    <div class="form-floating">
+                                        <select  class="form-select form-control list-group-item shadow-none" id="titre_annonce" name="titre_annonce" placeholder="Annonce à modifier" required>';              
+                                        foreach($annonces as $annonce){
+                                            $annonce = $annonce["titre"];
+                                            echo '<option onclick="onSelectChange();" value="'.$annonce.'">'.$annonce.'</option>';
+                                        }
+                                        echo '
+                                        </select>
+                                        <label class="text-muted" for="titre_annonce">Annonce à modifier</label>
+                                    </div>
+                                <script src="js/select_annonce.js"></script>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nv_titre">Titre</label>';
+                                    if(isset($_POST["titre_annonce"])){
+                                        print_r($_POST["titre_annonce"]);
+                                    }
+                                    echo '
+                                    <input type="text" class="form-control shadow-none" id="nv_titre" name="nv_titre" placeholder="" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nv_lieu">Nouveau Lieu</label>
+                                    <input type="text" class="form-control shadow-none" id="nv_lieu" name="nv_lieu" placeholder="" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nv_pays">Nouveau Pays</label>
+                                    <input type="text" class="form-control shadow-none" id="nv_pays" name="nv_pays" placeholder="" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nv_prixnuit" class="col-form-label">Nouveau Prix d\'une nuit</label>
+                                    <input type="text" class="form-control shadow-none password" name="nv_prixnuit" id="nv_prixnuit" readonly>
+                                </div>  
+                                <div class="form-group form-check form-switch my-2">
+                                    <input type="checkbox" name="bonplan" class="form-check-input my-2 p-2 shadow-none" id="bonplan">
+                                    <label for="bonplan" class="pt-1"> Bon Plan &#128293; </label>
+                                </div>
+                                <div class="my-3 form-group">
+                                    <div class="row offset-2 col-8 p-5 border text-wrap bg-transparent border-2 shadow-md text-break">
+                                        <form class="d-flex justify-content-center" method="POST" enctype="multipart/form-data">
+                                            <label class="me-2">Selectectionnez des photos</label>
+                                            <input type="file" id="file_txt" name="file_txt" accept=".jpg,.png">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="mt-2 mb-4">
+                                    <input type="submit" class="form-control btn btn-warning" id="modif_annonce" name="modif_annonce">
+                                </div>
+                        </form>
+                     ';
+                }
+                else{
+                    // Affichage de la nouvelle annonce
+                    // Quand l'admin choisit l'annonce avec le <select>
+
+
+
+                } ?>
             </div>
         </div>
     </body>

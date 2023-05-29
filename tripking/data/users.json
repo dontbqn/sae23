@@ -24,5 +24,10 @@
         "user": "Jean-Paul",
         "mdp": "$2y$10$zeycWYo5FUC.CLriKeaOV.t5pNkxd.7hFwkcUbJxOdzrnA40SI\\\/d.",
         "role": "visitor"
+    },
+    "test": {
+        "user": "test",
+        "mdp": "$2y$10$\/AzCkCKnzBhYGFXLSJBa6eFnLLXFWtr8VDFgLZp5PFmijWPR\/DUE6",
+        "role": "partenaire"
     }
 }

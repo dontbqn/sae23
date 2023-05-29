@@ -72,5 +72,34 @@ $data = json_decode(file_get_contents("../data/roles.json"), true); //Database d
                 echo '</tbody>'; ?>
             </table>
         </div>
+        <div class="container text-center">
+                <?php
+                    getUsers(null);
+                    echo "
+                        </tbody>
+                        </table>
+                        </div>
+                    ";
+                ?>
+        </div>
     </body>
+        
+    <footer class="container mt-3 pt-5">
+        <div class="container text-center">
+                <div>
+                    <button href="https://www.twitter.com/tripking/" class="btn">
+                        <img src="../images/twitter.png" alt="" width="40" height="40">
+                    </button>
+                    <button href="https://www.instagram.com/tripking/" class="btn">
+                        <img src="../images/insta.png" alt="" width="40" height="40">
+                    </button>
+                    <button href="www.facebook.com/tripking/" class="btn">
+                        <img src="../images/facebook.png" alt="" width="40" height="40">
+                    </button>
+                </div>
+            </div>
+        <div class="d-flex flex-column flex-sm-row justify-content-center py-4 my-4 border-top">
+            <p>&copy; 2022 Company, Inc. All rights reserved.</p>      
+        </div>
+    </footer>
 </html>

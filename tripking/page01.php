@@ -6,7 +6,7 @@ Page Accueil
 */
 setup();
 pagenavbar("page01.php");
-
+$_SESSION['partenaire'] = "michelin";
 ?>
 <body>
     <div class="container pt-4 pb-3 my-5">
@@ -72,7 +72,6 @@ pagenavbar("page01.php");
             </div>
         </div>
     </div>
-
 
     <?php footer(); ?>
 </body>

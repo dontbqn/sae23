@@ -89,8 +89,8 @@ session_start();
 
                 ?>
 
-            <div class=" mb-5 container col-8 p-3 my-4 border border-2 shadow-md text-break">
-                <h5 class="pb-3 my-3">Ajouter un fichier depuis votre PC</h5>
+            <div class="mb-5 container col-8 p-5 my-4 border border-2 shadow-md text-break">
+                <h5 class="my-1">Ajouter un fichier depuis votre PC</h5>
                 <form class="d-flex justify-content-center" method="POST" enctype="multipart/form-data"> 
                     <?php //enctype "multipart/form-data" is used if the usera wants to upload a file throught the form  ?>
                     <label class="me-2">Select a file to upload : </label>
@@ -125,8 +125,24 @@ session_start();
                         }
                     }
                     ?>
+            </div>
     </body>
-    <footer class="my-5">
-                <hr>
+    <footer class="container mt-2 pt-5">
+        <div class="container text-center">
+                <div>
+                    <button href="https://www.twitter.com/tripking/" class="btn">
+                        <img src="../../../images/twitter.png" alt="" width="40" height="40">
+                    </button>
+                    <button href="https://www.instagram.com/tripking/" class="btn">
+                        <img src="../../../images/insta.png" alt="" width="40" height="40">
+                    </button>
+                    <button href="www.facebook.com/tripking/" class="btn">
+                        <img src="../../../images/facebook.png" alt="" width="40" height="40">
+                    </button>
+                </div>
+            </div>
+        <div class="d-flex flex-column flex-sm-row justify-content-center py-4 my-4 border-top">
+            <p>&copy; 2022 Company, Inc. All rights reserved.</p>      
+        </div>
     </footer>
 </html>
