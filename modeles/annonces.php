@@ -1,9 +1,9 @@
 <?php 
 
-function add_utilisateur($utilisateurs){
+function add_annonce($annonce){
 
 } 
-function del_utilisateur($utilisateur){
+function del_annonce($annonce){
 
 }
 

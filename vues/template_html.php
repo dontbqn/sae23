@@ -1,6 +1,6 @@
 <?php 
 
-function setup(){
+function setup($role){
     echo '
     <!DOCTYPE HTML>
     <html>
@@ -15,9 +15,22 @@ function setup(){
         <link href="css/liseret.css" rel="stylesheet">
     </head>
     ';
-} 
-function nav(){
-
+    liseret();
+    navbar();
+}
+function liseret(){
+    echo '
+    <nav class="navbar bg-secondary">
+        <div class="container-fluid">
+            <a class="navbar-text text-decoration-none link-light" href="./bons_plans.php">
+            &#128722;&#127939; GROSSE PROMO SUR LES LOGEMENTS !! -50% PARTOUT
+            </a>
+        </div>
+    </nav>
+    ';
+}
+function navbar(){
+    echo "<nav></nav>";
 } 
 function footer(){
 
