@@ -1,12 +1,14 @@
 <?php
 session_start();
+include("./fonctions_start.php");
+setup();
 ?>
 
 
     <body>
         <h1>Error</h1>
         <?php
-        // Retrieve the error message from the URL
+        // Retrieve error msg from the URL
         $errorMessage = $_GET['message'] ?? 'An error occurred.';
 
         // Error msg

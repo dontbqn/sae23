@@ -62,7 +62,7 @@ else{
                                 <div class="card-body">
                                     <h5 class="card-title">Gestion des partenaires</h5>
                                     <p class="card-text">Gérez le logo, les informations du partenaire et les commentaires qui s\'affichent dans la vitrine.</p>
-                                    <a href="./partenaire.php" class="btn btn-primary">Accéder</a>
+                                    <a href="./partenaire.php?partenaire='.$_SESSION["partenaire"].'" class="btn btn-primary">Accéder</a>
                                 </div>
                             </div>
                         </div>

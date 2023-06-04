@@ -7,7 +7,7 @@ if(!isset($_SESSION)){
     header("Location: ../../page01.php");
 }
 else{
-    if(!(isset($_SESSION['role']) && ($_SESSION['role']=="admin" || $_SESSION['role']=="superadmin" || $_SESSION['role']=="salarie" || $_SESSION['role']=="partenaire") )){
+    if(!(isset($_SESSION['role']) && ($_SESSION['role']=="admin" || $_SESSION['role']=="superadmin" || $_SESSION['role']=="partenaire") )){
         echo '<script>alert("You don\'t have the rights");</script>';
         sleep(2);
         header("Location: ../../page01.php");
@@ -16,29 +16,29 @@ else{
         include("../../fonctions_start.php");
         setup();
         /*
-        Page d'Intranet avec reconfirmation de connexion par formulaire
+        Page Partenaire avec reconfirmation de connexion par formulaire
         */
     
       echo '<body>';
           if(!isset($_POST['intra-form'])){ 
                   echo '
                   <h1 class="my-4 text-center">
-                      Accès Employé
+                      Portail Partenaire
                       <hr class="position-relative translate-middle text-warning border-5 rounded-circle col-6 top-50 start-50">
                           <h4 class="display-5 text-center">
-                              Intranet TripKing
+                             TripKing vous souhaite la Bienvenue !
                           </h4>
                   </h1>
                   <div class="d-flex container-fluid justify-content-center mt-3">
-                      <div class="col-5 mb-5 border border-2 rounded-4 p-3">
+                      <div class="col-5 mb-5 mt-4 border border-2 rounded-4 p-3">
                       <form method="post">
                               <div class="form-group">
                                   <label for="roleinp">Role</label>
-                                  <input type="text" class="form-control shadow-none" id="roleinp" name="roleinp" placeholder="visitor" value="visitor" readonly>
+                                  <input type="text" class="form-control shadow-none" id="roleinp" name="roleinp" placeholder="partenaire" value="'.$_SESSION['role'].'" readonly>
                               </div>
                               <div class="form-group">
                                   <label for="username">Username</label>
-                                  <input type="text" class="form-control shadow-none" id="username" name="username" placeholder="Xx_DarcoxXx96" required>
+                                  <input type="text" class="form-control shadow-none" id="username" name="username" placeholder="" required>
                               </div>
                               <div class="form-group">
                                   <label for="motdepasse" class="col-form-label">Password</label>
@@ -53,7 +53,7 @@ else{
                           </div>
                           
                       </form>
-                      <script src="../js/pass_verif.js"></script>
+                      <script src="../../js/pass_verif.js"></script>
                   </div>
               </div>
               ';
@@ -61,75 +61,50 @@ else{
               else{
                   echo '
                       <h1 class="my-4 text-center">
-                          Accès Employé
+                          Portail Partenaire
                           <hr class="position-relative translate-middle text-warning border-5 rounded-circle col-6 top-50 start-50">
                               <h4 class="display-5 text-center">
-                                  Intranet TipKing
+                                  Modifier vos informations
                               </h4>
                       </h1>
+                      <p class="text-center">TripKing vous offre la possibilité le changer vous-mêmes vos informations dynamquement</p>
+                      <p class="text-center">Cette fonctionnalité est basée sur la confiance entre nos entreprises</p>
                   ';
-                  echo '<pre>';
-                  print_r($_POST);
-                  echo '</pre>';
-                  // Gestion des utilisateurs, du profil associé et de l’appartenance aux différents groupes
                   echo '
-                  <div class="container">
-                  <div class="row mb-5 border border-2 rounded-4 p-3 text-wrap">
-                    <div class="col-md-4">
-                      <div class="card mb-4">
+                  <div class="container border-1 border rounded-3 border-secondary p-5 my-5">
+                    <div class="display-6"> Entrez le logo de votre entreprise</div>
+                    <hr>
+                    les formats acceptées sont les suivants : png, jpg, jpeg.
+                  ';
+                  // Modifs Dynamiques avec AJAX
+                  // Gestion : Description, Titre, Logo (.ico et png) de l'entreprise   
+                  echo '
+                  <div class="d-flex row justify-content-evenly">
+                    <div class="text-center m-4 border border-4 col-4 bg-dark bg-opacity-50" id="partenaireForm">
+                      <form action="./modif_part.php" method="post" enctype="multipart/form-data">
+                          <input class="form-control p-1 mt-3 mb-4" type="text" name="entreprise" placeholder="'.$_GET["partenaire"].'" id="part_entr">
+                          <textarea class="form-control p-1 mt-3 mb-4" type="description" name="description" placeholder="" id="part_descr"></textarea>
+                          <input class="form-control p-1 my-2" type="file" name="imageFile" id="imageFile" accept=".png, .jpg, .jpeg">
+                      </form>
+                    </div>';
+                    //Image preview
+                    echo '
+                    <div class="text-center m-4 border border-4 col-5">
+                      <div class="card">
+                        <img id="imagePreview" class="card-img-top" src="../../images/louis.png" alt="Preview">
                         <div class="card-body">
-                          <h5 class="card-title">Gestion des utilisateurs</h5>
-                          <p class="card-text">Gérez les utilisateurs, les profils et l\'appartenance aux groupes.</p>
-                          <a href="../page06.php" class="btn btn-primary">Accéder</a>
+                          <h5 class="card-title" id="previewTitle"></h5>
+                          <p class="card-text" id="previewDesc"></p>
                         </div>
                       </div>
                     </div>
-                
-                    <div class="col-md-4">
-                      <div class="card mb-4">
-                        <div class="card-body">
-                          <h5 class="card-title">Gestionnaire de fichiers</h5>
-                          <p class="card-text">Ajoutez, supprimez et visualisez des fichiers (selon les droits).</p>
-                          <a href="./espace_commun.php" class="btn btn-primary">Accéder</a>
-                        </div>
-                      </div>
-                    </div>
-                
-                    <div class="col-md-4">
-                      <div class="card mb-4">
-                        <div class="card-body">
-                          <h5 class="card-title">Groupes</h5>
-                          <p class="card-text">Gérez les différents groupes (admin, salariés, managers, direction, perso).</p>
-                          <a href="./groupes.php" class="btn btn-primary">Accéder</a>
-                        </div>
-                      </div>
-                    </div>
-                
-                    <div class="col-md-4">
-                      <div class="card mb-4">
-                        <div class="card-body">
-                          <h5 class="card-title">Annuaire de l\'entreprise</h5>
-                          <p class="card-text">Consultez l\'annuaire de l\'entreprise (30 personnes minimum).</p>
-                          <a href="./annuaire.php" class="btn btn-primary">Accéder</a>
-                        </div>
-                      </div>
-                    </div>
-                
-                    <div class="col-md-4">
-                      <div class="card mb-4">
-                        <div class="card-body">
-                          <h5 class="card-title">Gestion des partenaires</h5>
-                          <p class="card-text">Gérez le logo, les informations du partenaire et les commentaires qui s\'affichent dans la vitrine.</p>
-                          <a href="./partenaires/partenaire.php" class="btn btn-primary">Accéder</a>
-                        </div>
-                      </div>
+                    <script src="../../js/partenaire_form.js"></script>
+                    ';
+                                   
+                  echo '
                     </div>
                   </div>
-                </div>';
-                
-
-
-
+                  ';
               }
       echo '</body>';
     }

@@ -247,10 +247,10 @@ else{
                 <h5 class="text-center my-4 bg-success p-3">Publier une Offre</h5>
             <?php if(!isset($_POST['annonce_btn'])){ 
                 echo '
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="titre">Titre</label>
-                            <input type="text" class="form-control shadow-none" id="titre" name="titre" placeholder="Barcelone T4 vue sur Mer Thalasso" readonly>
+                            <input type="text" class="form-control shadow-none" id="titre" name="titre" placeholder="Barcelone T4 vue sur Mer Thalasso" required>
                         </div>
                         <div class="form-group">
                             <label for="lieu">Lieu</label>
@@ -268,29 +268,12 @@ else{
                             <input type="checkbox" name="bonplan" class="form-check-input my-2 p-2 shadow-none" id="bonplan">
                             <label for="bonplan" class="pt-1"> Bon Plan &#128293; </label>
                         </div>';
-                        //Selection d'images dde l'annonce
+                        //Selection d'images de l'annonce
                         echo '
                         <div class="my-3 form-group">
                         <div class="row offset-2 col-8 p-5 border text-wrap bg-transparent border-2 shadow-md text-break">
-                            <form class="d-flex justify-content-center" method="POST" enctype="multipart/form-data">
                                 <label class="me-2">Selectectionnez des photos</label>
-                                <input type="file" id="file_txt" name="file_txt" accept=".jpg,.png">
-                            </form>';
-                            if (isset($_FILES['annonce_btn'])) {
-
-                                $file = $_FILES['annonce_btn']["name"]!="" ? $_FILES['annonce_btn'] : False;
-                                if($file == False){
-                                    echo '<div class="text-danger fw-bold">Entrez une photo valide !</div>';
-                                }
-                                else{
-                                    $path = $file['tmp_name'];
-                                    //stock file temporary in file
-                                    $newfilePath = "annonces/".$new_annonce['id']."/".$file["name"];
-                                    move_uploaded_file($path, $newfilePath);
-                                    echo "<br> <div class='mt-4 p-3 bg-secondary bg-opacity-50 rounded-1 border-white'>";
-                                    print(file_get_contents($newfilePath));
-                                }
-                            }
+                                <input type="file" id="img_files" name="img_files" accept=".jpg,.png">';
                         echo '
                         </div>
                     </div>
@@ -303,9 +286,22 @@ else{
             else{
                 //Création de la nouvelle annonce
                 //addAnnonce();
-                //Récupération du nouvel id
                 //Redirection vers la page d'annonce nouvellement créée grâce à son id
-                header('Location : ./annonce.php');
+                var_dump($_FILES["img_files"]);
+                $images = $_FILES['img_files']["name"]!= "" ? $_FILES['img_files'] : False;
+                                if($images == False){
+                                    echo '<div class="text-danger fw-bold">Entrez une photo valide !</div>';
+                                }
+                                else{
+                                    $path = $images['tmp_name'];
+                                    //stock file temporary in file
+                                    $newfilePath = $images['name'];
+                                    //move_uploaded_file($path, $newfilePath);
+                                    echo "<br> <div class='mt-4 p-3 bg-secondary bg-opacity-50 rounded-1 border-white'>";
+                                    print($newfilePath);
+                                    echo '</div>';
+                                }
+                //addAnnonce($_POST["titre"], $_POST["lieu"], $_POST["pays"], $_POST["prixnuit"], $_POST["description"], $_POST["bon_plan"], $images);
             } ?>
             </div>
 

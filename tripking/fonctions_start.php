@@ -330,9 +330,6 @@ function pagenavbar($pageactive){
             <li class="nav-item list-group-item">
             <a class="nav-link '.($pageactive == "page01.php" ? navbarItemActive() : navbarItem()).'" href="page01.php">Accueil</a>
         </li>';
-        echo '<li class="nav-item list-group-item">
-            <a class="nav-link '.($pageactive == "page02.php" ? navbarItemActive()  : navbarItem()).'" href="page02.php">Formulaires</a>
-        </li>';
 
         echo '<li class="nav-item list-group-item">
         <a class="nav-link '.($pageactive == "wiki.php" ? navbarItemActive() : navbarItem()).'" href="wiki.php">Wiki</a>
