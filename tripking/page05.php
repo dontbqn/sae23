@@ -19,6 +19,7 @@ pagenavbar("page05.php");
             //User name and mail as input placeholder
             echo '
                 <div class="col-10 g-3 border-secondary border-2">
+                    <h6 class="text-center text-danger">Attention aux valeurs que vous entrez ! le changement sera définitif</h6>
                     <form method="post">
                         <div class="form-group">
                             <label for="roleInput">Role</label>

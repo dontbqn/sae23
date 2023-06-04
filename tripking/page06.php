@@ -325,11 +325,7 @@ else{
                                 <script src="js/select_annonce.js"></script>
                                 </div>
                                 <div class="form-group">
-                                    <label for="nv_titre">Titre</label>';
-                                    if(isset($_POST["titre_annonce"])){
-                                        print_r($_POST["titre_annonce"]);
-                                    }
-                                    echo '
+                                    <label for="nv_titre">Titre</label>
                                     <input type="text" class="form-control shadow-none" id="nv_titre" name="nv_titre" placeholder="" readonly>
                                 </div>
                                 <div class="form-group">

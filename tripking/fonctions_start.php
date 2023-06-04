@@ -38,7 +38,9 @@ function setup(){
     </head>
     ';
         if(!isset($_COOKIE['LOGGED_USER'])){ // Thème du fond par défaut pour tous les utilisateurs
-            cookiesOrNot();
+            if(!isset($_SESSION["user"])){
+                cookiesOrNot();
+            }; 
         }
         else{
             if(!isset($_SESSION["user"])){
@@ -360,7 +362,7 @@ function pagenavbar($pageactive){
                     <a class="nav-link '.($pageactive == "pourvous.php" ? navbarItemActive() : navbarItem()).'" href="pourvous.php"><img src="images/foryou.png" class="me-1" width="30" height="30">Pour vous</a>
                 </li>
                 <li class="nav-item list-group-item">
-                    <a class="nav-link '.($pageactive == "about.php" ? navbarItemActive() : navbarItem()).'" href="./entreprise/about.php">Qui sommes-nous ?</a>
+                    <a class="nav-link '.($pageactive == "about.php" ? navbarItemActive() : navbarItem()).'" href="./about.php">Qui sommes-nous ?</a>
                 </li>
                 <li class="nav-item list-group-item">
                     <a class="nav-link '.($pageactive == "partenaires.php" ? navbarItemActive() : navbarItem()).'" href="./entreprise/partenaires.php">Partenaires</a>
@@ -368,7 +370,7 @@ function pagenavbar($pageactive){
             </ul>
         </div>
     </div>
-    ';
+    ';  
         // Assistant ChatBot
         echo '  <div class="fixed-bottom">
                     <span class="btn btn-primary ms-4 mb-3 btn-lg rounded-circle" id="liveToastBtn"> ? </span>
@@ -519,7 +521,7 @@ function cookiesOrNot(){
         <div class="d-flex justify-content-end position-fixed bottom-0 end-0 mb-4 m-2 d-none d-sm-none d-md-block" id="toaster" style="z-index:1">
                 <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-animation="true">
                     <div class="toast-header bg-success bg-gradient">
-                        <img src="img/cookie.ico" class="rounded me-2" width="27px" height="27px" title="cookie ico">
+                        &#127850;
                         <h5><strong class="me-auto badge text-dark text-wrap">Cookies & Privacy</strong></h5>
                         <button type="submit" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close" value="cookie_popup" name="cookie_popup"></button>
                     </div>

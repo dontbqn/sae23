@@ -6,7 +6,9 @@ Page Accueil
 */
 setup();
 pagenavbar("page01.php");
-$_SESSION['partenaire'] = "michelin";
+$_SESSION['partenaire'] = "michelin"; //TEST avec un partenaire de Michelin
+                                      // Normalement => modif role vers partenaire avec le nom
+                                     // d'entreprise se fait dans page06.php par un admin ou superadmin
 ?>
 <body>
     <div class="container pt-4 pb-3 my-5">
@@ -72,8 +74,6 @@ $_SESSION['partenaire'] = "michelin";
             </div>
         </div>
     </div>
-
-    <?php footer(); ?>
 </body>
-
+    <?php footer(); ?>
 </html>
