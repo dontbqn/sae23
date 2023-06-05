@@ -21,10 +21,10 @@ pagenavbar("explorer.php");
         
         <div class="container col-11 border border-2 rounded-4 shadow mt-4 mb-5 p-3">
             <div id="map" class="p-3 w-100" style="height: 500px"></div>
-            <script type="text/javascript" src="js/codegrid.js"></script>
             <script>
-                var codegrid = require('codegridjs');
-                grid = codegrid.CodeGrid();
+                //
+                //var codegrid = require('codegridjs');
+                //grid = codegrid.CodeGrid();
                 //  https://leafletjs.com/examples/quick-start/
                 //
                 //  Credits : OpenStreetMap

@@ -163,36 +163,57 @@ echo '</div>
 ';
 
 }
-function addAnnonce($titre, $lieu, $pays, $prixnuit, $description, $images, $bon_plan=false){ //id, nb_fav, commentaires, images à initialiser
+function addAnnonce($id, $titre, $lieu, $pays, $prixnuit, $description, $images, $bon_plan=false){ //id, nb_fav, commentaires, images à initialiser
      // encode sans avoir decoder => ecrase le fichier déja present
      $annonces = json_decode(file_get_contents("./annonces/annonces.json", true), true);
      //
-     $compteur = 1;
      foreach($annonces as $annonce){
-        if($annonce["id"] >= $compteur){
-            $compteur = $annonce["id"];
-        }
         if($annonce["titre"] == $titre){
             echo '
             </div><div class="text-center text-danger fw-bold mb-4 mt-3"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle mb-1" viewBox="0 0 16 16">
             <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/>
             <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/>
             </svg>Ce titre d\'annonce existe déjà !    <br/>
-            <a type="button" class="btn text-center border border-black mt-3" href="deposer-une-annonce.php">reload page</a></div>';
+            <a type="button" class="btn text-center border border-black mt-3" href="deposer-une-annonce.php">reload page</a></div></div>';
             footer();
             die();
         }
     }
-    echo "id nvelle annonce serait : ".$compteur;
-    //images
-    $table_img = [];
-    foreach($images as $key => $image){
-        $table_img[] = $image;
+    // Images et gestion de leur dossier
+    $imgFolder = "./annonces/$id";
+
+    $table_img = []; // On récuperera les chemins que l'on mettra dans le json
+
+    // Compteur pour avoir des images suivant le meme plan de nommage : img1/img2/img3
+    $p = 1; 
+
+    if (!is_dir($imgFolder)) { // Créer le dossier si il n'existe pas
+        if (mkdir($imgFolder, true)) {
+            echo "Dossier créé avec succès : $imgFolder<br>";
+        } else {
+            echo "Échec lors de la création : $imgFolder<br>";
+        }
+    } else {
+        echo "Le dossier existe déjà : $imgFolder<br>";
     }
+    for ($i =0; $i < count($images['name']);$i++) {
+        $image = $images['name'][$i];
+        if ($image != "") {
+            $path = $images['tmp_name'][$i];
+            $newfilePath = $imgFolder."/img".$p.".jpg";
+            move_uploaded_file($path, $newfilePath);
+            echo "<br> <div class='mt-2 p-3 bg-secondary bg-opacity-50 rounded-1 border-white'>";
+            echo "Nouveau nom de l'image : ".$newfilePath."<br>";
+            array_push($table_img, $newfilePath);
+            echo '</div>';
+            $p++;
+        }
+    }
+
 
     // Création liste de données annonces
      $newAnnonces = array(
-     "id"=> $compteur+1,
+     "id"=> $id,
      "titre"=> $titre,
      "lieu" => $lieu,
      "pays" => $pays,
@@ -200,23 +221,27 @@ function addAnnonce($titre, $lieu, $pays, $prixnuit, $description, $images, $bon
      "nb_fav" => 0,
      "bon_plan" => $bon_plan,
      "commentaires" => array(),
-     "images" => $table_img,
+     "description"=> $description,
+     "images" => $table_img
     );
-     $annonces[$newAnnonces[$compteur+1]] = $newAnnonces;
+     $annonces[] = $newAnnonces;
      $res=json_encode($annonces, JSON_PRETTY_PRINT);
-     echo $res;
-     //file_put_contents("./annonces/annonces.json",$res); //résultat dans annonces.json
-     //header('Location : ./page_annonce.php?id=');
+     //$lastItem = end($annonces);
+     //var_dump($lastItem);
+     // Tests permettant de visualiser la dernière annonce de la liste, donc
+     // celle qui vient d'être ajoutée
+
+     file_put_contents("./annonces/annonces.json",$res); //résultat dans annonces.json
+     header("Refresh:0");
      //die();
+     //Puis, redirection vers la page d'annonce nouvellement créée grâce à son id
 }
 
 function deleteAnnonce($ann){
-    //echo "annonce : ".$usr['annonce']." will be deleted soon";
-    //echo "<br>";
+    //echo "annonce ".$ann['id']." : will be deleted soon";
     $annonces = json_decode(file_get_contents('annonce/annonces.json', true), true);
     foreach($annonces as $key => $annonce) {
         //echo "checking ".$annonce["id"];
-        //echo "<br>";
         if($annonce["id"] == $ann["id"] && ($_SESSION['role'] == "superadmin" || $_SESSION['role'] == "admin")){
             unset($annonces[$key]);
         }
@@ -276,8 +301,13 @@ function getAnnonces($annoncesbase){
             </tr>';
             echo '
                 <td style="border: none"><form method="post">
-                    <input type="hidden" name="id" value="'.$annonce['id'].'">
-                    <button type="submit" name="delete_annonce" class="btn btn-sm btn-danger text-decoration-none" value=""><img src="images/foryou.png" class="" width="30" height="30"></button>
+                    <input type="hidden" name="id" value="'.$annonce['id'].'">';
+                    if(isset($_SESSION['role']) && ($_SESSION['role']=="admin" || $_SESSION['role']=="superadmin")){
+                        echo '
+                            <button type="submit" name="delete_annonce" class="btn btn-sm btn-danger text-decoration-none" value=""><img src="images/foryou.png" class="" width="30" height="30"></button>
+                        ';
+                    }
+                    echo '
                 </form></td>
                 </tr>
             ';
@@ -332,8 +362,13 @@ function getAnnonces($annoncesbase){
             echo '</td>';
             echo '
                 <td style="border: none"><form method="post">
-                    <input type="hidden" name="id" value="'.$annonce['id'].'">
-                    <button type="submit" name="delete_annonce" class="btn btn-sm btn-danger text-decoration-none" value=""><img src="images/delete.png" class="" width="20" height="20"></button>
+                    <input type="hidden" name="id" value="'.$annonce['id'].'">';
+                    if(isset($_SESSION['role']) && ($_SESSION['role']=="admin" || $_SESSION['role']=="superadmin")){
+                        echo '
+                            <button type="submit" name="delete_annonce" class="btn btn-sm btn-danger text-decoration-none" value=""><img src="images/delete.png" class="" width="30" height="30"></button>
+                        ';
+                    }
+                    echo '
                 </form></td>
                 </tr>
             ';
@@ -433,7 +468,7 @@ function modifyAnnonce($annonce, $new_usr, $mdp, $role, $favcolor){
         );
         foreach($annonces as $thisone){
             if($thisone["annonce"]==$annonce){
-                deleteUser($thisone); //On repère l'ancienne entrée d'utilisateur et on le supprime
+                deleteAnnonce($thisone); //On repère l'ancienne entrée d'utilisateur et on le supprime
             }
         }
         $annonces[$new_usr['annonce']] = $new_usr; //  $annonces['User1'] = {'annonce':'User1','mdp':$10$,'role':'annonce'}
@@ -460,7 +495,7 @@ function modifyAnnonce($annonce, $new_usr, $mdp, $role, $favcolor){
         echo 'changement de nom et mdp';
         $_SESSION['annonce'] = $new_usr;
         $_SESSION['favcolor'] = $favcolor;
-        deleteUser($annonces[$annonce]);
+        deleteAnnonce($annonces[$annonce]);
         //addAnnonce($titre, $lieu, $pays, $prixnuit, $bon_plan);
         $_SESSION['mdp'] = ($annonces[$new_usr]['mdp']);
         $res=json_encode($annonces, JSON_PRETTY_PRINT);

@@ -264,6 +264,10 @@ else{
                             <label for="prixnuit" class="col-form-label">Prix d\'une nuit</label>
                             <input type="number" class="form-control shadow-none password" name="prixnuit" id="prixnuit" placeholder="23€" min="5" max="50" required>
                         </div>  
+                        <div class="form-group">
+                            <label for="description" class="col-form-label">Description</label>
+                            <textarea type="description" class="form-control shadow-none password" name="description" id="description" placeholder="3 chambres, 2 toilettes, 1 frigo..." max="300" required style="max-height:500px"></textarea>
+                        </div>  
                         <div class="form-group form-check form-switch my-2">
                             <input type="checkbox" name="bonplan" class="form-check-input my-2 p-2 shadow-none" id="bonplan">
                             <label for="bonplan" class="pt-1"> Bon Plan &#128293; </label>
@@ -273,7 +277,7 @@ else{
                         <div class="my-3 form-group">
                         <div class="row offset-2 col-8 p-5 border text-wrap bg-transparent border-2 shadow-md text-break">
                                 <label class="me-2">Selectectionnez des photos</label>
-                                <input type="file" id="img_files" name="img_files" accept=".jpg,.png">';
+                                <input type="file" id="img_files" name="img_files[]" accept=".jpg,.png" multiple>';
                         echo '
                         </div>
                     </div>
@@ -285,23 +289,20 @@ else{
             }
             else{
                 //Création de la nouvelle annonce
-                //addAnnonce();
-                //Redirection vers la page d'annonce nouvellement créée grâce à son id
-                var_dump($_FILES["img_files"]);
-                $images = $_FILES['img_files']["name"]!= "" ? $_FILES['img_files'] : False;
-                                if($images == False){
-                                    echo '<div class="text-danger fw-bold">Entrez une photo valide !</div>';
-                                }
-                                else{
-                                    $path = $images['tmp_name'];
-                                    //stock file temporary in file
-                                    $newfilePath = $images['name'];
-                                    //move_uploaded_file($path, $newfilePath);
-                                    echo "<br> <div class='mt-4 p-3 bg-secondary bg-opacity-50 rounded-1 border-white'>";
-                                    print($newfilePath);
-                                    echo '</div>';
-                                }
-                //addAnnonce($_POST["titre"], $_POST["lieu"], $_POST["pays"], $_POST["prixnuit"], $_POST["description"], $_POST["bon_plan"], $images);
+                //Puis, redirection vers la page d'annonce nouvellement créée grâce à son id
+                $lastItem = end($annonces);
+                $newAnnonceID = $lastItem["id"] + 1;
+                //echo $newAnnonceID;
+                //var_dump($_FILES);
+                $images = $_FILES['img_files'];
+                //var_dump($_POST);
+                if(isset($_POST["bon_plan"])){
+                    addAnnonce($newAnnonceID,$_POST["titre"], $_POST["lieu"], $_POST["pays"], $_POST["prixnuit"], $_POST["description"], $images, $_POST["bon_plan"]);
+                }
+                else{
+                    addAnnonce($newAnnonceID,$_POST["titre"], $_POST["lieu"], $_POST["pays"], $_POST["prixnuit"], $_POST["description"], $images);
+                }
+                
             } ?>
             </div>
 

@@ -74,9 +74,9 @@ function pagenavbar($pageactive){
         <nav class="row">
             <div class="col">
                 <a class="navbar-brand" href="./page01.php">
-                    <img src="images/logo.png" alt="" width="50" height="44">
+                    <img src="images/logo.png" alt="" width="50" height="50">
                 </a>
-                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+                <button class="btn btn-dark ms-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
                     <img src="images/menu.png" class="img-fluid" width="30" height="30">
                 </button>
             </div>
@@ -343,15 +343,22 @@ function pagenavbar($pageactive){
         if(isset($_SESSION)){
             if(isset($_SESSION['user']) && ($_SESSION['role']=="admin" || $_SESSION["role"] == "superadmin")){
                 echo '
-                <li class="nav-item list-group-item">
-                <a class="nav-link '.($pageactive == "page06.php" ? "active bg-danger fw-bolder border bg-opacity-50 border-2 border-danger bg-gradient rounded-3 p-3" : navbarItem()).'" href="page06.php">Admin</a>
-                </li>';
+                    <li class="nav-item list-group-item">
+                    <a class="nav-link '.($pageactive == "page06.php" ? "active bg-danger fw-bolder border bg-opacity-50 border-2 border-danger bg-gradient rounded-3 p-3" : navbarItem()).'" href="page06.php">Admin</a>
+                    </li>
+                ';
+            }
+        }
+        if(isset($_SESSION)){
+            if(isset($_SESSION['user']) && ($_SESSION['role']=="admin" || $_SESSION["role"] == "superadmin" || $_SESSION["role"] == "partenaire")){
+                echo '
+                    <li class="nav-item list-group-item">
+                        <a class="nav-link '.($pageactive == "deposer-une-annonce.php" ? navbarItemActive() : navbarItem()).'" href="deposer-une-annonce.php">Déposer votre annonce</a>
+                    </li>
+                ';
             }
         }
         echo '
-                <li class="nav-item list-group-item">
-                    <a class="nav-link '.($pageactive == "deposer-une-annonce.php" ? navbarItemActive() : navbarItem()).'" href="deposer-une-annonce.php">Déposer votre annonce</a>
-                </li>
                 <li class="nav-item list-group-item">
                     <a class="nav-link '.($pageactive == "explorer.php" ? navbarItemActive() : navbarItem()).'" href="explorer.php">Explorer</a>
                 </li>
@@ -378,7 +385,7 @@ function pagenavbar($pageactive){
                 <div class="toast-container fixed-bottom ms-5 mb-5">
                     <div id="liveToast" class="toast" role="alert" class="show" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
                         <div class="toast-header">
-                            <img src="images/louis.png" class="rounded ms-1 me-2" alt="bugslogo" width="25" height="25">
+                            <img src="images/louis.png" class="rounded ms-1 me-2" alt="louitos" width="25" height="25">
                             <strong class="me-auto fs-6"> TripBot </strong>
                             <button type="button" class="btn-close shadow-none" data-bs-dismiss="toast" aria-label="Close"></button>
                         </div>

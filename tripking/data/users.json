@@ -2,12 +2,14 @@
     "bagel": {
         "user": "bagel",
         "mdp": "$2y$10$Nf2pZndPyVGVg9ZgM3m8mOEDqStoyijjTZdFk7rBme1egCF8pKLZq",
-        "role": "superadmin"
+        "role": "superadmin",
+        "favoris": ["1","4","2"]
     },
     "user": {
         "user": "user",
         "mdp": "$2y$10$g3HpUec5Idvak\/9RVCKFhuppOpGOmRWoCYiAQVKfJk8rgaxrG\/G5W",
-        "role": "user"
+        "role": "user",
+        "favoris": ["1","3","6"]
     },
     "anonymous": {
         "user": "anonymous",
