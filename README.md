@@ -3,11 +3,10 @@ Projet de groupe __SAE23__, construire un site-web dynamique d'entreprise (FI1G1
 
 
 A faire : 
-- Un bouton fixé en bas de page permettant de "chatter" avec un Bot Assistant
 - Ajout de commentaires (fonction addCommentaire() à écrire)
 - Fonctions de recherches d'annonces à paufiner
-- Page d'administrateurs à mettre à jour. Ajouter un formulaire d'ajout/suppression d'annonces depuis cette page (quasiment fini).
-- Pages manquantes / vides tels que about, contact, remboursement, reservations.
+- Page d'administrateurs à mettre à jour. Ajouter usuppression d'annonces depuis cette page.
+- Pages manquantes / vides tels que about, contact, remboursement, panier.
 - JSON Utilisateurs.
 
 ## Contributors
