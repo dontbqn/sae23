@@ -1,0 +1,31 @@
+{
+    "administrateurs": {
+        "name": "admin",
+        "description": "Administrateur et propriétaires",
+        "access": "ALL"
+    },
+    "user": {
+        "name": "user",
+        "description": "Personnes ayant un compte",
+        "access": "NORMAL"
+    },
+    "salaries": {
+        "direction": {        
+            "name": "direction",
+            "description": "La Direction de TripKing",
+            "access": "DIRECTION"},
+        "rh": {
+            "name": "rh",
+            "description": "Managers salariés de TripKing",
+            "access": "INTRA_EMP"},
+        "salarie": {
+            "name": "salarie",
+            "description": "Membres salariés de TripKing",
+            "access": "INTRA"}
+    },
+    "partenaire": {
+        "name": "partenaire",
+        "description": "Partenaires officiels affiliés à TripKing",
+        "access": "PARTENAIRE"
+    }
+}
