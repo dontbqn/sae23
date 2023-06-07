@@ -29,7 +29,7 @@ function setup(){
     <head>
         <meta charset="utf-8">
         <meta name="author" content="Bastien, Aronn, Clément, Adrien">
-        <link rel="icon" href="images/iconetk.ico">
+        <link rel="icon" href="images/logo.ico">
         <title>TripKing</title>
         <meta name="viewport" content="width=device-width">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
@@ -185,7 +185,7 @@ function pagenavbar($pageactive){
                 ';
             }
             echo '
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="./reservations.php">
                     <img src="images/icone_coeur.png" alt="" width="40" height="40">
                 </a>
                 
@@ -372,7 +372,7 @@ function pagenavbar($pageactive){
                     <a class="nav-link '.($pageactive == "about.php" ? navbarItemActive() : navbarItem()).'" href="./about.php">Qui sommes-nous ?</a>
                 </li>
                 <li class="nav-item list-group-item">
-                    <a class="nav-link '.($pageactive == "partenaires.php" ? navbarItemActive() : navbarItem()).'" href="./entreprise/partenaires.php">Partenaires</a>
+                    <a class="nav-link '.($pageactive == "partenaires.php" ? navbarItemActive() : navbarItem()).'" href="./partenaires.php">Partenaires</a>
                 </li>
             </ul>
         </div>
@@ -443,7 +443,7 @@ function footer(){
                 <h5>Entrepise</h5>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2"><a href="./entreprise/about.php" class="nav-link p-0 footlink text-black-50">A propos</a></li>
-                    <li class="nav-item mb-2"><a href="./entreprise/partenaires.php" class="nav-link p-0 footlink text-black-50">Partenaires</a></li>
+                    <li class="nav-item mb-2"><a href="./partenaires.php" class="nav-link p-0 footlink text-black-50">Partenaires</a></li>
                     <li class="nav-item mb-2"><a href="./entreprise/carriere.php" class="nav-link p-0 footlink text-black-50">Rejoignez-vous</a></li>
                 </ul>
                 <br>

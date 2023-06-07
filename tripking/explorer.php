@@ -14,36 +14,40 @@ pagenavbar("explorer.php");
     <?php 
     if(!isset($_POST["recherche"])){ //Javascript mettre à jour le placeholder à partir de 2 ou 3 phrases
         echo '
-        <div class="d-flex justify-content-center rounded-3 p-3 mx-4 px-4 m-2 bg-secondary-subtle border border-black border-3">
+        <div class="d-flex justify-content-center rounded-3 p-4 mx-4 px-4 m-2 bg-secondary-subtle border border-black border-3">
             <form method="post" class="shadow-md border-white">
-                <div class="row g-2">
-                    <div class="col-7 my-2 mx-4 p-3 bg-dark bg-opacity-25 border border-1 border-black">
-                        <label class="fs-6 d-none d-md-none d-lg-block" for="keywords">Rechercher l\'expression</label>
-                        <input type="search" class="form-control shadow-none" placeholder="Barcelone T4 piscine" name="keywords" minlength="4" maxlength="32" autofocus>
+                    <div class="row g-2">
+                        <div class="col-7 my-2 mx-4 p-3 bg-dark bg-opacity-25 border border-1 border-black">
+                            <label class="fs-6 d-none d-md-none d-lg-block" for="keywords">Rechercher l\'expression</label>
+                            <input type="search" class="form-control shadow-none" placeholder="Barcelone T4 piscine" name="keywords" minlength="4" maxlength="32" autofocus>
+                        </div>
+                        <div class="col-sm-4 mt-3 p-2 bg-dark bg-opacity-25 border border-1 border-black">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-none" type="radio" name="radioBtn" value="titre" id="titre" checked>
+                                <label class="form-check-label" for="titre">
+                                Rechercher par Titre
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input shadow-none" type="radio" name="radioBtn" value="lieu_pays" id="lieu_pays">
+                                <label class="form-check-label" for="lieu_pays">
+                                Rechercher par Lieu/Pays
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input shadow-none" type="radio" name="radioBtn" value="contenu" id="contenu">
+                                <label class="form-check-label" for="contenu">
+                                Rechercher par Contenu
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-sm-4 mt-3 p-2 bg-dark bg-opacity-25 border border-1 border-black">
-                        <div class="form-check">
-                            <input class="form-check-input shadow-none" type="radio" name="radioBtn" value="titre" id="titre" checked>
-                            <label class="form-check-label" for="titre">
-                            Rechercher par Titre
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input shadow-none" type="radio" name="radioBtn" value="lieu_pays" id="lieu_pays">
-                            <label class="form-check-label" for="lieu_pays">
-                            Rechercher par Lieu/Pays
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input shadow-none" type="radio" name="radioBtn" value="contenu" id="contenu">
-                            <label class="form-check-label" for="contenu">
-                            Rechercher par Contenu
-                            </label>
-                        </div>
+                    <div class="form-check form-switch my-2 ms-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="yesbp" name="yesbp">
+                        <label class="form-check-label text-black-50" for="yesbp">Bon Plan seulement ? &#128064;</label>
                     </div>
-                </div>
-                    <div class="row my-3">
-                        <div class="col-9">
+                    <div class="row">
+                        <div class="col-8">
                             <div class="input-group rounded-5">
                                 <div class="input-group-text">
                                     <input class="form-check-input shadow-none" type="checkbox" name="checkboxBtn" value="bus" id="bus">
@@ -71,8 +75,8 @@ pagenavbar("explorer.php");
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-3">
-                            <div class="ms-1 bg-dark bg-opacity-25 border border-1 border-black">
+                        <div class="col-4">
+                            <div class="p-2 bg-dark bg-opacity-25 border border-1 border-black">
                                 <label for="price_range" class="ms-1 p-2 fw-bold">Prix Max/nuit</label>
                                 <div class="px-3 pb-2 input-group">
                                     <span class="col-5 input-group-item">10€</span>
@@ -86,7 +90,7 @@ pagenavbar("explorer.php");
                     </div>
                 </div>
                 <div class="col">
-                    <input type="submit" class="btn btn-outline-white btn-dark" name="recherche" value="Rechercher">
+                    <input type="submit" class="btn btn-outline-light btn-dark" name="recherche" value="Rechercher">
                 </div>
             </form>
         </div>
@@ -96,7 +100,8 @@ pagenavbar("explorer.php");
         //newAnnonce();
         //newCommentaires();
         $annonces = json_decode(file_get_contents("./annonces/annonces.json"), true);
-        echo '<div class="container d-flex justify-content-center rounded-3 my-2 bg-secondary-subtle border border-black border-1">';
+        echo '<div class="container d-flex justify-content-center rounded-3 my-2 bg-transparent-subtle">';
+        shuffle($annonces);
         showAnnonces($annonces, $found=False);   
         echo '</div>';
     }
@@ -106,11 +111,13 @@ pagenavbar("explorer.php");
         if(isset($_POST["radioBtn"])){$radioBtn = $_POST['radioBtn'];}else{$radioBtn = null;}
         if(isset($_POST["checkboxBtn"])){$checkboxBtn = $_POST['checkboxBtn'];}else{$checkboxBtn = null;}
         $priceRange = $_POST['price_range'];
-
+        if(isset($_POST["yesbp"])){$bonplan = true;}else{$bonplan = false;}
+        echo "yyy".$bonplan;
         // Appeler la fonction findAnnonces() avec les valeurs récupérées
         //print_r($_POST);
+        echo '<a type="button" class="btn btn-dark btn-outline-light my-2 p-2" href="./explorer.php">&#9754; Revenir à vos recherches</a>';
+        findAnnonces($keywords, $radioBtn, $checkboxBtn, $priceRange, $bonplan);
         
-        findAnnonces($keywords, $radioBtn, $checkboxBtn, $priceRange);
     }
     ?>
         

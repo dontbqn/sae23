@@ -208,7 +208,7 @@ $thisannonce;
                         $max = 5; // Nombre maximum d'annonces à afficher
                         $count = 0; // Compteur pour le nombre d'annonces affichées
                         $annonces = json_decode(file_get_contents("./annonces/annonces.json"), true);
-
+                        shuffle($annonces);
                         foreach($annonces as $annonce){
                             if ($count >= $max) {
                                 break; // Sortir de la boucle si le nombre maximum d'annonces est atteint
