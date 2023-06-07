@@ -83,8 +83,17 @@ else{
                 ';              echo "<option selected>Choix du rôle</option>";
                                 $roles = json_decode(file_get_contents("data/roles.json", true), true);
                                 foreach($roles as $role){
-                                    $role = $role["name"];
-                                    echo "<option value='$role'>$role</option>";
+                                    if(isset($role["name"])){
+                                        $role = $role["name"];
+                                        echo "<option value='$role'>$role</option>";
+                                    }
+                                    else{
+                                        echo '<optgroup label="'.array_keys($roles)[2].'" class="bg-secondary-subtle">'.array_keys($roles)[2];
+                                        foreach($role as $subrole){
+                                            echo '<option value="'.$subrole["name"].'">'.$subrole["name"].'</option>';
+                                        }
+                                        echo '</optgroup>';
+                                    }
                                 }
                                 echo '
                                 </select>

@@ -15,14 +15,14 @@ session_start();
     <body>
         <h1 class="text-center pt-4 pb-3 my-3">Mes Fichiers</h1>
         <div class="container d-flex justify-content-center pt-4 pb-3 my-5">
-            <div class="col">
+            <div class="col-6">
                 <h5 class="pt-4 pb-3 my-3">Lire le fichier de votre choix</h5>
                 <?php 
                 $directory = __DIR__; // current directory
                 $files = scandir($directory);
                 $files = array_diff($files, array('.', '..',$_SESSION['user'].".php")); //Hide current file employee2421.php, bagel.php for example
 
-                echo '<ul class="files ">';
+                echo '<ul class="files bg-black p-3 my-3 mx-2 list-unstyled border border-3 border-success">';
                 foreach ($files as $file) {
                     echo '<li><kbd><a type="button" href="?file='.$file.'">'.$file.'</a></kbd></li>';
                 }
@@ -33,10 +33,10 @@ session_start();
                 ';
 
                 echo '
-                <form class="col" method="post">
+                <form class="col-6" method="post">
                     <label for="select">Modifier un fichier</label>
-                    <select id="select" name="file">
-                    <optgroup label="Vos Fichiers">                  
+                    <select id="select" name="file" class="bg-secondary bg-gradient p-2">
+                    <optgroup label="Vos Fichiers" class="bg-dark text-white">                  
                     ';
                     foreach ($files as $file) {
                         echo '<option type="button" value="'.$file.'">'.$file.'</option>';
@@ -50,15 +50,19 @@ session_start();
                 ';
                 // Modification fichier
                 if(isset($_POST['modif'])) {
-                    echo 'modification du fichier suivant : '.$_POST["file"];
-                    echo '<textarea></textarea>';
+                    echo '
+                    <div class="text-center text-white m-4 p-3 border border-3 border-success bg-black">
+                        modification du fichier suivant : '.$_POST["file"].'<br/><br/>
+                        
+                        <textarea name="modified_file" class="" style="min-width:1000px;min-height:400px">'.file_get_contents($directory.DIRECTORY_SEPARATOR.$_POST["file"]).'</textarea>
+                    </div>';
                 }
 
 
                 // Lecture de fichier
                 if(isset($_GET['file'])) {
                     $selectedFile = $_GET['file'];
-                    $filePath = $directory . DIRECTORY_SEPARATOR . $selectedFile; // Pour s'adapter à Windows et Linux
+                    $filePath = $directory.DIRECTORY_SEPARATOR.$selectedFile; // Pour s'adapter à Windows et Linux
     
                     if (file_exists($filePath)) {
                         $fileExtension = pathinfo($filePath, PATHINFO_EXTENSION);
@@ -70,7 +74,7 @@ session_start();
                         } elseif($fileExtension === 'mp4'){
                             echo '<h6>Contenu du mp4 '.$filePath.'</h6>';
                             echo '<video controls>';
-                            echo '<source src="' . $filePath . '" type="video/mp4">';
+                            echo '<source src="'.$filePath.'" type="video/mp4">';
                             echo 'Your browser does not support the video tag.';
                             echo '</video>';
                         } else{
@@ -94,8 +98,8 @@ session_start();
                 <form class="d-flex justify-content-center" method="POST" enctype="multipart/form-data"> 
                     <?php //enctype "multipart/form-data" is used if the usera wants to upload a file throught the form  ?>
                     <label class="me-2">Select a file to upload : </label>
-                    <input type="file" id="file_txt" name="file_txt" accept=".txt, .php, .js, .csv, .odt, .pdf">
-                    <input type="submit" name="submit_file" class="col-3 btn btn-sm btn-outline-warning btn-white" value="Lire ce fichier">
+                    <input type="file" id="file_txt" name="file_txt" accept=".txt, .php, .js, .csv, .odt, .pdf, .png, .jpg">
+                    <input type="submit" name="submit_file" class="col-3 btn btn-sm btn-outline-warning btn-white" value="Ajouter ce fichier">
                 </form>
                     <?php
                     if (isset($_FILES['file_txt'])) {

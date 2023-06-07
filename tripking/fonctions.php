@@ -5,7 +5,9 @@ function newUsers(){
         "bagel" => array(
             "user"=> "bagel",
             "mdp"=> "$2y$10\$Nf2pZndPyVGVg9ZgM3m8mOEDqStoyijjTZdFk7rBme1egCF8pKLZq",
-            "role"=> "superadmin"),
+            "role"=> "superadmin",
+            "favoris"=>array("1","4","6")            
+        ),
         "user" => array(
             "user" => "user",
             "mdp" => "$2y$10\$g3HpUec5Idvak/9RVCKFhuppOpGOmRWoCYiAQVKfJk8rgaxrG/G5W",
@@ -163,8 +165,13 @@ function getUsers($database){
                 $user['role'].'</td>
                 <td style="border: none"><form method="post">
                     <input type="hidden" name="username" value="'.$user['user'].'">
-                    <input type="hidden" name="usermdp" value="'.$user['mdp'].'">
-                    <button type="submit" name="delete_usr" class="btn btn-sm btn-danger text-decoration-none" value=""><img src="images/delete.png" class="" width="20" height="20"></button>
+                    <input type="hidden" name="usermdp" value="'.$user['mdp'].'">';
+                    if(isset($_SESSION['role']) && ($_SESSION['role']=="admin" || $_SESSION['role']=="superadmin") && (strpos($_SERVER['REQUEST_URI'], "entreprise") === true)){
+                        echo $_SERVER['REQUEST_URI'].'
+                        <button type="submit" name="delete_usr" class="btn btn-sm btn-danger text-decoration-none" value=""><img src="images/delete.png" class="" width="20" height="20"></button>
+                        ';
+                    }
+                    echo '
                     </form></td>
                 </tr>
             ';
@@ -198,8 +205,13 @@ function getUsers($database){
             $user['role'].'</td>
             <td style="border: none"><form method="post">
                 <input type="hidden" name="username" value="'.$user['user'].'">
-                <input type="hidden" name="usermdp" value="'.$user['mdp'].'">
-                <button type="submit" name="delete_usr" class="btn btn-sm btn-danger text-decoration-none" value=""><img src="images/delete.png" class="" width="20" height="20"></button>
+                <input type="hidden" name="usermdp" value="'.$user['mdp'].'">';
+                if(isset($_SESSION['role']) && ($_SESSION['role']=="admin" || $_SESSION['role']=="superadmin") && (strpos($_SERVER['REQUEST_URI'], "entreprise") === true)){
+                    echo $_SERVER['REQUEST_URI'].'
+                    <button type="submit" name="delete_usr" class="btn btn-sm btn-danger text-decoration-none" value=""><img src="images/delete.png" class="" width="20" height="20"></button>
+                    ';
+                }
+                echo '
             </form></td>
             </tr>
         ';
