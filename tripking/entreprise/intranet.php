@@ -16,7 +16,9 @@ else{
         include("../fonctions_start.php");
         setup();
         /*
-        Page d'Intranet avec reconfirmation de connexion par formulaire
+        Page d'Intranet avec reconfirmation de connexion par formulaire 
+        => dans l'idée ou sur l'intranet les employés utiliserait d'autres
+        identifiants que ceux du site, cette fois-ci liée à une base sur le serveur Apache2.
         */
     
       echo '<body>';
@@ -68,9 +70,9 @@ else{
                               </h4>
                       </h1>
                   ';
-                  echo '<pre>';
-                  print_r($_POST);
-                  echo '</pre>';
+                  //echo '<pre>';
+                 //print_r($_POST);
+                  //echo '</pre>';
                   // Gestion des utilisateurs, du profil associé et de l’appartenance aux différents groupes
                   echo '
                   <div class="container">

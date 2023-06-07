@@ -135,8 +135,7 @@ function showAnnonces($annonces, $found=false){
     }
     else{
         echo '
-            <div class="p-2 pt-2">
-            <hr class="display-3 col-4 bg-dark">
+            <div class="p-2 pt-2 m-3">
         ';
     }
 echo '<div class="row">';
@@ -145,10 +144,17 @@ foreach ($annonces as $found) {
     echo '
         <div class="col-md-4">
             <div class="card mb-3 bg-opacity-25">
-                <img src="'.$found['images'][0].'" class="card-img-top" alt="Annonce Preview">
+                <img src="'.$found['images'][0].'" class="card-img-top" alt="Annonce Preview" style="max-height:400px;min-height:300px">
                 <div class="card-body">
                     <h5 class="card-title fw-semibold">'.$found['titre'].'</h5>
-                    <p class="card-text fst-italic">'.$found['lieu'].'</p>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text fst-italic">'.$found['lieu'].'</p>
+                        </div>
+                        <div class="col-2">
+                            <figcaption class="text-left">'.$found["nb_fav"].' &#10084;</figcaption>
+                        </div>
+                    </div>
                     <p class="card-text">
                         <strong>'.$found['prix_nuit'].'€</strong> / Nuit
                     </p>
@@ -383,7 +389,7 @@ function getAnnonces($annoncesbase){
     ';
 }
 
-function findAnnonces($keywords, $radioBtn, $checkboxBtn, $priceRange) {
+function findAnnonces($keywords, $radioBtn, $checkboxBtn, $priceRange, $bonplan=false) {
     $founded_annonces = [];
     $keywords = strip_tags($keywords);                        // Remove HTML tags
     $keywords = htmlentities($keywords, ENT_QUOTES, 'UTF-8'); // Encode special chars
@@ -395,32 +401,35 @@ function findAnnonces($keywords, $radioBtn, $checkboxBtn, $priceRange) {
     }
     $transports = ["train","avion","bus","voiture","autres_tr"];
     echo '
-        <ul class="mt-2 bg-dark bg-opacity-25 border border-black border-3 px-3 m-4">';
-        echo '<li>Recherche : '.($keywords).'</li>';
-        if($checkboxBtn != null){ //Transport
+        <ul class="bg-dark bg-opacity-25 border border-black border-3 m-4">';
+        echo '<li class="p-1">Recherche : '.($keywords).'</li>';
+        if($checkboxBtn != null){ // Transport
             if(in_array($checkboxBtn, $transports)){
-                echo "<li>Recherche par $checkboxBtn </li>";
+                echo "<li class='p-1'>Recherche par $checkboxBtn </li>";
             }
             else{
-                echo "<li>Tous les types de transport</li>";
+                echo "<li class='p-1'>Tous les types de transport</li>";
             }
         }
         $recherchepar = ["titre","lieu_pays","contenu"];
-        if($radioBtn != null){ //Transport
+        if($radioBtn != null){ // Type de Recherche
             if(in_array($radioBtn, $recherchepar)){
                 if($radioBtn == "lieu_pays"){
-                    echo "<li>Recherche par Lieu / Pays </li>";
+                    echo "<li class='p-1'>Recherche par Lieu / Pays </li>";
                 }
                 else{
-                    echo "<li>Recherche par $radioBtn </li>";
+                    echo "<li class='p-1'>Recherche par $radioBtn </li>";
                 }
             }
             else{
-                echo "<li>Titre, lieux, pays ou contenu</li>";
+                echo "<li class='p-1'>Titre, lieux, pays ou contenu</li>";
             }
         }
-        if($priceRange != null){ //Transport
-            echo "<li>Prix Maximum/nuit : $priceRange €</li>";
+        if($priceRange != null){ // Prix
+            echo "<li class='p-1'>Prix Maximum/nuit : $priceRange €</li>";
+        }
+        if($bonplan !== false){ // Prix
+            echo "<li class='p-1'>Bon Plan ONLY</li>";
         }
         echo '</ul>';
 
@@ -444,9 +453,15 @@ function findAnnonces($keywords, $radioBtn, $checkboxBtn, $priceRange) {
     $filtered_annonces = array_filter($founded_annonces, function ($annonce) use ($priceRange) {
         return $annonce['prix_nuit'] <= $priceRange;
     });
-    print_r($founded_annonces);
+    if($bonplan === true){
+        $filtered_annonces = array_filter($founded_annonces, function ($annonce) use ($bonplan) {
+            return $annonce['bon_plan'] == true;
+        });
+    }
+    var_dump($filtered_annonces);
+    //print_r($founded_annonces);
     echo '<br>';
-    print_r($filtered_annonces);
+    //print_r($filtered_annonces);
     showAnnonces($filtered_annonces);
 }
 
@@ -457,7 +472,7 @@ function modifyAnnonce($annonce){
     $annonces = json_decode(file_get_contents("./annonces/annonces.json", true), true);
     foreach($annonces as $thisone){
         if($thisone["id"]==$annonce["id"]){
-            deleteAnnonce($annonce["id"]); //On repère l'ancienne entrée d'utilisateur et on le supprime
+            deleteAnnonce($annonce["id"]); //On repère l'ancienne entrée d'annonce et on la supprime
         }
     }    
 }

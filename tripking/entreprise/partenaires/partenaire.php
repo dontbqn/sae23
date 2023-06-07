@@ -72,17 +72,27 @@ else{
                   ';
                   echo '
                   <div class="container border-1 border rounded-3 border-secondary p-5 my-5">
-                    <div class="display-6"> Entrez le logo de votre entreprise</div>
+                    <div class="display-6"> Logo et description de votre entreprise</div>
                     <hr>
-                    les formats acceptées sont les suivants : png, jpg, jpeg.
+                    les formats acceptées sont les suivants : <span class="fst-italic">png, jpg, jpeg.</span>
                   ';
                   // Modifs Dynamiques avec AJAX
                   // Gestion : Description, Titre, Logo (.ico et png) de l'entreprise   
                   echo '
                   <div class="d-flex row justify-content-evenly">
                     <div class="text-center m-4 border border-4 col-4 bg-dark bg-opacity-50" id="partenaireForm">
-                      <form action="./modif_part.php" method="post" enctype="multipart/form-data">
-                          <input class="form-control p-1 mt-3 mb-4" type="text" name="entreprise" placeholder="'.$_GET["partenaire"].'" id="part_entr">
+                      <form action="./modif_part.php" method="post" enctype="multipart/form-data">';
+                            if(isset($_GET["partenaire"])){
+                                echo '<input class="form-control p-1 mt-3 mb-4" type="text" name="entreprise" placeholder="'.$_GET["partenaire"].'" id="part_entr">';
+                            }
+                            if($_SESSION["role"]=="admin" || $_SESSION["role"]=="superadmin"){
+                                echo '<p class="fw-bold text-dark py-3"> En tant qu\'administrateur, vous êtes salariés de TripKing,
+                                vous avez donc accès à cette page mais ne pouvez rien faire
+                                étant donné que vous n\'êtes pas associés à l\'un des partenaires </p>';
+                                die();
+                            }
+                      
+                          echo '
                           <textarea class="form-control p-1 mt-3 mb-4" type="description" name="description" placeholder="" id="part_descr"></textarea>
                           <input class="form-control p-1 my-2" type="file" name="imageFile" id="imageFile" accept=".png, .jpg, .jpeg">
                       </form>
