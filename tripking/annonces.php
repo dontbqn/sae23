@@ -70,7 +70,7 @@ function newAnnonce(){
                 "./annonces/2/img1.jpg",
                 "./annonces/2/img2.jpg"
             ),
-            "partenaire"=>"rolex"
+            "partenaire"=>"thales"
             ),
             "3" => array(
                 "id" => 3,
@@ -86,7 +86,7 @@ function newAnnonce(){
                     "./annonces/3/img1.jpg",
                     "./annonces/3/img2.jpg",
                     "./annonces/3/img3.jpg"),
-                    "partenaire"=>"produits laitiers"
+                    "partenaire"=>"societe-generale"
                 ),
             "4" => array(
                 "id" => 4,
@@ -119,7 +119,7 @@ function newAnnonce(){
                         "./annonces/5/img2.jpg",
                         "./annonces/5/img3.jpg"
                 ),
-                "partenaire"=>"tefal"
+                "partenaire"=>"orange-cyberdefense"
                 ),
             );
     $res = json_encode($default_users, JSON_PRETTY_PRINT);
@@ -250,18 +250,13 @@ function addAnnonce($id, $titre, $lieu, $pays, $prixnuit, $description, $images,
      //Puis, redirection vers la page d'annonce nouvellement créée grâce à son id
 }
 
-function deleteAnnonce($annID){
-    //echo "annonce ".$ann['id']." : will be deleted soon";
-    $annonces = json_decode(file_get_contents('./annonce/annonces.json', true), true);
-    foreach($annonces as $key => $annonce) {
-        //echo "checking ".$annonce["id"];
-        if($annonce["id"] == $annID && ($_SESSION['role'] == "superadmin" || $_SESSION['role'] == "admin")){
-            unset($annonces[$key]);
-        }
+function deleteAnnonce($del_annonce){
+    $annonces = json_decode(file_get_contents('./annonces/annonces.json', true), true);
+    if($_SESSION['role'] == "superadmin" || $_SESSION['role'] == "admin"){
+        unset($annonces[$del_annonce["id"]]);
     }
-    end($annonces);
-    //file_put_contents("annonces/annonces.json", json_encode($annonces, JSON_PRETTY_PRINT));
-    header("Refresh:0");
+    file_put_contents("annonces/annonces.json", json_encode($annonces, JSON_PRETTY_PRINT));
+    //header("Location: ./page01.php");
 }
 function getAnnonces($annoncesbase){
     if(!isset($annoncesbase)){
@@ -315,8 +310,7 @@ function getAnnonces($annoncesbase){
             echo $annonce['bon_plan'] == True ? "&#10003;" : "&#9932;";
             echo '</td>';        
             echo '<td><a class="link-light" href="./annonces/'.$annonce['id'].'/">voir les images</a>';
-            echo '</td>
-            </tr>';
+            echo '</td>';
             echo '
                 <td style="border: none"><form method="post">
                     <input type="hidden" name="id" value="'.$annonce['id'].'">';
@@ -343,15 +337,15 @@ function getAnnonces($annoncesbase){
                     <table class="table text-white-50">
                         <thead>
                             <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Annonce</th>
-                            <th scope="col">Lieu</th>
-                            <th scope="col">Pays</th>
-                            <th scope="col">Partenaire</th>
-                            <th scope="col">Prix nuit</th>
-                            <th scope="col">Favs</th>
-                            <th scope="col">Bon Plan</th>
-                            <th scope="col">Images</th>
+                                <th scope="col">#</th>
+                                <th scope="col">Annonce</th>
+                                <th scope="col">Lieu</th>
+                                <th scope="col">Pays</th>
+                                <th scope="col">Partenaire</th>
+                                <th scope="col">Prix nuit</th>
+                                <th scope="col">Favs</th>
+                                <th scope="col">Bon Plan</th>
+                                <th scope="col">Images</th>
                             </tr>
                         </thead>
                         <tbody>';

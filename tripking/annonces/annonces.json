@@ -39,7 +39,7 @@
             ".\/annonces\/2\/img1.jpg",
             ".\/annonces\/2\/img2.jpg"
         ],
-        "partenaire": "rolex"
+        "partenaire": "thales"
     },
     "3": {
         "id": 3,
@@ -61,7 +61,7 @@
             ".\/annonces\/3\/img2.jpg",
             ".\/annonces\/3\/img3.jpg"
         ],
-        "partenaire": "produits laitiers"
+        "partenaire": "societe-generale"
     },
     "4": {
         "id": 4,
@@ -102,6 +102,6 @@
             ".\/annonces\/5\/img2.jpg",
             ".\/annonces\/5\/img3.jpg"
         ],
-        "partenaire": "tefal"
+        "partenaire": "orange-cyberdefense"
     }
 }

@@ -232,26 +232,44 @@ else{
         }
     }
 }
-    //ANNONCES
-    $annonces = json_decode(file_get_contents("annonces/annonces.json"), true);
-    getAnnonces($annonces);
-    echo '
-        <br><br>
-        <div class="position-relative mb-3">
-            <div role="alert" aria-live="assertive" aria-atomic="true" class="toast position-absolute show top-50 start-50 translate-middle show" data-bs-autohide="false">
-                <div class="toast-header">
-                    <img src="images/louis.png" class="rounded ms-1 me-2" alt="bugslogo" width="20" height="20">
-                    <strong class="me-auto">Need a reboot ?</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            //ANNONCES
+            $annonces = json_decode(file_get_contents("annonces/annonces.json"), true);
+            echo '
+                <br><br>
+                <div class="position-relative mb-3 mt-5">
+                    <div role="alert" aria-live="assertive" aria-atomic="true" class="toast position-absolute show top-50 start-50 translate-middle show" data-bs-autohide="false">
+                        <div class="toast-header">
+                            <img src="images/louis.png" class="rounded ms-1 me-2" alt="bugslogo" width="20" height="20">
+                            <strong class="me-auto">Need a reboot ?</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body text-center">
+                            <a type="button" href="./crea_annonce.php" class="btn btn-outline-danger" name="resetall">Reinitialiser les annonces (newAnnonces)</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="toast-body text-center">
-                    <a type="button" href="./crea_annonce.php" class="btn btn-outline-danger" name="resetall">Reinitialiser les annonces (newAnnonces)</a>
-                </div>
-            </div>
-        </div><br><br>
-    ';
+                    <br>
+                    <br>
+            ';
+            getAnnonces($annonces);
+            if(isset($_POST["delete_annonce"])){
+                $del_id = $_POST["id"];
+                echo $del_id;
+                //First verifying what it correspond to in the database
+                foreach($annonces as $annonce){
+                    if($annonce["id"] == $del_id){
+                        //print_r($annonce);
+                        deleteAnnonce($annonce);
+                        echo '<div class="text-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle mb-1" viewBox="0 0 16 16">
+                        <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/>
+                        <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/>
+                        </svg> <strong> annonce '.$del_id.' : will be deleted soon</strong><br>
+                        <a type="button" class="btn text-center border border-black mt-3" href="page06.php">reload page</a></div>';
+                    }
+                }  
+            }
 ?>      
-        <div class="d-flex container-fluid justify-content-evenly">
+        <div class="d-flex container-fluid justify-content-evenly mb-3">
             <div class="col-5 mb-5 border-dark border border-2 rounded-4 p-3">
                 <h5 class="text-center my-4 bg-success p-3">Publier une Offre</h5>
             <?php if(!isset($_POST['annonce_btn'])){ 
