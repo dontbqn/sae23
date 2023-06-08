@@ -156,7 +156,7 @@ $thisannonce;
                             <img src="'.$logo_entreprise.'" alt="" width="180" height="95" title="Logo de '.$thisannonce["partenaire"].'" />
                         </div>
                         <div class="mt-5 text-center mx-auto">
-                            <a onclick="signal_annonce(this);" href="" class="text-reset">signaler une annonce</a>  de <span class="semi-bold bg-info badge rounded-pill">'.ucfirst($thisannonce["partenaire"]).'</span>
+                            <a type="button" href="./contact/aide.php" onclick="signal_annonce(this);" target="_blank" class="text-reset">signaler une annonce</a>  de <span class="semi-bold bg-info badge rounded-pill">'.ucfirst($thisannonce["partenaire"]).'</span>
                             <script src="./js/signal_annonce.js"></script>
                         </div>
                     </div>
@@ -245,7 +245,6 @@ $thisannonce;
                             ';
                             $count++;
                         }
-
                         echo '
                             </div>
                         </div>

@@ -1,6 +1,10 @@
 <?php
-$log = $_POST['report_log'];
-// Récuperation du log envoyé via 
-$file = './report_logs.txt';
-file_put_contents($file, "New report input on report_logs.txt : ".$log.'\n', FILE_APPEND);
+if (isset($_POST["id"])) {
+    $log = $_POST["id"];
+    // Récuperation du log envoyé via
+    echo "XMLHttpRequest a bien été reçu";
+    $file = './report_logs.txt';
+    file_put_contents($file, "Nouveau signalement de l'annonce : ".$log. PHP_EOL, FILE_APPEND); //EOL = EndOfLine
+}
+
 ?>
