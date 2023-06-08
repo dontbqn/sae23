@@ -166,8 +166,8 @@ function getUsers($database){
                 <td style="border: none"><form method="post">
                     <input type="hidden" name="username" value="'.$user['user'].'">
                     <input type="hidden" name="usermdp" value="'.$user['mdp'].'">';
-                    if(isset($_SESSION['role']) && ($_SESSION['role']=="admin" || $_SESSION['role']=="superadmin") && (strpos($_SERVER['REQUEST_URI'], "entreprise") === true)){
-                        echo $_SERVER['REQUEST_URI'].'
+                    if(isset($_SESSION['role']) && ($_SESSION['role']=="admin" || $_SESSION['role']=="superadmin") && (strpos($_SERVER['REQUEST_URI'], "entreprise") === false)){
+                        echo '
                         <button type="submit" name="delete_usr" class="btn btn-sm btn-danger text-decoration-none" value=""><img src="images/delete.png" class="" width="20" height="20"></button>
                         ';
                     }

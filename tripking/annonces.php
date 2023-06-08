@@ -11,7 +11,9 @@ function newAnnonce(){
         "prix_nuit": 27,
 		"nb_fav":2, 
 		"bon_plan":True, //booléen
-		"commentaires":[c01,]
+		"commentaires":[c01,c04],
+        "images":[""./annonces/1/img1.jpg"]
+        "partenaire":"michelin",
     },
         */
         "1" => array(
@@ -39,7 +41,8 @@ function newAnnonce(){
             "images" => array(
                 "./annonces/1/img1.jpg",
                 "./annonces/1/img2.jpg"
-            )
+            ),
+            "partenaire"=>"michelin",
             ),
         "2" => array(
             "id"=> 2,
@@ -66,7 +69,8 @@ function newAnnonce(){
             "images" => array(
                 "./annonces/2/img1.jpg",
                 "./annonces/2/img2.jpg"
-            )
+            ),
+            "partenaire"=>"rolex"
             ),
             "3" => array(
                 "id" => 3,
@@ -81,7 +85,8 @@ function newAnnonce(){
                 "images" => array(
                     "./annonces/3/img1.jpg",
                     "./annonces/3/img2.jpg",
-                    "./annonces/3/img3.jpg")
+                    "./annonces/3/img3.jpg"),
+                    "partenaire"=>"produits laitiers"
                 ),
             "4" => array(
                 "id" => 4,
@@ -96,7 +101,8 @@ function newAnnonce(){
                 "images" => array(
                     "./annonces/4/img1.jpg",
                     "./annonces/4/img2.jpg"
-                )
+                ),
+                "partenaire"=>"coca-cola"
                 ),
             "5" => array(
                 "id" => 5,
@@ -112,7 +118,8 @@ function newAnnonce(){
                         "./annonces/5/img1.jpg",
                         "./annonces/5/img2.jpg",
                         "./annonces/5/img3.jpg"
-                    )
+                ),
+                "partenaire"=>"tefal"
                 ),
             );
     $res = json_encode($default_users, JSON_PRETTY_PRINT);
@@ -275,6 +282,7 @@ function getAnnonces($annoncesbase){
                                 <th scope="col">Annonce</th>
                                 <th scope="col">Lieu</th>
                                 <th scope="col">Pays</th>
+                                <th scope="col">Partenaire</th>
                                 <th scope="col">Prix nuit</th>
                                 <th scope="col">Favs</th>
                                 <th scope="col">Bon Plan</th>
@@ -293,6 +301,9 @@ function getAnnonces($annoncesbase){
             echo $annonce['lieu'];
             echo '</td><td>';
             echo $annonce['pays'];
+            echo '</td>';
+            echo '<td>';
+            echo $annonce['partenaire'];
             echo '</td>';
             echo '<td>';
             echo $annonce['prix_nuit'];
@@ -336,6 +347,7 @@ function getAnnonces($annoncesbase){
                             <th scope="col">Annonce</th>
                             <th scope="col">Lieu</th>
                             <th scope="col">Pays</th>
+                            <th scope="col">Partenaire</th>
                             <th scope="col">Prix nuit</th>
                             <th scope="col">Favs</th>
                             <th scope="col">Bon Plan</th>
@@ -353,6 +365,9 @@ function getAnnonces($annoncesbase){
             echo $annonce['lieu'];
             echo '</td><td>';
             echo $annonce['pays'];
+            echo '</td>';
+            echo '<td>';
+            echo $annonce['partenaire'];
             echo '</td>';
             echo '<td>';
             echo $annonce['prix_nuit'];

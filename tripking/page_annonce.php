@@ -53,7 +53,7 @@ $thisannonce;
                         <hr>
                     </div>
                     <div class="row border rounded-4 p-3 d-flex justify-content-center bg-gradient">
-                        <div class="card col-6 ms-1 border-0">
+                        <div class="card bg-transparent col-6 ms-1 border-0">
                             <div class="card-body">';
                         // Carousel des images de la location
                         echo '
@@ -111,10 +111,10 @@ $thisannonce;
                                         <label for="floatarrivee">ARRIVEE</label>
                                     </div>
                             </div>
-                            <div class="mt-3 mb-3 d-flex justify-content-evenly">
-                                <label for="voyageurs" class="form-label">Voyageur(s)</label>
-                                <select class="form-select" name="voyageurs" id="voyageurs" style="max-width:20px;">
-                                    <option value="1">1</option>
+                            <div class="mt-3 mb-3 row">
+                                <label for="voyageurs" class="ms-4 mt-2 form-label col">Voyageur(s) :</label>
+                                <select class="form-select col shadow-none" name="voyageurs" id="voyageurs">
+                                    <option value="1" selected>1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
@@ -136,9 +136,29 @@ $thisannonce;
                                     echo'
                             </div>
                             <div class="mt-1 text-center mx-auto">
-                                <button type="submit" class="btn btn-xl bg-light border border-1 border-dark" value="reserve">RESERVER</button>
+                                <button type="submit" class="btn btn-xl bg-secondary-subtle shadow-none border border-1 border-dark" value="reserve">RESERVER</button>
                             </div>
                         </form>
+                        <div class="mt-3 text-center mx-auto">
+                            <button type="button" class="btn btn-xl border border-1 border-danger" id="addFav"><span class="text-danger">+</span>  <img src="images/icone_coeur.png" alt="" width="20" height="20"></button>
+                        </div>
+                        <div class="mt-4 text-center mx-auto">';
+                        $entreprises = json_decode(file_get_contents("./data/partenaires.json"), true);
+                        $index = $thisannonce["partenaire"];
+                        $logo_entreprise = "";
+                        if (isset($entreprises[$index])) {
+                            $logo_entreprise = $entreprises[$index]['logo'];
+                            //echo $logo_entreprise;
+                        } else {
+                            echo "logo du partenaire non existant";
+                        }
+                        echo '
+                            <img src="'.$logo_entreprise.'" alt="" width="180" height="95" title="Logo de '.$thisannonce["partenaire"].'" />
+                        </div>
+                        <div class="mt-5 text-center mx-auto">
+                            <a onclick="signal_annonce(this);" href="" class="text-reset">signaler une annonce</a>  de <span class="semi-bold bg-info badge rounded-pill">'.ucfirst($thisannonce["partenaire"]).'</span>
+                            <script src="./js/signal_annonce.js"></script>
+                        </div>
                     </div>
                     <span class="font-monospace align-self-end mt-auto">référence #'.$thisannonce["id"].'</span>
                     </div>
@@ -171,7 +191,7 @@ $thisannonce;
                                 foreach($commentaires as $id_commentaire){
                                     foreach($data_coms as $commentaire){
                                         if($commentaire['id'] == $id_commentaire){
-                                            echo '<div class="card p-3 col-6 mx-2">';
+                                            echo '<div class="card bg-gradient p-3 col-6 my-4 mx-2">';
                                             echo '<div class="card-header">';
                                                 echo '<div class="row">';
                                                     echo '<div class="col-2 font-monospace">';

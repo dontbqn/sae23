@@ -16,7 +16,8 @@
         "images": [
             ".\/annonces\/1\/img1.jpg",
             ".\/annonces\/1\/img2.jpg"
-        ]
+        ],
+        "partenaire": "michelin"
     },
     "2": {
         "id": 2,
@@ -37,7 +38,8 @@
         "images": [
             ".\/annonces\/2\/img1.jpg",
             ".\/annonces\/2\/img2.jpg"
-        ]
+        ],
+        "partenaire": "rolex"
     },
     "3": {
         "id": 3,
@@ -58,7 +60,8 @@
             ".\/annonces\/3\/img1.jpg",
             ".\/annonces\/3\/img2.jpg",
             ".\/annonces\/3\/img3.jpg"
-        ]
+        ],
+        "partenaire": "produits laitiers"
     },
     "4": {
         "id": 4,
@@ -77,7 +80,8 @@
         "images": [
             ".\/annonces\/4\/img1.jpg",
             ".\/annonces\/4\/img2.jpg"
-        ]
+        ],
+        "partenaire": "coca-cola"
     },
     "5": {
         "id": 5,
@@ -97,6 +101,7 @@
             ".\/annonces\/5\/img1.jpg",
             ".\/annonces\/5\/img2.jpg",
             ".\/annonces\/5\/img3.jpg"
-        ]
+        ],
+        "partenaire": "tefal"
     }
 }

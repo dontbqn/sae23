@@ -344,7 +344,7 @@ function pagenavbar($pageactive){
             if(isset($_SESSION['user']) && ($_SESSION['role']=="admin" || $_SESSION["role"] == "superadmin")){
                 echo '
                     <li class="nav-item list-group-item">
-                    <a class="nav-link '.($pageactive == "page06.php" ? "active bg-danger fw-bolder border bg-opacity-50 border-2 border-danger bg-gradient rounded-3 p-3" : navbarItem()).'" href="page06.php">Admin</a>
+                    <a class="nav-link fw-bolder text-danger '.($pageactive == "page06.php" ? "active bg-danger border bg-opacity-50 border-2 border-danger bg-gradient rounded-3 p-3" : navbarItem()).'" href="page06.php">Admin</a>
                     </li>
                 ';
             }
