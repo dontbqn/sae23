@@ -245,7 +245,7 @@ else{
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
                 <div class="toast-body text-center">
-                    <a type="button" href="" class="btn btn-outline-danger" name="resetall">Reinitialiser les annonces (newAnnonces)</a>
+                    <a type="button" href="./crea_annonce.php" class="btn btn-outline-danger" name="resetall">Reinitialiser les annonces (newAnnonces)</a>
                 </div>
             </div>
         </div><br><br>
@@ -318,7 +318,8 @@ else{
             
             <div class="col-5 mb-5 border border-dark border-2 rounded-4 p-3">
                 <h5 class="text-center my-4 bg-warning p-3">Modifier une Offre</h5>
-                <?php if(!isset($_POST['modif_annonce'])){  // Modifier une Annonce
+                <?php //if(!isset($_POST['modif_annonce'])){  
+                    // Modifier une Annonce, avec AJAX => le if(isset) est n'est pas utile
                     echo '
                         <form name="form_modif" method="post" action="'.$_SERVER['PHP_SELF'].'">
                                 <div class="form-group">
@@ -366,15 +367,7 @@ else{
                                     <input type="submit" class="form-control btn btn-warning" id="modif_annonce" name="modif_annonce">
                                 </div>
                         </form>
-                     ';
-                }
-                else{
-                    // Affichage de la nouvelle annonce
-                    // Quand l'admin choisit l'annonce avec le <select>
-
-
-
-                } ?>
+                     '; ?>
             </div>
         </div>
     </body>
