@@ -1,0 +1,15 @@
+Sessions Preferences, CSS tricks
+
+https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/
+
+
+https://148.60.210.76
+https://148.60.210.77
+connexion rapide >> Serv proxmox https://172.19.11.204:8006 >>Proxmox Ve
+https://172.18.50.X-> GRP website
+
+id : acrico
+mdp : vcenter mdp
+
+webserv => console login root
+

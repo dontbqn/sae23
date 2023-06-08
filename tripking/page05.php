@@ -19,8 +19,20 @@ pagenavbar("page05.php");
             //User name and mail as input placeholder
             echo '
                 <div class="col-10 g-3 border-secondary border-2">
-                    <h6 class="text-center text-danger">Attention aux valeurs que vous entrez ! le changement sera définitif</h6>
-                    <form method="post">
+                    <div class="d-flex justify-content-center">
+                        <div class="card text-center" style="width:18rem;">
+                            <div class="card-header" style="background-color:'.$_SESSION['favcolor'].'">
+                                Photo de Profil
+                            </div>
+                            <img src="images/louis.png" class="card-img img-fluid p-3" alt="pfp">
+                            <div class="card-body">
+                                <h5 class="card-title p-3" style="background-color:'.$_SESSION['favcolor'].'">'.$_SESSION['user'].'</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 class="text-center text-danger">Attention aux valeurs que vous entrez ! le changement sera immédiat après validation !</h6>
+                    <form method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="roleInput">Role</label>
                             <input type="text" class="form-control shadow-none" id="roleInput" name="role" placeholder="'.$_SESSION["role"].'" readonly="readonly">
@@ -36,6 +48,10 @@ pagenavbar("page05.php");
                         <div class="form-group">
                             <label for="aProposInputArea">A propos de moi</label>
                             <textarea class="form-control" id="aProposInputArea" rows="3" name="apropos" disabled>'.$_SESSION["role"].'</textarea>
+                        </div>
+                        <div class="form-group my-3">
+                            <label for="pdp">Ma photo de profil (<span class="fst-italic">< 2 Mo</span> )</label>
+                            <input type="file" class="form-control" id="pdp" rows="3" name="pdp" accept=".png, .jpg, .jpeg, .webp">
                         </div>
                         <div class="form-group my-2 p-2">
                             <label for="favcolor" class="me-3">Theme Color : </label>';

@@ -311,7 +311,7 @@ function getAnnonces($annoncesbase){
                     <input type="hidden" name="id" value="'.$annonce['id'].'">';
                     if(isset($_SESSION['role']) && ($_SESSION['role']=="admin" || $_SESSION['role']=="superadmin")){
                         echo '
-                            <button type="submit" name="delete_annonce" class="btn btn-sm btn-danger text-decoration-none" value=""><img src="images/foryou.png" class="" width="30" height="30"></button>
+                            <button type="submit" name="delete_annonce" class="btn btn-sm btn-danger text-decoration-none" value=""><img src="images/delete.png" class="" width="30" height="30"></button>
                         ';
                     }
                     echo '

@@ -464,9 +464,8 @@ function footer(){
                     <h5>Subscribe to our newsletter</h5>
                     <p>Monthly digest of what exciting from us.</p>
                     <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                        <label for="newsletter1" class="visually-hidden">Email address</label>
-                        <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-                        <button class="btn btn-primary" type="button">Subscribe</button>
+                        <input id="newsletter1" type="text" class="form-control bg-light bg-gradient shadow-none" placeholder="Email address">
+                        <button class="btn btn-dark btn-outline-primary" type="button">Subscribe</button>
                     </div>
                 </form>
                 <p>Avenue Jean Moulin – 7, 40221 Saint-Malo, France</p>
@@ -499,13 +498,13 @@ function footer(){
                 </div>
                 <div class="col-sm-8">
                     <div>
-                        <button href="https://www.twitter.com/tripking/" class="">
+                        <button href="https://www.twitter.com/tripking/" class="btn">
                             <img src="images/twitter.png" alt="" width="40" height="40">
                         </button>
-                        <button href="https://www.instagram.com/tripking/" class="">
+                        <button href="https://www.instagram.com/tripking/" class="btn">
                             <img src="images/insta.png" alt="" width="40" height="40">
                         </button>
-                        <button href="www.facebook.com/tripking/" class="">
+                        <button href="www.facebook.com/tripking/" class="btn">
                             <img src="images/facebook.png" alt="" width="40" height="40">
                         </button>
                     </div>

@@ -105,7 +105,7 @@ session_start();
                 <form class="d-flex justify-content-center" method="POST" enctype="multipart/form-data"> 
                     <?php //enctype "multipart/form-data" is used if the usera wants to upload a file throught the form  ?>
                     <label class="me-2">Select a file to upload : </label>
-                    <input type="file" id="file_input" name="file_input" accept=".txt, .php, .js, .csv, .odt, .pdf">
+                    <input type="file" id="file_input" name="file_input" accept=".txt, .php, .js, .csv, .odt, .pdf, .png, .jpg">
                     <input type="submit" name="submit_file" class="col-3 btn btn-sm btn-outline-warning btn-white" value="Lire ce fichier">
                 </form>
                     <?php

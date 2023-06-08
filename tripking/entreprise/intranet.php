@@ -40,11 +40,11 @@ else{
                               </div>
                               <div class="form-group py-1">
                                   <label for="username">Username</label>
-                                  <input type="text" class="form-control shadow-none" id="username" name="username" placeholder="'.$_SESSION["user"].'" required>
+                                  <input type="text" class="form-control shadow-none" id="username" name="username" placeholder="'.$_SESSION["user"].'">
                               </div>
                               <div class="form-group py-1">
                                   <label for="motdepasse" class="col-form-label">Password</label>
-                                  <input type="password" class="form-control shadow-none passwords" name="motdepasse" id="motdepasse" placeholder="&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;" required>
+                                  <input type="password" class="form-control shadow-none passwords" name="motdepasse" id="motdepasse" placeholder="&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;&#42510;">
                               </div>  
                               <div class="form-group form-check form-switch my-2">
                                   <input type="checkbox" name="visible_box" class="form-check-input my-2 p-2 shadow-none" id="dontwatchme">
