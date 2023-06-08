@@ -14,171 +14,124 @@ pagenavbar("wiki.php");
         <div class="d-flex div container col-9 justify-content-center border border-2 rounded-3 shadow-md mb-5">
             <div class="row col-8 p-3">
                 <div class="mb-5 fs-6">
-                    <h4>Fonctions du formulaire</h4>
+                    <h4>Fonctions des annonces</h4>
                     <hr>
                         <div class="list-group list-group-flush text-center">
-                            <a href="#setup" class="list-group-item list-group-item-action">setup()</a>
-                            <a href="#header" class="list-group-item list-group-item-action">pageheader()</a>
-                            <a href="#footer" class="list-group-item list-group-item-action">pagefooter()</a>
-                            <a href="#navbar" class="list-group-item list-group-item-action">pagenavbar()</a>
-                            <a href="#showbooks" class="list-group-item list-group-item-action">showBooks()</a>
-                            <a href="#findbooks" class="list-group-item list-group-item-action">findBooks()</a>
+                            <a href="#newann" class="list-group-item list-group-item-action">newAnnonce()</a>
+                            <a href="#showann" class="list-group-item list-group-item-action">showAnnonces()</a>
+                            <a href="#addann" class="list-group-item list-group-item-action">addAnnonce()</a>
+                            <a href="#delann" class="list-group-item list-group-item-action">deleteAnnonce()</a>
+                            <a href="#getann" class="list-group-item list-group-item-action">getAnnonces()</a>
+                            <a href="#findann" class="list-group-item list-group-item-action">findAnnonces()</a>
+                            <a href="#modifann" class="list-group-item list-group-item-action">modifyAnnonce()</a>
+                            <a href="#newcoms" class="list-group-item list-group-item-action">newCommentaires()</a>
                         </div>
-                        <script>
-                            const cards = document.querySelectorAll('.card');
-                            cards.forEach(card => {
-                                const a_link = card.querySelector('.list-group-item-action');
-                                a_link.addEventListener('click', e => {
-                                    e.preventDefault(); 
-                                    // Désactive le comportement par défaut du navigateur, pouvant causer des erreurs
-                                    card.classList.add(''); 
-                                    //ajout de la class glow, relié au style css
-                                    
-                                    setTimeout(() => {     //Effet se dissipe au bout d'1s
-                                    card.classList.remove('');
-                                    }, 1000);
-                                });
-                            });
-                        </script>
                 </div>
-                <h4>Mode d'emploi du Formulaire</h4>
+                <h4>Mode d'emploi des annonces </h4>
                 <p>
-                    Constitué de chacune des fonctions citées, la page de Formulaire permet de rechercher vos livres préférés.
+                    Constitué de chacune des fonctions citées, la page Explorer permet de rechercher les annonces de votre choix.
                     Ce formulaire et son traitement est sur une seule page, grâce à une instruction composée de "isset()".
                     <br/>
-                    Ce formulaire de recherche ne requiert pas d'options pour être validé. Il a été formé de sorte à ce que les
-                    utilisateurs puissent choisir être le plus précisémment possible, selon la base de données présentes sur le serveur.
-                    Il est ainsi possible d'effectuer des recherches par mois, années, titres, auteurs, contenus, ou seulement par mots clés.
-                    Un soucis pour l'instant est que si un utilisateur effectue une faute d'ortographe, les fonctions php utilisées (strcontains())
-                    ne reconnaitront pas la saisie. L'algorithme de recherche peut largement être améliorer par la suite. <br>Exemple "<a class="link-underline-danger" href="#" title="Victor Hugo*">Victorius Hugod</a>" renverra le message suivant : "<em>no books could be found</em>" bien
-                    que la chaîne de caractères ressemble à celle de "Victor" et  "Hugo".
-                    En revanche, une requête tel que : "victo bauv blanchi mile", renverra différents livres.
+                    Il est ainsi possible d'effectuer des recherches par titres, lieux ou pays, contenus, seulement par mots clés, par
+                    prix, ou encore par transports disponibles.
                     <br/>
-                    A noté que la recherche par année seulement fonctionne. Mais que si un utilisateur recherche en indiquant seulement le mois de parution,
-                    le formulaire ne renverra rien. C'est une mise à jour qui sera effectué dans les prochains jours, comptez sur notre équipe.
+                    A la recherche effectuée, une liste des annonces s'affichent, nos critères de recherches aussi. On peut alors observer parmis les 
+                    cartes d'annnonces celle qui nous intéresse, les quelques informations dessus, puis se rendre sur page.
                 </p>
                 <p>
+                    En se rendant sur la page, on se rend vite compte que c'est une unique page pour toute les annonces, qui met à jour
+                    ses informations selon le paramètre "?id" situé dans l'URL
                     <br/>
-                    Les mots clés de type déterminants, articles, propositions ou pronoms sont omis de la recherche par expression, tout simplement car tous les livres s'afficheraient
-                    si l'utilisateur recherchait un mot tel que "et".
                     <br/>
-                    Lorsqu'une recherche par date (année et/ou mois) est effectuée, les livres possédant des dates de publications ultérieurs sont affichés.
                     <br/>
-                    A chaque traitement, une liste contenant toutes les occurrences est formée, puis elle est triée à la fin, pour supprimé toute duplication et 
-                    afficher les résultats uniques.
-                    <br/>
-                    Les recherches par expression (barre de recherche) nécessite au minimum 4 caractères afin d'être traité.
                     <br/>
                 </p>
                 <p>
-                    Concernant l'aspect sécurité, il aurait fallut ajouté plus de fonctions permettant d'éviter toute injection de code, avec par exemple la fonction htmlspecialchars().
                 </p>
             </div>
         </div>
             <div class="row g-2 mb-2 mx-2 p-3">
-                <div class="col" id="setup">
-                    <div class="card">
-                        <img src="images/setup.png" class="img-fluid">
+                    <div class="col" id="newann">
+                        <div class="card">
+                            <img src="images/fonctions_ray.so/newann.png" class="img-fluid">
                             <div class="card-body">
-                                <code class="card-title">Setup</code>
-                                <p class="card-text">Cette fonction est la première appelée, car elle initialise les principales informations de la page HTML.
-                                    Elle permet l'import du framework BootStrap, configure l'encodage, le titre, les fichiers Javascript et CSS.
-                                </p>
+                            <code class="card-title">newAnnonce()</code>
+                            <p class="card-text">Cette fonction est la première appelée, car elle initialise les principales informations de la page HTML. Elle permet l'import du framework BootStrap, configure l'encodage, le titre, les fichiers Javascript et CSS.</p>
                             </div>
-                    </div>
-                </div>
-                <div class="col" id="header">
-                    <div class="card">
-                        <img src="images/setup.png" class="img-fluid">
-                            <div class="card-body">
-                                <code class="card-title">Header</code>
-                                <p class="card-text">Cette fonction est appelé pour initialisé la tête du site, contenant le logo, le titre du site ainsi que  l'état de la session.
-                                    Lorsqu'une session n'est pas démarré, un bouton "connect" permet aux utilisateurs de se connecter/de s'inscrire, en étant mené vers un élément BootStrap nommé Modal.
-                                    Une fenêtre de connexion s'ouvre et les utilisateurs peuvent ainsi entrer leurs identifiants.<br/>
-                                    Lorsqu'une session est démarré, cette fonction va chercher à identifier quel est le rôle de l'utilisateur connecté, et selon le rôle, une bouton de déconnexion s'affiche.
-                                    <br/>
-                                    Dans le modal, un bouton de type 'checkbox' est cochable, et permet d'instaurer un cookie, qui permettra à un utilisateur de se connecter automatiquement, lorsqu'il ouvrira son 
-                                    navigateur. Ce cookie a une durée de vie limitée, déterminé à son initialisation lors de l'appel de la fonction 'setcookie()'.
-                                </p>
-                            </div>
-                    </div>
-                </div>
-                <div class="col" id="footer">
-                    <div class="card">
-                        <img src="images/setup.png" class="img-fluid">
-                            <div class="card-body">
-                                <code class="card-title">Footer</code>
-                                <p class="card-text">Cette fonction sert à affiché le pied de page, content les informations du propriétaire du site, et des informations pour les utilisateurs
-                                    tel que leurs adresses IP, leur port utilisé sur le site, et la date du jour. Tout cela est possible grâce à la variable supergloab $_SERVER, qui récupèrent toutes
-                                    ces informations et nous permet de les manipuler.
-                                </p>
-                            </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row g-2 mb-5 mx-2 p-3">
-                <div class="col" id="navbar">
-                    <div class="card">
-                        <img src="images/setup.png" class="img-fluid">
-                            <div class="card-body">
-                                <code class="card-title">Navbar</code>
-                                <p class="card-text">Cette fonction permet d'afficher une barre de navigation personnalisée selon le rôle de l'utilisateur. Si un admin/superadmin est connecté, une instruction php leur affichera
-                                    une page inaccessible aux utilisateurs lambdas : la page d'administration. Lorsqu'un lien est cliqué, elle devient active grâce à des class BootStrap ajoutée aux balises de liens.
-                                </p>
-                            </div>
-                    </div>
-                </div>
-                <div class="col" id="showbooks">
-                    <div class="card">
-                        <img src="images/setup.png" class="img-fluid">
-                        <div class="card-body">
-                            <code class="card-title">ShowBooks</code>
-                            <p class="card-text">Cette fonction récupère une base de donnée .json, qu'elle affiche grâce à une boucle 'foreach' dans un tableau HTML/BootStrap.
-                                <br/>Un argument supplémentaire lui a été ajouté, permettant de déterminé si des livres ont été trouvés ou non (liste de livres vide). Dans le cas ou cette
-                                argument est égal au booléen 'False', c'est que la fonction findBooks n'a pas trouvé de livres suite à la recherche de l'utilisateur.
-                            </p>
                         </div>
                     </div>
-                </div>
-                <div class="col" id="findbooks">
-                    <div class="card">
-                        <img src="images/setup.png" class="img-fluid">                        
-                        <div class="card-body">
-                            <code class="card-title">FindBooks</code>
-                            <p class="card-text">Cette fonction permet de traiter tous les éléments de recherche du formulaire. Les composants du formulaire renvoient
-                                ou non des valeurs selon les choix de l'utilisateur (L'utilisateur est libre d'entrer les options de recherches qui lui plaisent, sans 'required').
-                                Les valeurs retournés par l'envoie du formulaire via la méthode POST sont donc ensuite passés en arguments de la fonction : une variable keywords
-                                qui traite les expressions entrés dans l'input, la liste de livres étudiés, une liste fields dans laquelle on aura entré au préalable les données tel que
-                                le mois, l'année, la recherche par titres, etc.
-                                <br/>
-                                Pour chaque boucle de recherche, un fichier texte de log est créé, et dans lequel des informations sont écrites.
-                                Avant le traitement des données, on déclare une liste de livres trouvés. Quand le traitement est terminé, la liste est triée et les doublons trouvés sont supprimés. On appelle alors la fonction
-                                showBooks pour afficher le résultat obtenu à l'utilisateur.
-                            </p>
+
+                    <div class="col" id="showann">
+                        <div class="card">
+                            <img src="images/fonctions_ray.so/showann.png" class="img-fluid">
+                            <div class="card-body">
+                            <code class="card-title">showAnnonces()</code>
+                            <p class="card-text">Cette fonction est appelée pour initialiser la tête du site, contenant le logo, le titre du site ainsi que l'état de la session. Lorsqu'une session n'est pas démarrée, un bouton "connect" permet aux utilisateurs de se connecter/de s'inscrire, en étant mené vers un élément BootStrap nommé Modal. Une fenêtre de connexion s'ouvre et les utilisateurs peuvent ainsi entrer leurs identifiants.<br/>Lorsqu'une session est démarrée, cette fonction va chercher à identifier quel est le rôle de l'utilisateur connecté, et selon le rôle, un bouton de déconnexion s'affiche.<br/>Dans le modal, un bouton de type 'checkbox' est cochable, et permet d'instaurer un cookie, qui permettra à un utilisateur de se connecter automatiquement lorsqu'il ouvrira son navigateur. Ce cookie a une durée de vie limitée, déterminée à son initialisation lors de l'appel de la fonction 'setcookie()'.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                    <div class="col" id="addann">
+                        <div class="card">
+                            <img src="images/fonctions_ray.so/addann.png" class="img-fluid">
+                            <div class="card-body">
+                            <code class="card-title">addAnnonce()</code>
+                            <p class="card-text">Cette fonction permet de gérer l'ajout d'une nouvelle annonce. Elle traite les informations saisies par l'utilisateur dans un formulaire et effectue les validations nécessaires avant d'ajouter l'annonce à la base de données.</p>
+                            </div>
+                        </div>
+                    </div>
             </div>
-                <style>/* CSS styles pour animer les cartes */
-                    /*   Les index ne sont pas encore configurés de sorte à ce qu'il
-                        y ait un effet de zoom sur les images présentant les fonctions.    */
-                
-                    .card {
-                        overflow: hidden;
-                        z-index: 1;
-                    }
-                    .card-body{
-                        z-index: 5;
-                    }
-                    .card:hover img {
-                        display: inherit;
-                        cursor: alias;
-                        z-index: inherit; 
-                        transform: scale(1.12);
-                        transition-duration: 1.8s;
-                    }
-                
-                </style>
+            <div class="row g-2 mb-2 mx-2 p-3">
+                    <div class="col" id="delann">
+                        <div class="card">
+                            <img src="images/fonctions_ray.so/deleteann.png" class="img-fluid" style="max-height:200px">
+                            <div class="card-body">
+                            <code class="card-title">deleteAnnonce()</code>
+                            <p class="card-text">Cette fonction permet de supprimer une annonce de la base de données. Elle prend en paramètre l'ID de l'annonce à supprimer et effectue les opérations nécessaires pour la suppression.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col" id="getann">
+                        <div class="card">
+                            <img src="images/fonctions_ray.so/getann.png" class="img-fluid">
+                            <div class="card-body">
+                            <code class="card-title">getAnnonces()</code>
+                            <p class="card-text"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" id="findann">
+                        <div class="card">
+                            <img src="images/fonctions_ray.so/findann.png" class="img-fluid">
+                            <div class="card-body">
+                            <code class="card-title">findAnnonces()</code>
+                            <p class="card-text">Cette fonction permet à l'utilisateur de rechercher des annonces en fonction de certains critères tels que le titre, le lieu, le prix, etc. Elle traite les valeurs saisies dans un formulaire de recherche et affiche les annonces correspondantes.</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="row g-2 mb-2 mx-2 p-3">
+                    <div class="col" id="modifann">
+                        <div class="card">
+                            <img src="images/fonctions_ray.so/modifann.png" class="img-fluid">
+                            <div class="card-body">
+                            <code class="card-title">modifyAnnonce()</code>
+                            <p class="card-text">Cette fonction permet de modifier les informations d'une annonce existante. Elle prend en paramètre l'ID de l'annonce à modifier et permet à l'utilisateur de mettre à jour les détails de l'annonce dans un formulaire.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col" id="newcoms">
+                        <div class="card">
+                            <img src="images/fonctions_ray.so/newcoms.png" class="img-fluid">
+                            <div class="card-body">
+                            <code class="card-title">newCommentaires()</code>
+                            <p class="card-text">Cette fonction permet aux utilisateurs de laisser des commentaires sur une annonce spécifique. Elle traite les commentaires soumis dans un formulaire et les ajoute à la base de données des commentaires associés à l'annonce correspondante.</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
     <div class="d-flex div container col-9 justify-content-center border border-2 rounded-3 shadow-md mb-5">
             <div class="row col-8 p-3">
                 <div class="mb-5 fs-6">
