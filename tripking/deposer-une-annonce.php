@@ -19,7 +19,7 @@ else{
         <?php
             if(isset($_SESSION['partenaire'])){
                 $p = $_SESSION["partenaire"];
-                echo '<h1 class="text-center text-primary">société : '.ucfirst($p).'</h1>'; // Premiere lettre en capital
+                echo '<h1 class="text-center text-primary mb-3">Votre société : '.ucfirst($p).'</h1>'; // Premiere lettre en capital
             }
 
             //ANNONCES
