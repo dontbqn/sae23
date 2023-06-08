@@ -3,56 +3,56 @@
         "name": "Michelin Inc.",
         "description": "Michelin est un leader international de fabrication de pneumatiques. L'entreprise française a son siège social à Clermont-Ferrand. Ils nous accompagnent dans nos projet depuis 2007.",
         "users":  ["michel","sandra457"],
-        "logo":"./images/partenaires/michelin.ico"
+        "logo":"./images/partenaires/michelin.ico",
         "lien": "https://www.viamichelin.fr/"
     },
     "ministere-defense": {
         "name": "Ministère de la Défense",
         "description": "Le Ministère de la Défense est responsable de la sécurité nationale et de la défense militaire en France. Ils collaborent avec nous pour renforcer la cybersécurité.",
         "users": ["defense_dept", "cyber_defense_21"],
-        "logo": "./images/partenaires/ministere-defense.ico"
+        "logo": "./images/partenaires/ministere-defense.ico",
         "lien": "https://www.defense.gouv.fr/"
       },
       "fleury-michon": {
         "name": "Fleury Michon",
         "description": "Fleury Michon est une entreprise française spécialisée dans la transformation de produits alimentaires. Leur engagement envers la qualité et la sécurité alimentaire est essentiel.",
         "users": ["fleuryM", "michon78"],
-        "logo": "./images/partenaires/fleury-michon.ico"
+        "logo": "./images/partenaires/fleury-michon.ico",
         "lien": "https://www.fleurymichon.fr/"
       },
       "orange-cyberdefense": {
         "name": "Orange Cyberdefense",
         "description": "Orange Cyberdefense est une entreprise leader en cybersécurité, offrant des services de protection, de détection et de réponse aux cyberattaques. Leur expertise nous aide à renforcer notre sécurité.",
         "users": ["OCD_team", "cyber_expert42"],
-        "logo": "./images/partenaires/orange-cyberdefense.ico"
+        "logo": "./images/partenaires/orange-cyberdefense.ico",
         "lien": "https://www.orangecyberdefense.com/fr/"
       },
       "thales": {
         "name": "Thales Group",
         "description": "Thales est une multinationale française spécialisée dans l'aérospatiale, la défense et les technologies de l'information. Leurs solutions de sécurité nous permettent de faire face aux défis de la cybermenace.",
         "users": ["ThalesG", "secure_tech"],
-        "logo": "./images/partenaires/thales.ico"
+        "logo": "./images/partenaires/thales.ico",
         "lien": "https://www.thalesgroup.com/fr"
       },
       "airbus": {
         "name": "Airbus",
         "description": "Airbus est un constructeur aéronautique européen. Leur expertise en matière de cybersécurité des systèmes embarqués est essentielle pour garantir la sécurité de nos infrastructures.",
         "users": ["Airbus_group", "aero_security"],
-        "logo": "./images/partenaires/airbus.ico"
+        "logo": "./images/partenaires/airbus.ico",
         "lien": "https://www.airbus.com/en"
       },
       "societe-generale": {
         "name": "Société Générale",
         "description": "Société Générale est une banque française. Leur engagement envers la cybersécurité financière est crucial pour protéger nos transactions et nos données.",
         "users": ["SG_bank", "cyber_banking21"],
-        "logo": "./images/partenaires/societe-generale.ico"
+        "logo": "./images/partenaires/societe-generale.ico",
         "lien": "https://particuliers.sg.fr/"
       },
       "anssi": {
         "name": "ANSSI",
         "description": "L'Agence nationale de la sécurité des systèmes d'information (ANSSI) est l'autorité chargée de la défense et de la sécurité des systèmes d'information en France.",
         "users": ["ANSSI_sec", "info_security"],
-        "logo": "./images/partenaires/anssi.ico"
+        "logo": "./images/partenaires/anssi.ico",
         "lien": "https://www.ssi.gouv.fr/"
       }
 }
