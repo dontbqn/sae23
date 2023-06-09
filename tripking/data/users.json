@@ -4,41 +4,18 @@
         "mdp": "$2y$10$Nf2pZndPyVGVg9ZgM3m8mOEDqStoyijjTZdFk7rBme1egCF8pKLZq",
         "role": "superadmin",
         "email": "DreuxLapierre@teleworm.us",
-<<<<<<< Updated upstream
-        "N_date": "05\/06\/1982"
-=======
         "N_date": "1982-06-05"
->>>>>>> Stashed changes
     },
     "user": {
         "user": "user",
         "mdp": "$2y$10$g3HpUec5Idvak\/9RVCKFhuppOpGOmRWoCYiAQVKfJk8rgaxrG\/G5W",
-<<<<<<< Updated upstream
-        "role": "user",
-        "email": "user10101010@gmail.com",
-        "N_date": "18\/01\/1974"
-=======
         "role": "salarie",
         "email": "user10101010@gmail.com",
         "N_date": "1974-01-18"
->>>>>>> Stashed changes
     },
     "anonymous": {
         "user": "anonymous",
         "mdp": "$2y$10$2iN\\\/YTDup6GDioGs4PJV3uhffURT8ZQSGpvTP4xWFVMVkBJntTdOq",
-<<<<<<< Updated upstream
-        "role": "user",
-        "favoris": [],
-        "email": "anonymous10101010@gmail.com",
-        "N_date": "02\/12\/2000"
-    },
-    "Harriette Salois ": {
-        "user": "H.Slois ",
-        "mdp": "$2y$10$pF75DcKJvbNBUbtkwpBoneMOscvtS1Dem0D5JDMj0Ze\/4SOoCMqZ6",
-        "role": "admin",
-        "email": "NouelChasse@armyspy.com ",
-        "N_date": "16\/04\/1968 "
-=======
         "role": "salarie",
         "favoris": [],
         "email": "anonymous10101010@gmail.com",
@@ -50,27 +27,17 @@
         "role": "rh",
         "email": "NouelChasse@armyspy.com ",
         "N_date": "1968-04-16"
->>>>>>> Stashed changes
     },
     "admin": {
         "user": "admin",
         "mdp": "$2y$10$pxQCauEXDSIRncE17E6W.eQidzMH8kxHVBiAR9jF7vKwcomC4sXhu",
         "role": "admin",
         "email": "admin10101010@gmail.com ",
-<<<<<<< Updated upstream
-        "N_date": "22\/11\/1992 "
-=======
         "N_date": "1992-11-22"
->>>>>>> Stashed changes
     },
     "Jean-Paul": {
         "user": "Jean-Paul",
         "mdp": "$2y$10$zeycWYo5FUC.CLriKeaOV.t5pNkxd.7hFwkcUbJxOdzrnA40SI\\\/d.",
-<<<<<<< Updated upstream
-        "role": "user",
-        "email": "Jean.Paul89@gmail.com ",
-        "N_date": "17\/08\/1979 "
-=======
         "role": "direction",
         "email": "Jean.Paul89@gmail.com ",
         "N_date": "1979-08-17"
@@ -116,6 +83,5 @@
         "role": "salarie",
         "email": "GanelonRuest@dayrep.com",
         "N_date": "1987-10-05"
->>>>>>> Stashed changes
     }
 }

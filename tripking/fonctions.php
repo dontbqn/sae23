@@ -96,8 +96,9 @@ function deconnexion(){
 }
 function connexion($nom, $mdp, $remember=false){
     $founded=false;
-    $database = json_decode(file_get_contents('data/users.json', true), true);
-    foreach($database as $user){
+    $path ="data/users.json";
+    $users = json_decode(file_get_contents($path), true);
+    foreach($users as $user){
         if($user["user"] == $nom && password_verify($mdp, $user["mdp"])){
             $_SESSION['user'] = $user["user"];
             $_SESSION['mdp'] = $user["mdp"];
@@ -129,7 +130,7 @@ function connexion($nom, $mdp, $remember=false){
     if($founded==false){
         echo "<script>console.log('Identifiants non reconnus')</script>";
     }
-    header("Refresh:0");
+    //header("Refresh:0");
     //json files don't support comments
 }
 
