@@ -31,7 +31,7 @@ $data = json_decode(file_get_contents("../data/roles.json"), true); //Database d
                 echo '<tbody>';
 
                 foreach ($data as $key => $group) {
-                    echo '<pre>'.var_dump($group).'</pre>';
+                    //echo '<pre>'.var_dump($group).'</pre>';
                     $access = '';                
                     if($key != 'salaries'){ // sinon c'est la liste salarie qui est observée
                         switch ($group['access']) {
