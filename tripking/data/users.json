@@ -3,33 +3,119 @@
         "user": "bagel",
         "mdp": "$2y$10$Nf2pZndPyVGVg9ZgM3m8mOEDqStoyijjTZdFk7rBme1egCF8pKLZq",
         "role": "superadmin",
-        "favoris": ["1","4","2"]
+        "email": "DreuxLapierre@teleworm.us",
+<<<<<<< Updated upstream
+        "N_date": "05\/06\/1982"
+=======
+        "N_date": "1982-06-05"
+>>>>>>> Stashed changes
     },
     "user": {
         "user": "user",
         "mdp": "$2y$10$g3HpUec5Idvak\/9RVCKFhuppOpGOmRWoCYiAQVKfJk8rgaxrG\/G5W",
+<<<<<<< Updated upstream
         "role": "user",
-        "favoris": ["1","3","6"]
+        "email": "user10101010@gmail.com",
+        "N_date": "18\/01\/1974"
+=======
+        "role": "salarie",
+        "email": "user10101010@gmail.com",
+        "N_date": "1974-01-18"
+>>>>>>> Stashed changes
     },
     "anonymous": {
         "user": "anonymous",
         "mdp": "$2y$10$2iN\\\/YTDup6GDioGs4PJV3uhffURT8ZQSGpvTP4xWFVMVkBJntTdOq",
-        "role": "visitor",
-        "favoris": []
+<<<<<<< Updated upstream
+        "role": "user",
+        "favoris": [],
+        "email": "anonymous10101010@gmail.com",
+        "N_date": "02\/12\/2000"
+    },
+    "Harriette Salois ": {
+        "user": "H.Slois ",
+        "mdp": "$2y$10$pF75DcKJvbNBUbtkwpBoneMOscvtS1Dem0D5JDMj0Ze\/4SOoCMqZ6",
+        "role": "admin",
+        "email": "NouelChasse@armyspy.com ",
+        "N_date": "16\/04\/1968 "
+=======
+        "role": "salarie",
+        "favoris": [],
+        "email": "anonymous10101010@gmail.com",
+        "N_date": "2000-12-02"
+    },
+    "Harriette Salois ": {
+        "user": "H.Slois",
+        "mdp": "$2y$10$RkSaYSM4leNZlNgyti99ZuUYEUXr9NKczxF9Yqkc9jANBOG8Euchy",
+        "role": "rh",
+        "email": "NouelChasse@armyspy.com ",
+        "N_date": "1968-04-16"
+>>>>>>> Stashed changes
     },
     "admin": {
         "user": "admin",
         "mdp": "$2y$10$pxQCauEXDSIRncE17E6W.eQidzMH8kxHVBiAR9jF7vKwcomC4sXhu",
-        "role": "admin"
+        "role": "admin",
+        "email": "admin10101010@gmail.com ",
+<<<<<<< Updated upstream
+        "N_date": "22\/11\/1992 "
+=======
+        "N_date": "1992-11-22"
+>>>>>>> Stashed changes
     },
     "Jean-Paul": {
         "user": "Jean-Paul",
         "mdp": "$2y$10$zeycWYo5FUC.CLriKeaOV.t5pNkxd.7hFwkcUbJxOdzrnA40SI\\\/d.",
-        "role": "visitor"
+<<<<<<< Updated upstream
+        "role": "user",
+        "email": "Jean.Paul89@gmail.com ",
+        "N_date": "17\/08\/1979 "
+=======
+        "role": "direction",
+        "email": "Jean.Paul89@gmail.com ",
+        "N_date": "1979-08-17"
     },
-    "test": {
-        "user": "test",
-        "mdp": "$2y$10$\/AzCkCKnzBhYGFXLSJBa6eFnLLXFWtr8VDFgLZp5PFmijWPR\/DUE6",
-        "role": "partenaire"
+    "Chapin Berthiaume": {
+        "user": "C.Berthiaume",
+        "mdp": "$2y$10$sOo3\/mt9v1tvqwmkJbBm2.MeWKRRlhQjd\/0IOh09pDDZNGlppUjZm",
+        "role": "direction",
+        "email": "ChapinBerthiaume@teleworm.us",
+        "N_date": "1988-11-6"
+    },
+    "Florence Lema\u00eetre": {
+        "user": "F.Lema\u00eetre",
+        "mdp": "$2y$10$7usgnckQhxuov5Kn1l1wtuUL.vnAH392bvKvtGD9zLydVKpB\/tX5S",
+        "role": "rh",
+        "email": "florencelema\u00eetre@teleworm.us",
+        "N_date": "1978-10-26"
+    },
+    "Cloridan Chauvin": {
+        "user": "C.Chauvin",
+        "mdp": "$2y$10$VyJL3R6gihJd7cvV7Qqt..K.aIPuHen7i6LvU8Og43LokAy96oRPO",
+        "role": "slalarie",
+        "email": "cloridanchauvin@teleworm.us",
+        "N_date": "1974-08-23"
+    },
+    "Saber Gagn\u00e9": {
+        "user": "S.Gagn\u00e9",
+        "mdp": "$2y$10$HTxYKtF9GXL4YPlwd8F6F.hsC2BstdKlbjR5kqaElAHdWsD.\/2A8G",
+        "role": "slalarie",
+        "email": "SaberGagne@dayrep.com ",
+        "N_date": "1969-03-13"
+    },
+    "Odette Charest": {
+        "user": "O.Charest",
+        "mdp": "$2y$10$HxK5A.04Zc5Q5kftitqxdePRFlkUH4PaQTsvQT.L5HWat9LjAVnQq",
+        "role": "salarie",
+        "email": "OdetteCharest@jourrapide.com",
+        "N_date": "1979-05-03"
+    },
+    "Ganelon Ruest": {
+        "user": "G.Ruest",
+        "mdp": "$2y$10$aKDv2nVvMRpPyh3vhePilOPftqR84x.m.btnPmMQX55RN95vN2Wve",
+        "role": "salarie",
+        "email": "GanelonRuest@dayrep.com",
+        "N_date": "1987-10-05"
+>>>>>>> Stashed changes
     }
 }
