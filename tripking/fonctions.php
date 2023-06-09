@@ -87,7 +87,7 @@ function deconnexion(){
     echo '<script>console.log("Deconnexion en cours")</script>';
     // setting the expiration date to an hour ago to delete cookies
     if($_SESSION["remember"]=!true){ 
-        setcookie("LOGGED_USER", "", time() - 3600); // On supprime cookies user/mdp si $session remember n'est pas initialisé
+        setcookie("LOGGED_USER", "", time() - 3600); // On supprime cookies user/mdp si $session remember n'est pas initiasé
         setcookie("MOTDEPASSE", "", time() - 3600);
     }
     session_unset();

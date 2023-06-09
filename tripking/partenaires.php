@@ -2,7 +2,6 @@
 session_start();
 include("./fonctions_start.php");
 setup();
-liseret();
 pagenavbar("partenaires.php");
 
 ?>
