@@ -130,7 +130,7 @@ function connexion($nom, $mdp, $remember=false){
     if($founded==false){
         echo "<script>console.log('Identifiants non reconnus')</script>";
     }
-    //header("Refresh:0");
+    header("Refresh:0");
     //json files don't support comments
 }
 
